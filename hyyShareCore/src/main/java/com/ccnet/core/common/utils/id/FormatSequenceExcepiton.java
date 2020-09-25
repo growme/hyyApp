@@ -1,0 +1,23 @@
+package com.ccnet.core.common.utils.id;
+
+public class FormatSequenceExcepiton extends IDException {
+
+	private static final long serialVersionUID = 5601412496894516855L;
+
+	public FormatSequenceExcepiton() {
+		super("格式化序号异常!");
+	}
+
+	public FormatSequenceExcepiton(String message, Throwable cause) {
+		super(message, cause);
+	}
+
+	public FormatSequenceExcepiton(String message) {
+		super(message);
+	}
+
+	public FormatSequenceExcepiton(Throwable cause) {
+		super(cause);
+	}
+
+}

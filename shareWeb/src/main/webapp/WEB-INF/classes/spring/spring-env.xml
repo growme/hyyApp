@@ -1,0 +1,47 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<beans profile="dev">
+		<!-- 加载properties配置文件 以便 spring配置内value属性值可以使用 ${property-name} 符号来动态加载配置 -->
+		<bean class="com.ccnet.core.common.utils.CustomizedPropertyConfigurer">
+			<property name="locations">
+				<array>
+					<value>classpath:dev/*.properties</value>
+					<value>classpath:Config.properties</value>
+					<value>classpath:ConfigURL.properties</value>
+				</array>
+			</property>
+		</bean>
+
+	</beans>
+
+	<beans profile="test">
+		<!-- 加载properties配置文件 以便 spring配置内value属性值可以使用 ${property-name} 符号来动态加载配置 -->
+		<bean class="com.ccnet.core.common.utils.CustomizedPropertyConfigurer">
+			<property name="locations">
+				<array>
+					<value>classpath:test/*.properties</value>
+					<value>classpath:Config.properties</value>
+					<value>classpath:ConfigURL.properties</value>
+				</array>
+			</property>
+		</bean>
+	</beans>
+
+	<beans profile="prod">
+		<!-- 加载properties配置文件 以便 spring配置内value属性值可以使用 ${property-name} 符号来动态加载配置 -->
+		<bean class="com.ccnet.core.common.utils.CustomizedPropertyConfigurer">
+			<property name="locations">
+				<array>
+					<value>classpath:prod/*.properties</value>
+					<value>classpath:Config.properties</value>
+					<value>classpath:ConfigURL.properties</value>
+				</array>
+			</property>
+		</bean>
+	</beans>
+</beans>
+

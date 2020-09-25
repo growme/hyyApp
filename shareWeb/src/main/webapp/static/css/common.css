@@ -1,0 +1,185 @@
+/*alert + confirm*/
+#_alert_bg,#_confirm_bg {
+	background-color: rgba(255, 255, 255, 0);
+	height: 100%;
+	left: 0;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 1001;
+}
+
+#_alert_content {
+	padding: 15px;
+	top: 30%;
+}
+
+#_alert_content,#_confirm_content {
+	background-color: rgba(47, 34, 33, .9);
+	border-radius: 4px;
+	color: #fff;
+	display: none;
+	font-size: 16px;
+	margin: 0 auto;
+	position: relative;
+	text-align: center;
+	width: 215px;
+	z-index: 10;
+}
+
+#_confirm_btna,#_confirm_btnb {
+	font-size: 18px;
+	height: 100%;
+	width: 49%;
+}
+
+#_confirm_btnw {
+	height: 60px;
+	line-height: 60px;
+	width: 100%;
+}
+
+#_confirm_content {
+	padding: 0;
+	top: 25%;
+}
+
+#_confirm_content>p {
+	padding: 20px;
+}
+
+#_confirm_shadowa {
+	background: -webkit-gradient(linear, left top, right top, from(rgba(47, 34, 33, .1)
+		), color-stop(0.35, #6e6262), color-stop(0.5, #6e6262),
+		color-stop(0.65, #6e6262), to(rgba(47, 34, 33, .1) ) );
+	background: -webkit-linear-gradient(left, rgba(47, 34, 33, .1), #6e6262,
+		#6e6262, #6e6262, rgba(47, 34, 33, .1) );
+	background: -moz-linear-gradient(left, rgba(47, 34, 33, .1), #6e6262,
+		#6e6262, #6e6262, rgba(47, 34, 33, .1) );
+	background: -o-linear-gradient(left, rgba(47, 34, 33, .1), #6e6262,
+		#6e6262, #6e6262, rgba(47, 34, 33, .1) );
+}
+
+#_confirm_shadowa,#_confirm_shadowb {
+	height: 1px;
+	width: 100%;
+}
+
+#_confirm_shadowa,#_confirm_shadowb,#_confirm_shadowc,#_confirm_shadowd
+	{
+	display: block;
+	overflow: hidden;
+}
+
+#_confirm_shadowb {
+	background: -webkit-gradient(linear, left top, right top, from(rgba(47, 34, 33, .1)
+		), color-stop(0.35, #2f2121), color-stop(0.5, #2f2121),
+		color-stop(0.65, #2f2121), to(rgba(47, 34, 33, .1) ) );
+	background: -webkit-linear-gradient(left, rgba(47, 34, 33, .1), #2f2121,
+		#2f2121, #2f2121, rgba(47, 34, 33, .1) );
+	background: -moz-linear-gradient(left, rgba(47, 34, 33, .1), #2f2121,
+		#2f2121, #2f2121, rgba(47, 34, 33, .1) );
+	background: -o-linear-gradient(left, rgba(47, 34, 33, .1), #2f2121,
+		#2f2121, #2f2121, rgba(47, 34, 33, .1) );
+}
+
+#_confirm_shadowc {
+	background: -webkit-gradient(linear, 50% 0%, 50% 100%, from(#6e6262),
+		to(rgba(47, 34, 33, .1) ) );
+	background: -webkit-linear-gradient(90deg, rgba(47, 34, 33, .1), #6e6262
+		);
+	background: -moz-linear-gradient(90deg, rgba(47, 34, 33, .1), #6e6262 );
+	background: -o-linear-gradient(90deg, rgba(47, 34, 33, .1), #6e6262 );
+}
+
+#_confirm_shadowc,#_confirm_shadowd {
+	float: left;
+	height: 95%;
+	width: 1px;
+}
+
+#_confirm_shadowd {
+	background: -webkit-gradient(linear, 50% 0%, 50% 100%, from(#2f2121),
+		to(rgba(47, 34, 33, .1) ) );
+	background: -webkit-linear-gradient(90deg, rgba(47, 34, 33, .1), #2f2121
+		);
+	background: -moz-linear-gradient(90deg, rgba(47, 34, 33, .1), #2f2121 );
+	background: -o-linear-gradient(90deg, rgba(47, 34, 33, .1), #2f2121 );
+}
+
+
+input, button, select, textarea {
+    -webkit-appearance: none; 
+}
+
+.no-padding {
+  padding:0px !important;	
+}
+
+.no-padding-top {
+  padding-top:0px !important;	
+}
+
+
+.no-margin{
+  margin:0px !important;	
+}
+
+.no-margin-top{
+  margin-top:0px !important;	
+}
+
+.sl1 {
+    display: inline;
+    padding: .2em .6em .3em;
+    font-size: 50%;
+    font-weight: 700;
+    color: #fff;
+    background-image: linear-gradient(darkred, red);
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 20px;
+}
+
+.sl2 {
+    display: inline;
+    padding: .2em .6em .3em;
+    font-size: 50%;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    background-image: linear-gradient(orange, red);
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 20px;
+}
+
+.sl3 {
+    display: inline;
+    padding: .2em .6em .3em;
+    font-size: 50%;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    background-image: linear-gradient(green, lightgreen);
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 20px;
+}
+
+.sl {
+    display: inline;
+    padding: .2em .6em .3em;
+    font-size: 50%;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    background-color:#ddd;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 20px;
+}

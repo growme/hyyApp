@@ -1,0 +1,82 @@
+*{
+    padding:0;
+    margin:0;
+}
+/*=== 切换按钮===*/
+.main_ul{
+    width:100%;
+    height:6rem;
+    background:#fff;
+    position: fixed;
+    border-bottom:1px solid #DBDBDB;
+    z-index: 999;
+    top:0;
+}
+.main_ul li{
+    float:left;
+    width:25%;
+    text-align: center;
+    line-height: 3rem;
+    font-size:1.3rem;
+    border:1px solid #DBDBDB;
+    border-radius:20px;
+    margin-top:1.5rem;
+    margin-left:6%;
+}
+.main_list{
+    clear: both;
+}
+.main{
+    margin-top:6rem;
+}
+/*=== 红字部分 ===*/
+.red_font{
+    height:3.5rem;
+    background:#F2F2F2;
+    line-height: 3.5rem;
+    font-size: 1.3rem;
+    color:#d9532d;
+    border-top:1px solid #DBDBDB;
+}
+/*=== 标题部分 ===*/
+.red_font,.title,.title_content{
+    padding-left:1.5rem;
+    padding-right: 1rem;
+}
+.bg{
+    background:#d9532d;
+    color:#fff;
+}
+.new_hand{
+    display:block;
+}
+.title{
+    line-height: 3.5rem;
+    border-top:1px solid #DBDBDB;
+    font-size:1.3rem;
+}
+/*=== 小箭头 ===*/
+.logo{
+    display:inline-block;
+    width:2rem;
+    height:2rem;
+    position: absolute;;
+    right:2rem;
+}
+.rot{
+    transform: rotate(180deg);
+    margin-top:1.8rem;
+}
+/*=== 标题内容 ===*/
+.title_content{
+    font-size: 1.2rem;
+    line-height: 1.8rem;
+    padding-top:1rem;
+    padding-bottom:1rem;
+    display:none;
+    color:#666;
+}
+.border_bottom{
+    border-bottom:1px solid #DBDBDB;
+    border-bottom:block;
+}

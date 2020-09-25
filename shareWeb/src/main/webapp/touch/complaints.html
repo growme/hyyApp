@@ -1,0 +1,372 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>投诉</title>
+<meta http-equiv="Cache-Control" content="no-store" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no" />
+<meta name="HandheldFriendly" content="true" />
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<style>
+@font-face {
+	font-family: 'iconfont'; /* project id 190716 */
+	src: url('//at.alicdn.com/t/font_vq8bul2vkveljtt9.eot');
+	src: url('//at.alicdn.com/t/font_vq8bul2vkveljtt9.eot?#iefix')
+		format('embedded-opentype'),
+		url('//at.alicdn.com/t/font_vq8bul2vkveljtt9.svg#iconfont')
+		format('svg');
+}
+
+.ff {
+	display: inline-block;
+	line-height: 1;
+	font-weight: normal;
+	font-variant: normal;
+	font-style: normal;
+	font-family: "iconfont";
+	font-size: inherit;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	height: 1.5rem;
+	line-height: 1.5rem;
+}
+
+a {
+	text-decoration: none;
+}
+
+* {
+	box-sizing: border-box;
+	-webkit-tap-highlight-color: transparent;
+	-webkit-touch-callout: none;
+	margin: 0;
+	padding: 0;
+	font-size: .95rem
+}
+
+body {
+	font-size: .95rem;
+	font-family: Helvetica Neue ",Roboto," Segoe UI ",sans-serif";
+	font-weight: normal;
+	text-rendering: optimizeLegibility;
+}
+
+.clearfix:after {
+	height: 0;
+	content: " ";
+	display: block;
+	visibility: hidden;
+	font-size: 0;
+	clear: both;
+}
+
+h1,h2,h3,h4,h5,h6 {
+	font-weight: normal;
+}
+
+.fl {
+	float: left;
+	display: inline-block;
+}
+
+li:hover {
+	color: #FF00FF
+}
+
+li {
+	list-style: none;
+}
+
+.fr {
+	float: right;
+	display: inline-block;
+}
+
+.tc {
+	text-align: center;
+}
+
+img {
+	border: 0;
+	display: inline-block;
+}
+
+.font_gray {
+	color: #ACACAC
+}
+
+.p1 {
+	padding-top: 1rem
+}
+
+.m1 {
+	margin-top: 1rem
+}
+
+body {
+	background-color: #EFEFF4;
+}
+
+.st_cot {
+	line-height: 1.8rem
+}
+/*表单*/
+.list_block {
+	background-color: #fff;
+	margin: 0 0 .1rem;
+}
+
+.list_block li {
+	border-top: 1px solid #F1F1F1;
+	padding: 0.5rem .8rem;
+	font-size: .85rem;
+}
+
+.list_block li div {
+	box-sizing: border-box;
+	line-height: 1.5rem;
+	-moz-box-sizing: border-box; /* Firefox */
+	-webkit-box-sizing: border-box; /* Safari */
+}
+
+.list_block li .item_title {
+	width: 25%;
+	color: #333;
+}
+
+.list_block li .ts_label {
+	width: 90%;
+	height: 1.5rem;
+	font-size: 1.1rem;
+}
+
+.list_block li .ts_label1 {
+	width: 80%;
+	font-size: 1.1rem;
+}
+
+.list_block li .item_title_tx {
+	line-height: 3.5rem
+}
+
+.list_block li .item_input,.list_block li .selc {
+	width: 75%;
+}
+
+.list_block li .item_input input {
+	font-size: .85rem;
+	border: none;
+	background: none;
+	box-shadow: none;
+	height: 2.5rem;
+	width: 85%
+}
+
+.selc {
+	margin-top: 6px;
+}
+
+.list_block li .item_input p {
+	font-size: .85rem;
+	padding-top: .5rem;
+}
+
+.selc a {
+	float: left;
+	min-width: 40px;
+	text-align: center;
+	background-color: #F1F1F1;
+	border-radius: 2px;
+	margin: 0 .8rem .3rem 0;
+	text-decoration: none;
+	color: #ACACAC;
+	font-size: .7rem;
+	display: inline-block;
+	text-decoration: none;
+	padding: .1rem .4rem;
+	line-height: 1.5rem;
+}
+
+.selc a.red {
+	color: #fff;
+	background-color: #D95955;
+	border-radius: 3px;
+}
+
+.list_block {
+	border-bottom: 1px solid #F1F1F1
+}
+
+/*投诉*/
+.ts_til {
+	padding: .3rem 0 .3rem .7rem
+}
+
+.btn_ts {
+	padding: 0 .8rem 1rem;
+}
+
+.s_yes {
+	vertical-align: middle;
+	float: right
+}
+
+.s_yes span {
+	color: #C3C3C3;
+}
+
+.weixin_btn {
+	position: relative;
+	display: block;
+	margin: 0 auto;
+	padding: 0 14px;
+	box-sizing: border-box;
+	font-size: 1.2rem;
+	text-align: center;
+	text-decoration: none;
+	color: #FFFFFF;
+	line-height: 2;
+	border-radius: 4px;
+	overflow: hidden;
+	background-color: #04BE02
+}
+
+.list_block .textarea_panel {
+	padding: .4rem .4rem;
+}
+
+.list_block .textarea_panel textarea {
+	display: block;
+	width: 100%;
+	border: 0;
+	padding: .4rem 0;
+	height: 60px;
+}
+
+.list_block .textarea_panel .frm_hint {
+	display: block;
+	text-align: right;
+	color: #8d8d8d;
+	padding-right: 5px;
+}
+
+.ts_miaosu {
+	padding: .1rem 1rem 1rem 1rem;
+	text-align: justify;
+	text-justify: distribute-all-lines;
+	width: 100%;
+	font-size: .8rem
+}
+
+.s_yes>span {
+	height: 18px;
+	line-height: 18px;
+}
+</style>
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+</head>
+<body>
+	<div class="st_cot" id="step1">
+		<h5 class="font_gray ts_til" style="font-size: .95rem;color: #B6B6B8">请选择投诉该网页的原因</h5>
+		<ul class="list_block">
+			<li class="clearfix" id="1" onclick="step1(1);">
+				<div class="item_title ts_label fl" id="ts1">网页包含欺诈信息 (如: 假红包)
+				</div>
+				<div class="s_yes tr fr" id="tousu2" style="">
+					<span style="float: right" class="fa fa-angle-right"></span>
+				</div></li>
+			<li class="clearfix" id="2" onclick="step1(2);">
+				<div class="item_title ts_label fl" id="ts2">网页包含色情信息</div>
+				<div class="s_yes tr fr ff" id="tousu2" style="">
+					<span class="fa fa-angle-right"></span>
+				</div></li>
+			<li class="clearfix" id="3" onclick="step1(3);">
+				<div class="item_title ts_label fl" id="ts3">网页包含暴力恐怖信息</div>
+				<div class="s_yes tr fr ff" id="tousu3" style="">
+					<span class="fa fa-angle-right"> </span>
+				</div></li>
+			<li class="clearfix" id="4" onclick="step1(4);">
+				<div class="item_title ts_label fl" id="ts4">网页包含政治敏感信息</div>
+				<div class="s_yes tr fr ff" id="tousu4" style="">
+					<span class="fa fa-angle-right"> </span>
+				</div></li>
+			<li class="clearfix" id="5" onclick="step1(5);">
+				<div class="item_title ts_label1 fl" id="ts5" style="">
+					网页在收集个人隐私信息 (如：钓鱼链接)</div>
+				<div class="s_yes tr fr ff" id="tousu5" style="">
+					<span class="fa fa-angle-right"> </span>
+				</div></li>
+			<li class="clearfix" id="6" onclick="step1(6);">
+				<div class="item_title ts_label fl" id="ts6">网页包含诱导分享性质的内容</div>
+				<div class="s_yes tr fr" id="tousu6" style="">
+					<span class="fa fa-angle-right"> </span>
+				</div></li>
+			<li class="clearfix" id="7" onclick="step1(7);">
+				<div class="item_title ts_label fl" id="ts7">网页可能包含谣言信息</div>
+				<div class="s_yes tr fr ff" id="tousu7" style=";">
+					<span class="fa fa-angle-right"> </span>
+				</div></li>
+		</ul>
+		<div
+			style="position: absolute;bottom: .2rem;width: 100%;text-align: center;color: #2084FE">
+			<a style="text-decoration: none;color: #2084FE"
+				href="./complaint.html">投诉须知</a>
+		</div>
+	</div>
+	<div class="st_cot" id="step2" style="display: none">
+		<h5 class="font_gray ts_til" style="font-size: .95rem;color: #B6B6B8">你可以：</h5>
+		<ul class="list_block">
+			<li class="clearfix" id="1" value="">
+				<div class="item_title ts_label fl" id="ts1" onclick="step2(1);">
+					提交给微信团队审核</div>
+				<div class="s_yes tr fr" id="tousu2" style="">
+					<span class="fa fa-angle-right"> </span>
+				</div></li>
+		</ul>
+		<div
+			style="position: absolute;bottom: .2rem;width: 100%;text-align: center;">
+			<a style="text-decoration: none;color: #2084FE"
+				href="./complaint.html">投诉须知</a>
+		</div>
+	</div>
+	<div class="st_cot" id="step3" style="display: none;">
+		<p class="tc m1 p1">
+			<img src="../static/images/touch_success.png" width="30%" />
+		</p>
+		<h4 class="tc" style="margin-top: .8rem">投诉已递交</h4>
+		<p class="font_gray ts_miaosu" style="text-align: center">微信团队会尽快核实,并通过“微信团队”通知你审核结果。感谢你的支持。</p>
+		<div class="btn_ts" onclick="window.history.back();">
+			<a class="weixin_btn">关闭</a>
+		</div>
+	</div>
+	<div style="display: none">
+		<input type="hidden" id="tousu_id" value="1" />
+	</div>
+	<form id="myform">
+		<input id="complain" type="hidden" name="complainType" value="424ee" />
+	</form>
+	<script type="text/javascript">
+        function step1(a){
+            var b = a;
+            $("#complain").val(b);
+            $("#step1").hide();
+            $("#step2").show();
+            var complainType = $("#complain").val();
+        }
+        function step2(b){
+            var complainType = $("#complain").val();
+            var articleId = 940;
+            var userId = 0;
+            var shareId = 0;
+            $("#btn2").html("提交中.....");
+            $("#step2").hide();
+            // $.post("/article/report/"+articleId ,{"complain":complainType ,"userId":userId,"articleId":articleId,"shareId":shareId,function(json){ }});
+            $("#step1").hide();
+            $("#step2").hide();
+            $("#step3").show();
+        }
+    </script>
+</body>
+</html>

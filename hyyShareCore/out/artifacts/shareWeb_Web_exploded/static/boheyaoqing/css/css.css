@@ -1,0 +1,699 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    /*background: #FE6321;*/
+    background-image: linear-gradient(#FC6320, #FE7318);
+    font-family: "Microsoft YaHei";
+
+}
+img{
+    vertical-align: middle;
+}
+.top{
+
+    background: #D03E27;
+
+    padding: 5px 0;
+}
+.banner{
+
+    position: relative;
+
+    width: 100%;
+
+    background: url(../images/yq1_02_05.png);
+
+    background-size: 100% 100%;
+
+    padding-bottom: 10px;
+
+    background-image: linear-gradient(to right, #FD4331, #FF0044);
+}
+.bannerimg{
+
+    width: 100%;
+
+    position: relative;
+}
+.bannerimg >img{
+
+    width: 100%;
+}
+.yqbtn{
+
+    position: absolute;
+
+    bottom: 55px;
+
+    text-align: center;
+    display: block;
+}
+.yqbtn img{
+
+    width: 60%;
+}
+.yqcode{
+
+    position: absolute;
+
+    bottom: 26px;
+
+    text-align: center;
+
+    width: 100%;
+
+    font-size: 14px;
+
+    color: #FCE982;
+}
+.yqcode span{
+
+}
+.yqcode a{
+
+    text-decoration: underline;
+
+    margin: 0 10px;
+}
+.najiangli{
+
+    margin-top: 17px;
+
+    width: 98%;
+
+    margin: 20px auto 0;
+}
+.najianglibox{
+
+}
+.title{
+
+    width: 94.1%;
+
+    margin: 0 auto;
+}
+.title img{
+
+    width: 100%;
+
+    vertical-align: middle;
+
+    display: block;
+}
+.jianglicon{
+
+    background: #fff;
+
+    width: 96%;
+
+    margin: 0 auto;
+
+    margin-top: -1px;
+
+    padding: 10px 2px;
+
+    margin-bottom: 10px;
+
+    border-radius: 0 0 5px 5px;
+}
+.jianglicon1{
+
+    display: flex;
+}
+.jiangliintro{
+
+    border: 1px solid #FBDF9E;
+
+    border-radius: 10px;
+
+    width: 30%;
+
+    margin: 2%;
+}
+.jiangliintro p:first-child{
+
+    color: #BC9D57;
+
+    font-size: 12px;
+
+    background: #FCEDC4;
+
+    height: 26px;
+
+    line-height: 26px;
+
+    text-align: center;
+}
+.jiangliintro p:last-child{
+
+    color: #EE5A48;
+
+    font-weight: 700;
+
+    text-align: center;
+
+    padding: 10px 0;
+
+    font-size: 20px;
+}
+.jianglicon2{
+
+    display: flex;
+}
+.jiangliintro3{
+
+    width: 40%;
+}
+.jiangliintro4{
+
+    width: 50%;
+}
+.hytip{
+
+    text-align: center;
+
+    color: #695A39;
+
+    font-size: 14px;
+
+    margin: 5px 0;
+}
+.yqjiangli{
+
+    /* background: #fff; */
+
+    /* width: 96%; */
+
+    margin: 20px  auto;
+}
+.yqjlcon{
+
+    width: 94%;
+
+    margin: 0 auto;
+
+    background: #fff;
+
+    margin-top: -1px;
+
+    overflow: hidden;
+
+    padding: 30px 0 10px;
+
+    margin-left: 3%;
+
+    border-radius: 0 0 5px 5px;
+
+    font-weight: 700;
+}
+.yqtxt{
+
+    text-align: center;
+
+    margin: 10px 0;
+}
+.ljyq{
+
+    text-align: center;
+
+    margin: 20px 0;
+}
+.ljyq img{
+
+    width: 63%;
+}
+.whyqy{
+
+    width: 90%;
+
+    margin: 10px auto;
+
+    font-size: 14px;
+}
+.whyqy span{
+
+    color: #FD2A0C;
+}
+.ljyq2{
+
+    text-align: center;
+
+    margin-bottom: 15px;
+}
+.ljyq2 img{
+
+    width: 70%;
+}
+.liwu{
+
+    margin: 10px 0;
+
+    border-radius: 5px;
+}
+.kede{
+
+    width: 94%;
+
+    margin: 0 auto;
+
+    background: #fff;
+
+    border-top: 1px solid #666;
+
+    border-bottom: 1px solid #eee;
+
+    text-align: center;
+
+    margin-top: -1px;
+}
+.kede P{
+
+}
+.kede p img{
+
+    width: 96%;
+}
+.kedetxt{
+
+    width: 80%;
+
+    margin: 20px auto;
+
+    font-size: 12px;
+
+    text-align: left;
+
+    color: #666;
+
+    line-height: 19px;
+}
+.liwu3{
+
+    width: 94%;
+
+    margin: 0 auto;
+
+    border-radius: 0 0 5px 5px;
+
+    overflow: hidden;
+}
+.liwu3 img{
+
+    width: 100%;
+}
+.paihang{
+
+    /* background: #fff; */
+
+    /* width: 90%; */
+
+    margin: 10px auto;
+}
+.phrenshu{
+
+    text-align: center;
+
+    background: #fff;
+
+    padding-top: 10px;
+}
+.phrenshu span{
+
+    color: #FC381F;
+}
+.mouthtab{
+
+    /* float: left; */
+
+    width: 80%;
+
+    overflow: hidden;
+
+    border: 1px solid #FD2A0C;
+
+    border-radius: 40px;
+
+    margin: 20px auto;
+
+    display: flex;
+}
+.mouthtabitem{
+
+    float: left;
+
+    text-align: center;
+
+    width: 50%;
+
+    padding: 6px;
+}
+.mouthtabitem.active{
+
+    background: #FD2A0C;
+
+    color: #fff;
+}
+.mouthtabitem p:first-child{
+
+    font-size: 14px;
+}
+.mouthtabitem p:last-child{
+
+    font-size: 12px;
+}
+.nobang{
+
+    text-align: center;
+
+    font-size: 14px;
+}
+.three{
+
+    overflow: hidden;
+
+    text-align: center;
+
+    margin-bottom: 10px;
+}
+.three1{
+
+    float: left;
+
+    text-align: center;
+
+    width: 30%;
+}
+.thimg{
+
+    /* height: 102px; */
+
+    margin-top: 19px;
+}
+.thimg > img{
+
+    width: 62px;
+}
+.thimgbanh{
+
+    margin-top: -29px;
+}
+.thimgbanh img{
+
+    width: 83px;
+}
+.name{
+
+}
+.tong{
+
+}
+.three2{
+
+    float: left;
+
+    text-align: center;
+
+    width: 40%;
+}
+.thimg2{
+
+}
+.thimg2 >img{
+
+    width: 80px;
+}
+.thimg2guan{
+
+}
+.thimg2guan img{width: 89px;margin-top: -24px;}
+.jin{
+
+}
+.three3{
+
+    float: left;
+
+    width: 30%;
+}
+.thimg3{
+
+    margin-top: 21px;
+}
+.thimg3 >img{
+
+    width: 60px;
+}
+.thimg3guan {
+
+}
+.thimg3guan img{width: 68px;margin-top: -18px;}
+.tong{
+
+}
+.pmlist{
+
+    overflow: hidden;
+
+    height: 50px;
+
+    border-bottom: 1px solid #eee;
+
+    line-height: 50px;
+
+    padding: 0 10px;
+
+    font-size: 14px;
+}
+.pmlist1{
+
+    float: left;
+
+    width: 10%;
+
+    text-align: center;
+}
+.pmlist2{
+
+    float: left;
+}
+.pmlist2 img{
+
+    width: 40px;
+
+    height: 40px;
+
+    border-radius: 50%;
+}
+.pmlist3{
+
+    float: left;
+
+    margin-left: 10px;
+}
+.pmlist4{
+
+    float: right;
+}
+.pmlist4 span{
+
+    color: #FD2A0C;
+}
+.footer{
+
+    position: fixed;
+
+    width: 100%;
+
+    bottom: 0;
+
+    z-index: 10;
+
+    background: #fff;
+
+    /* display: none; */
+
+    padding-bottom: 4px;
+}
+.footertxt{
+
+    background: #F45037;
+
+    text-align: center;
+
+    padding: 5px 0;
+
+    color: #fff;
+}
+.footerbtn{
+
+    bottom: 0;
+
+    overflow: hidden;
+}
+.footerbtn a{
+
+    display: block;
+
+    float: left;
+
+    width: 25%;
+
+    text-align: center;
+
+    text-decoration: none;
+}
+.footerbtn a img{
+
+    width: 40px;
+
+    height: 40px;
+
+    /* border-radius: 50%; */
+}
+.footerbtn a p{
+
+    color: #666;
+
+    font-size: 12px;
+}
+.phall{
+    background: #fff;
+    width: 94%;
+    margin: 0 auto;
+    border-radius: 0 0 5px 5px;
+    overflow: hidden;
+    margin-top: -1px;
+}
+.yqrenyuan{
+
+    width: 94%;
+
+    margin: 0 auto;
+
+    background: #fff;
+
+    padding: 10px;
+
+    width: 89%;
+
+    margin-top: -1px;
+
+    border-radius: 5px;
+}
+.shangji{
+
+    background: #FCCD5E;
+
+    display: inline-block;
+
+    color: #B68C2F;
+
+    font-weight: 700;
+
+    font-size: 12px;
+
+    line-height: 24px;
+
+    padding: 0px 5px;
+
+    border-radius: 10px;
+
+    position: absolute;
+
+    left: 14px;
+
+    top: -10px;
+}
+.shangji img{
+
+    width: 20px;
+
+    height: 20px;
+
+    border-radius: 50%;
+
+    vertical-align: middle;
+
+    float: left;
+
+    margin-top: 2px;
+
+    margin-right: 5px;
+}
+
+.gerenshouyi{
+
+    border: 1px solid #FCCD5E;
+
+    width: 90%;
+
+    margin: 10px auto;
+
+    display: flex;
+
+    padding: 21px 0 10px;
+}
+.shouyiitem{
+
+    width: 33%;
+
+    text-align: center;
+
+    border-right: 1px solid #eee;
+}
+.shouyiitem p:first-child{
+
+    color: #EE5A48;
+
+    font-size: 16px;
+
+    font-weight: 700;
+}
+.shouyiitem p:last-child{
+
+    color: #A99D78;
+
+    font-size: 13px;
+
+    margin: 4px 0;
+}
+.yqrenyuancon{
+
+    position: relative;
+}
+.space{
+    height: 100px;
+}
+.gonglue{
+    position: absolute;
+    width: 40px;
+    height: 30px;
+    right: 0;
+}
+.guize{
+
+    position: absolute;
+
+    height: 100px;
+
+    width: 40px;
+
+
+    right: 0;
+
+    top: 40px;
+}
+.mingdan{
+
+}
+.mingdan li{
+    list-style: none;
+}
+.mingdan li a{
+    text-decoration: none;
+    color: #FE981F;
+    display: block;
+    text-align: center;
+}

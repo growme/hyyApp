@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.glassfish.main.javaee-api:javax.jms:3.1.2.2">
+    <CLASSES>
+      <root url="jar://D:/gradle-5.6.2/repository/.gradle/caches/modules-2/files-2.1/org.glassfish.main.javaee-api/javax.jms/3.1.2.2/289e3ee1bfef6bea5e0ecd0f6d06928b9fd460c7/javax.jms-3.1.2.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://D:/gradle-5.6.2/repository/.gradle/caches/modules-2/files-2.1/org.glassfish.main.javaee-api/javax.jms/3.1.2.2/704f83da005d307a9f46a96ddfd7d803738fd006/javax.jms-3.1.2.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

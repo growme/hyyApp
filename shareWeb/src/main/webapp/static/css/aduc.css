@@ -1,0 +1,153 @@
+body {
+	padding: 0;
+	width: 100%;
+	max-width: 640px;
+	margin: 0 auto;
+	background: #fff;
+	font-size: 15px;
+	font-family: '微软雅黑';
+}
+
+* {
+	padding: 0;
+	margin: 0;
+	border: 0;
+}
+
+a {
+	text-decoration: none;
+	cursor: pointer;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+ul,li {
+	list-style: none
+}
+
+.hidden {
+	height: 0;
+	width: 0;
+	overflow: hidden;
+	font-size: 0;
+}
+
+.hidden img {
+	max-width: 100% !important;
+	height: auto !important;
+}
+
+#htmlbody {
+	margin: 0px auto;
+	width: 92%;
+}
+
+.header {
+	padding: 10px 0px;
+}
+
+.header .day {
+	padding-right: 15px;
+	color: #999;
+	font-size: 13px;
+}
+
+.listitem {
+	margin: 5px auto;
+}
+
+.header h3 {
+	padding-bottom: 10px;
+}
+
+.listitem li {
+	display: block;
+	overflow: hidden;
+	border-bottom: 1px solid #eeeeee;
+	text-decoration: none;
+	padding: 10px 0px;
+	position: relative;
+	cursor: pointer;
+}
+
+.listitem li:last-child {
+	border-bottom: 0px
+}
+
+.listitem h4 {
+	font-size: 16px;
+	line-height: 22px;
+	color: #000;
+	height: 44px;
+	overflow: hidden;
+	font-weight: 400;
+	white-space: pre-wrap;
+	word-break: break-all;
+	margin-bottom: 5px;
+}
+
+.listitem h4.red {
+	color: #DE3B53;
+}
+
+.listitem dl {
+	width: 100%;
+	position: relative;
+	height: 75px;
+}
+
+.listitem dl dd {
+	width: 33%;
+	float: left;
+	background: url('../img/loading.gif') no-repeat center center;
+}
+
+.listitem .imdf {
+	cursor: pointer;
+	height: 75px;
+	background-size: cover;
+	background-position: center center;
+	cursor: pointer;
+	position: relative;
+	margin: 0px 3px;
+}
+
+.listitem .btm {
+	padding-top: 10px;
+}
+
+.listitem .fr {
+	width: 32%;
+	float: right;
+	background: url('../img/loading.gif') no-repeat center center;
+}
+
+.listitem .fl {
+	width: 67%;
+	float: left;
+}
+
+.listitem .btm span {
+	font-size: 10px;
+	color: #999;
+}
+
+.listitem .btm .hot {
+	color: #DE3B53;
+	border: 1px solid #DE3B53;
+	background-color: #fff;
+	border-radius: 2px;
+	padding: 0 2px;
+	font-size: 10px;
+	margin-right: 5px;
+}
+
+.like {
+	border-bottom: 2px solid #DE3B53;
+	padding-top: 15px;
+	padding-bottom: 5px;
+}
+
+.like h3 {
+	font-size: 18px;
+	color: #DE3B53;
+}

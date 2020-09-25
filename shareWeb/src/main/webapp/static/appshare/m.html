@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+	content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta name="description" content="demo" />
+<link rel="stylesheet" href="./nativeShare.css" />
+<title>微信分享</title>
+</head>
+<body>
+<div class="cnav hide" style="display: block;">
+	<div class="weui-flex f13" style='line-height: 2rem;'>
+		    <div class="weui-flex__item"><a href='javascript:;' class='share_btn' data-mshare="2"  > <i class="icon icon-14"></i>微信好友</a></div>
+		    <div class="weui-flex__item"><a href='javascript:;' class='share_btn'  data-mshare="1"  > <i class="icon icon-12"></i>朋友圈</a></div>
+	</div>
+</div>
+<div id="shareResult">welcome</div>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src='https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js'></script>
+<script src="./mshare_v2.js?t=12380"></script>
+<script>
+   var config ={
+        title : '刘奕宁Lynn性感火辣妖娆私房艺术照图片',
+        url   : 'http://blog.wangjunfeng.com',
+        desc  : '刘奕宁Lynn性感火辣妖娆私房艺术照图片',
+        img   : 'http://znthkz.cn/upload/image/20190904/4c84ca4690d54e20bc073e824af4e617-1-6181087110.jpg'
+    }
+   
+   function getUrl(from) {
+       var url_pyq = "http://blog.wangjunfeng.com";
+       var url_py  = "http://www.baidu.com";
+       if (from == "timeline") {
+           return url_pyq;
+       }
+       return url_py;
+   }
+   
+   var wxinfo = {
+		      title: '90后秃头？貌似这还只在网络上，然而80后秃头可是实打实的一揪一揪毛啊',
+		      link : "http://mrw.so/58O7P3",
+		      imgurl : 'http://znthkz.cn/upload/image/20190904/4c84ca4690d54e20bc073e824af4e617-1-6181087110.jpg',
+		      desc : "本文刊载于《三联生活周刊》微信公众号，原文标题《83年的 ..."
+  }
+   
+   
+   $('.share_btn').click(function () { 
+	      // 1 ==> 朋友圈  2 ==> 朋友  0 ==> 直接弹出原生
+	   var mshare_type = $(this).data('mshare');
+	   var mshare = new mShare({
+           title: wxinfo.title,
+           url: wxinfo.link,
+           desc: wxinfo.desc,
+           img:  wxinfo.imgurl
+         });
+         mshare.init(+mshare_type);
+	         
+	});
+   
+   
+    //var mshare = new mShare(config,"nativeShare");
+    //mshare.check();
+    
+</script>
+</body>
+</html>

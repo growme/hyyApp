@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: net.sf.json-lib:json-lib-ext-spring:1.0.2">
+    <CLASSES>
+      <root url="jar://D:/gradle-5.6.2/repository/.gradle/caches/modules-2/files-2.1/net.sf.json-lib/json-lib-ext-spring/1.0.2/df0fb152e20fd87120d51b3f2bcacb5254786ba7/json-lib-ext-spring-1.0.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://D:/gradle-5.6.2/repository/.gradle/caches/modules-2/files-2.1/net.sf.json-lib/json-lib-ext-spring/1.0.2/a8ec20c1da61c5e9aa6ef2a3a8cd37e94956302d/json-lib-ext-spring-1.0.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.alipay.sdk:alipay-sdk-java:4.10.145.ALL">
+    <CLASSES>
+      <root url="jar://D:/gradle-5.6.2/repository/.gradle/caches/modules-2/files-2.1/com.alipay.sdk/alipay-sdk-java/4.10.145.ALL/71c97e66032733940ef838b70134b3c30497928b/alipay-sdk-java-4.10.145.ALL.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://D:/gradle-5.6.2/repository/.gradle/caches/modules-2/files-2.1/com.alipay.sdk/alipay-sdk-java/4.10.145.ALL/8a57f1f30fdc8e4f8485ff0f4bdcd5bf4066fd55/alipay-sdk-java-4.10.145.ALL-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

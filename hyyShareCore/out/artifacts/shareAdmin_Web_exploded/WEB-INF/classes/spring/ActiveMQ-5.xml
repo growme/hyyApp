@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:jms="http://www.springframework.org/schema/jms"
+    xmlns:amq="http://activemq.apache.org/schema/core"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans   
+        http://www.springframework.org/schema/beans/spring-beans.xsd   
+        http://www.springframework.org/schema/context   
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/jms 
+        http://www.springframework.org/schema/jms/spring-jms.xsd
+        http://activemq.apache.org/schema/core 
+        http://activemq.apache.org/schema/core/activemq-core-5.15.2.xsd"
+ 		default-lazy-init="true">
+ 		
+ 	<!-- 配置文件 MQ配置文件-->
+	<!-- 配置客户端消息工厂 -->
+	<bean id="connectionFactory" class="org.apache.activemq.pool.PooledConnectionFactory">
+		<property name="connectionFactory">
+			<bean class="org.apache.activemq.ActiveMQConnectionFactory">
+				<property name="brokerURL" value="${active.mq.brokerURL}" /><!-- mq地址 -->
+				<property name="userName" value="${active.mq.userName}" /><!-- 用户名 -->
+				<property name="password" value="${active.mq.password}" /><!-- 密码 -->
+			</bean>
+		</property>
+		<property name="maximumActiveSessionPerConnection" value="500"/>
+	</bean>
+
+    <!-- Spring JMS Template -->  
+    <!-- 生产者 -->  
+    <!-- Queue类型 -->  
+    <bean id="jmsQueueTemplate" class="org.springframework.jms.core.JmsTemplate">  
+        <!-- 这个connectionFactory对应的是我们定义的Spring提供的那个ConnectionFactory对象 -->  
+        <constructor-arg ref="connectionFactory"></constructor-arg>  
+        <!-- 非pub/sub模型（发布/订阅），即队列模式 -->  
+        <property name="pubSubDomain" value="false" />  
+       <!--  <property name="messageConverter" ref="msgConverter"/>   -->
+        <property name="receiveTimeout" value="30000"/><!-- 由于receiver方法是同步的，所以我们在这里对接收设置超时时间-->  
+    </bean>  
+  
+    <!-- 消息监听器 -->  
+    <bean id="queueReceiver" class="com.ccnet.cps.service.impl.ReceiverMQServiceImpl"></bean>  
+  
+  
+    <!-- 消息消费者 start -->  
+    <!-- 定义Queue监听器容器 -->  
+    <jms:listener-container destination-type="queue" container-type="default" connection-factory="connectionFactory"  acknowledge="auto">  
+        <jms:listener destination="forward-queue" ref="queueReceiver" />  
+    </jms:listener-container>  
+    <!-- 消息消费者 end -->  
+      
+    <!-- 定义队列目的地 ，点对点 -->  
+    <bean id="forwardQueueDestination" class="org.apache.activemq.command.ActiveMQQueue">  
+        <constructor-arg>  
+            <value>forward-queue</value>  
+        </constructor-arg>  
+    </bean>  
+     
+</beans>

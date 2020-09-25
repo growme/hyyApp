@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:jms="http://www.springframework.org/schema/jms"
+    xmlns:amq="http://activemq.apache.org/schema/core"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans   
+        http://www.springframework.org/schema/beans/spring-beans.xsd   
+        http://www.springframework.org/schema/context   
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/jms 
+        http://www.springframework.org/schema/jms/spring-jms.xsd
+        http://activemq.apache.org/schema/core 
+        http://activemq.apache.org/schema/core/activemq-core-5.15.2.xsd"
+ 		default-lazy-init="true">
+        
+    <!-- ActiveMQ 连接工厂 -->
+    <!-- 真正可以产生Connection的ConnectionFactory，由对应的 JMS服务厂商提供-->
+    <!-- 如果连接网络：tcp://ip:61616；未连接网络：tcp://localhost:61616 以及用户名，密码-->
+   <!-- <amq:connectionFactory id="amqConnectionFactory" brokerURL="${active.mq.brokerURL}" userName="${active.mq.userName}" password="${active.mq.password}">
+   </amq:connectionFactory> -->
+   
+	<bean id = "amqConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+		<property name="brokerURL" value="${active.mq.brokerURL}" /><!-- mq地址 -->
+		<property name="userName" value="${active.mq.userName}" /><!-- 用户名 -->
+		<property name="password" value="${active.mq.password}" /><!-- 密码 -->
+	</bean>
+   
+    <!-- Spring Caching连接工厂 -->
+    <!-- Spring用于管理真正的ConnectionFactory的ConnectionFactory -->  
+    <bean id="connectionFactory" class="org.springframework.jms.connection.CachingConnectionFactory">
+        <!-- 目标ConnectionFactory对应真实的可以产生JMS Connection的ConnectionFactory -->  
+        <property name="targetConnectionFactory" ref="amqConnectionFactory"></property>
+        <!-- Session缓存数量 -->
+        <property name="sessionCacheSize" value="${active.mq.sessionCacheSize}" />
+    </bean>
+    
+    <!-- Spring JMS Template -->  
+    <!-- 生产者 -->  
+    <!-- Queue类型 -->  
+    <bean id="jmsQueueTemplate" class="org.springframework.jms.core.JmsTemplate">  
+        <!-- 这个connectionFactory对应的是我们定义的Spring提供的那个ConnectionFactory对象 -->  
+        <constructor-arg ref="connectionFactory"></constructor-arg>  
+        <!-- 非pub/sub模型（发布/订阅），即队列模式 -->  
+        <property name="pubSubDomain" value="false" />  
+    </bean>  
+  
+    <!-- 消息监听器 -->  
+    <bean id="queueReceiver" class="com.ccnet.cps.service.impl.ReceiverMQServiceImpl"></bean>  
+  
+  
+    <!-- 消息消费者 start -->  
+    <!-- 定义Queue监听器容器 -->  
+    <jms:listener-container destination-type="queue" container-type="default" connection-factory="connectionFactory"   acknowledge="auto">  
+        <jms:listener destination="forward-queue" ref="queueReceiver" />  
+    </jms:listener-container>  
+    <!-- 消息消费者 end -->  
+      
+    <!-- 定义队列目的地 ，点对点 -->  
+    <bean id="forwardQueueDestination" class="org.apache.activemq.command.ActiveMQQueue">  
+        <constructor-arg>  
+            <value>forward-queue</value>  
+        </constructor-arg>  
+    </bean>  
+     
+</beans>

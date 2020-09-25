@@ -1,0 +1,125 @@
+﻿/*全局基础样式*/
+.margin-top-7 {
+    margin-top: 7px;
+}
+
+.admin-sidebar-list li a.active{
+	color: #0E90D2;	
+}
+
+/*上传组件*/
+.fileInputContainer {
+    height: 37px;
+    position: relative;
+    width: 47px;
+    color: #C2C2C2;
+}
+
+.fileInput {
+    height: 37px;
+    overflow: hidden;
+    font-size: 300px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    opacity: 0;
+    filter: alpha(opacity = 0);
+    cursor: pointer;
+    width: 47px;
+}
+
+.uploading {
+    position: absolute;
+    display: none;
+    left: 0;
+    bottom: 0;
+    width: 100px;
+    height: 20px;
+    background-color: #000;    
+	opacity: .5;
+	text-align: center;
+    border: 1px solid #ccc;
+    border-top: 0;
+}
+
+.progressbar{
+	color: # BDBDBD;
+}
+.image_del_i{
+    height: 18px;
+    width: 18px;
+    cursor: pointer;
+    text-align: center;
+    background: url(/Public/assets/sell/images/base_z2b638f.png) 0 -4827px no-repeat;
+    display: inline-block;
+   
+}
+.image_del_i2{
+    height: 18px;
+    width: 18px;
+    cursor: pointer;
+    text-align: center;
+    background: url(/Public/assets/sell/images/base_z2b638f.png) 0 -4827px no-repeat;
+    display: inline-block;
+   
+}
+.close_box {
+    position: absolute;
+    right: 2px;
+    top: -2px;
+    color: #FFFFFF;
+    font-size: 12px;
+}
+/*自动回复页面*/
+#tinybox{
+    position:absolute;
+    display:none;  
+    background:#ffffff url(images/preload.gif) no-repeat 50% 50%; 
+    z-index:2000;
+}
+#tinymask{
+    position:absolute; 
+    display:none; top:0; left:0; 
+    height:100%; width:100%; 
+    background:#000000; 
+    z-index:1500;
+}
+.am-submit{
+    margin-left:20%;
+ }
+#reply{
+    display:none;
+}
+#reply2{
+    display:none;
+}
+.am-page{
+    text-align:center;
+}
+.edit_table{
+    margin:auto;
+}
+.edit_table td{
+    padding-top:10px;
+}
+.pages a,.pages .current {
+    border:1px solid #ccc;
+    background:#fff;
+    padding:2px 6px;
+    margin:0 2px; 
+}
+.pages .current,.pages a:hover{
+    background:#3bb4f2;
+    color:#fff;
+}
+.select_css{
+    width:268px;
+    height:37px;
+}
+.select_css2{
+    width:50%;
+    height:33px;
+}
+#input_keyword{
+    width:268px;
+}

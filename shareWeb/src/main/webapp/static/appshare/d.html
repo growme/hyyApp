@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+	content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta name="description" content="demo" />
+<link rel="stylesheet" href="./nativeShare.css" />
+<title>微信分享</title>
+</head>
+<body>
+<div id="nativeShare"></div>
+<div id="shareResult">welcome</div>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src='https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js'></script>
+<script src="./mshare.js?t=12380"></script>
+<script>
+   var config ={
+        title : '刘奕宁Lynn性感火辣妖娆私房艺术照图片',
+        url   : 'http://blog.wangjunfeng.com',
+        desc  : '刘奕宁Lynn性感火辣妖娆私房艺术照图片',
+        img   : 'http://znthkz.cn/upload/image/20190904/4c84ca4690d54e20bc073e824af4e617-1-6181087110.jpg'
+    }
+   
+   function getUrl(from) {
+       var url_pyq = "http://blog.wangjunfeng.com";
+       var url_py  = "http://www.baidu.com";
+       if (from == "timeline") {
+           return url_pyq;
+       }
+       return url_py;
+   }
+   
+    var mshare = new mShare(config,"nativeShare");
+    mshare.check();
+    
+</script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+
+.skuTableTh{
+	height:34px;
+	background:#eee!important;
+}
+
+.wd200{
+	width:260px!important;
+}
+
+.wd100{
+	width:100px!important;
+}
+
+.wd80{
+	width:80px!important;
+}
+
+.wd50{
+	width:50px!important;
+}
+
+.gpSeeImg {
+	width:120px;
+	height:120px;
+	margin:5px!important;
+	border:3px solid #ccc;
+	border-radius:2px;
+}
+
+.filePreviewImage {
+	width:196px;
+	height:150px;
+	border:1px solid #ddd;
+	border-radius:0px;
+}
+
+.fileActions {
+    margin-top: 2px;
+}
+.fileActions, .file-other-error {
+    text-align: left;
+}
+
+.fileDropAone {
+    border: 1px dashed #aaa;
+    border-radius: 4px;
+    height: 100%;
+    text-align: left;
+    vertical-align: left;
+    padding: 5px;
+}
+
+.copyDiv{
+	width:100%;
+	max-height:200px;
+	border:1px dashed #ccc;
+	overflow-y:auto;
+	overflow-x:hidden;
+}
+
+.goodDiv{
+	width:100%;
+	border:1px dashed #ccc;
+	max-height:300px;
+	overflow-y:auto;
+	overflow-x:hidden;
+}
+
+.avImgPre {
+	width:120px;
+	height:80px;
+	border:1px solid #ddd;
+	border-radius:0px;
+}
+
+.avGImgPre {
+	width:400px;
+	height:80px;
+	border:1px solid #ddd;
+	border-radius:0px;
+}
+

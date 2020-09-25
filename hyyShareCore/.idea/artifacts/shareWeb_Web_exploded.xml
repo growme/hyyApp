@@ -1,0 +1,129 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="shareWeb:Web exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/shareWeb_Web_exploded</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="shareWeb" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="module" name="activation-1.1.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="activemq-all-5.14.5.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="antlr-2.7.2.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="aopalliance-1.0.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="asm-3.1.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="aspectjrt-1.8.5.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="aspectjweaver-1.9.4.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="bcprov-jdk16-1.46.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="bonecp-0.8.0.RELEASE.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="c3p0-0.9.1.1.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="castor-1.2.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="cglib-2.2.1-v20090111.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="commons-beanutils-1.8.3.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="commons-codec-1.9.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="commons-collections-3.2.1.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="commons-digester-2.0.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="commons-fileupload-1.3.1.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="commons-io-2.2.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="commons-jexl-2.0.1.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="commons-lang-2.4.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="commons-lang3-3.3.2.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="commons-logging-1.2.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="commons-pool2-2.4.2.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="commons-validator-1.1.4.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="core-3.3.3.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="dom4j-1.6.1.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="druid-0.2.6.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="ehcache-core-2.6.10.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="encode-tool.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="ezmorph-1.0.4.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="fastjson-1.2.58.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="freemarker-2.3.21.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="gson-2.8.5.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="guava-18.0-rc2.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="guice-3.0.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="guice-multibindings-3.0.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="hamcrest-core-1.1.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="hessian-4.0.7.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="httpclient-4.5.2.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="httpcore-4.4.4.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="jackson-annotations-2.5.0.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="jackson-core-2.5.0.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="jackson-databind-2.5.0.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="jai-imageio-core-1.4.0.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="javase-3.3.3.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="javax.inject-1.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="javax.jms-3.1.2.2.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="jcl-over-slf4j-1.7.10.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="jcommander-1.72.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="jdom-1.1.3.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="jedis-2.9.0.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="json-20180813.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="json-lib-2.2.2-jdk15.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="json-lib-ext-spring-1.0.2.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="json-simple-1.1.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="jsoup-1.11.3.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="jstl-1.2.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="junit-4.9.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="jxls-core-1.0.5.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="jxls-reader-1.0.5.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="log4j-1.2.17.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="mail-1.4.7.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="memory-1.0.0.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="mysql-connector-java-5.1.35.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="okhttp-3.11.0.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="okio-1.14.0.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="org.json.simple-0.4.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="oro-2.0.7.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="pager-taglib-2.0.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="pinyin4j-2.5.0.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="poi-3.9.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="poi-ooxml-3.9.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="poi-ooxml-schemas-3.9.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="quartz-2.2.1.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="shiro-all-1.2.5.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="shiro-core-1.2.5.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="shiro-guice-1.2.5.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="sigar-1.6.4.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="slf4j-api-1.7.12.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="slf4j-log4j12-1.7.7.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="spring-aop-4.1.6.RELEASE.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="spring-aspects-4.1.6.RELEASE.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="spring-beans-4.1.6.RELEASE.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="spring-context-4.1.6.RELEASE.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="spring-context-support-4.1.6.RELEASE.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="spring-core-4.1.6.RELEASE.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="spring-data-commons-1.10.0.RELEASE.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="spring-data-jpa-1.8.0.RELEASE.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="spring-expression-4.1.6.RELEASE.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="spring-instrument-4.1.6.RELEASE.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="spring-instrument-tomcat-4.1.6.RELEASE.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="spring-jdbc-4.1.6.RELEASE.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="spring-jms-4.1.6.RELEASE.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="spring-messaging-4.1.6.RELEASE.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="spring-orm-4.1.6.RELEASE.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="spring-oxm-4.1.6.RELEASE.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="spring-struts-3.2.18.RELEASE.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="spring-test-3.2.10.RELEASE.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="spring-tx-4.1.6.RELEASE.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="spring-web-4.1.6.RELEASE.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="spring-webmvc-4.1.6.RELEASE.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="spring-webmvc-portlet-4.1.6.RELEASE.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="standard.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="stax-api-1.0.1.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="struts-1.2.9.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="urlrewritefilter-4.0.3.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="xalan-2.5.1.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="xercesImpl-2.11.0.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="xml-apis-1.4.01.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="xmlbeans-2.3.0.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="aliyun-java-sdk-core-4.3.3.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="aliyun-java-sdk-dysmsapi-1.1.0.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="commons-httpclient-3.0.1.jar" module-name="shareWeb" />
+          <element id="library" level="module" name="hyyShareCore-1.0.jar" module-name="shareWeb" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="shareWeb/web/shareWeb" />
+    </root>
+  </artifact>
+</component>

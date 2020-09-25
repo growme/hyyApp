@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-lazy-init="true">
+       
+    <description>Hessian Configuration</description>
+    
+    <bean id="userInfoRemoteApiServiceImpl" class="com.ccnet.web.cps.api.Impl.UserInfoRemoteApiServiceImpl" />
+    <!-- 使用HessianServiceExporter 将普通bean导出成Hessian服务 -->
+    <bean name="/remote/hUserInfoService" class="org.springframework.remoting.caucho.HessianServiceExporter">        
+        <property name="service" ref="userInfoRemoteApiServiceImpl" />
+        <!-- Hessian服务的接口 -->
+        <property name="serviceInterface" value="com.ccnet.web.cps.api.UserInfoRemoteApiService" />
+    </bean>
+    
+       		 
+</beans>

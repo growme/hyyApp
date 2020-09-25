@@ -1,0 +1,49 @@
+@charset "utf-8";
+/* 效果CSS开始 */
+.selectbox {
+	float: left;
+	height: 250px;
+	margin: 0px auto;
+}
+
+.selectbox div {
+	float: left;
+}
+
+.selectbox .select-bar {
+	padding: 0px;
+}
+
+.selectbox .select-bar select {
+	width: 240px;
+	height: 250px;
+	border: 1px #ddd solid;
+	padding: 4px;
+	font-size: 13px;
+	font-family: "microsoft yahei";
+}
+
+.selop {
+	cursor:hand;
+}
+
+.btn-bar {
+	margin-top: 36px;
+	padding: 0 10px;
+	backgound-color:#eee;
+}
+
+.btn-bar p {
+	margin-top: 12px;
+}
+
+.btn-bar p .btn {
+	width: 50px;
+	height: 30px;
+	cursor: pointer;
+	border: 1px #eee solid;
+	border-radius:1px;
+	font-family: simsun;
+	font-size: 14px;
+}
+/* 效果CSS结束 */

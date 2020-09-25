@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/hyyShareCore.iml" filepath="$PROJECT_DIR$/hyyShareCore.iml" group="hyyShareCore" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/hyyShareCore_main.iml" filepath="$PROJECT_DIR$/.idea/modules/hyyShareCore_main.iml" group="hyyShareCore" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/hyyShareCore_test.iml" filepath="$PROJECT_DIR$/.idea/modules/hyyShareCore_test.iml" group="hyyShareCore" />
+      <module fileurl="file://$PROJECT_DIR$/../shareAdmin/shareAdmin.iml" filepath="$PROJECT_DIR$/../shareAdmin/shareAdmin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../shareWeb/shareWeb.iml" filepath="$PROJECT_DIR$/../shareWeb/shareWeb.iml" />
+    </modules>
+  </component>
+</project>

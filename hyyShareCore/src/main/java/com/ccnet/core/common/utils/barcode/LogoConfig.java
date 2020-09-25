@@ -1,0 +1,43 @@
+package com.ccnet.core.common.utils.barcode;
+
+import java.awt.Color;
+
+/**
+ * 二维码logo属性
+ *@author JackieWang
+ */
+public class LogoConfig {
+	// logo默认边框颜色
+	public static final Color DEFAULT_BORDERCOLOR = Color.WHITE;
+	// logo默认边框宽度
+	public static final int DEFAULT_BORDER = 2;
+	// logo大小默认为照片的1/6
+	public static final int DEFAULT_LOGOPART = 6;
+    // logo边框
+	private final int border = DEFAULT_BORDER;
+	// logo边框颜色
+	private final Color borderColor;
+	// logo大小
+	private final int logoPart;
+
+	public LogoConfig() {
+		this(DEFAULT_BORDERCOLOR, DEFAULT_LOGOPART);
+	}
+
+	public LogoConfig(Color borderColor, int logoPart) {
+		this.borderColor = borderColor;
+		this.logoPart = logoPart;
+	}
+
+	public Color getBorderColor() {
+		return borderColor;
+	}
+
+	public int getBorder() {
+		return border;
+	}
+
+	public int getLogoPart() {
+		return logoPart;
+	}
+}

@@ -1,0 +1,146 @@
+body {
+	background-color: #f9f9f9;
+}
+
+.shadow {
+	border: 1px solid #CFCFCF;
+	box-shadow: none;
+}
+
+.line {
+	height: 1px;
+	border-bottom: 1px solid #D6D6D6;
+	margin: 20px 0;
+}
+
+.article .a-item-content {
+	background: #fff;
+	margin-top: 20px;
+	border: 1px solid #F2F2F2\9;
+	position: relative;
+	font-size: 14px;
+}
+
+.a-item-content .a-item-text {
+	padding: 20px;
+}
+
+.a-item-text .a-item-textH2 {
+	line-height: 25px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #D6D6D6;
+	position: relative;
+	padding-left: 10px;
+}
+
+.a-item-textH2 a {
+	color: #333;
+	font-size: 22px;
+	font-weight: normal;
+}
+
+.a-item-textH2 a:hover {
+	color: #737373;
+	text-decoration: none;
+}
+
+.a-item-text .a-item-desc {
+	padding: 20px 0;
+	line-height: 23px;
+	color: #008000;
+	font-size: 14px;
+}
+
+.a-item-text .a-item-tips {
+	font-size: 12px;
+	float: right;
+	position: relative;
+}
+
+.a-item-tips span {
+	padding: 0 15px 0 15px;
+	color: #737373;
+	display: block;
+	float: left;
+	position: relative;
+}
+
+.a-item-desc p {
+	text-indent: 2em;
+}
+
+ol {
+	margin: 0 0 10px 20px;
+}
+
+.a-item-desc ul {
+	margin: 0 0 10px 20px;
+}
+
+.a-item-desc ul {
+	list-style-type: disc;
+}
+
+.a-item-desc ol {
+	list-style-type: decimal;
+}
+
+.a-item-desc blockquote {
+	position: relative;
+	background: #F4FDFD;
+	text-align: left;
+	margin: 20px 10px;
+	padding: 3px 25px 3px 25px;
+	color: #333;
+	font-size: 10pt;
+	line-height: 22px;
+	border-left: 3px solid #A4DAF0;
+}
+
+.shadow {
+	border: 1px solid #CFCFCF;
+	box-shadow: none;
+}
+
+.article .a-item-content {
+	background: #fff;
+	margin-top: 20px;
+	border: 1px solid #F2F2F2\9;
+	position: relative;
+	font-size: 14px;
+}
+
+.a-item-content .a-item-text {
+	padding: 20px;
+}
+
+.a-item-text .a-item-textH2 {
+	line-height: 25px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #D6D6D6;
+	position: relative;
+	padding-left: 10px;
+}
+
+.a-item-text .a-item-desc {
+	padding: 20px 0;
+	line-height: 23px;
+	color: #333;
+	font-size: 14px;
+}
+
+.a-item-desc p {
+	text-indent: 2em;
+}
+
+.line {
+	height: 1px;
+	border-bottom: 1px solid #D6D6D6;
+	margin: 20px 0;
+}
+
+.a-item-text .a-item-tips {
+	font-size: 12px;
+	float: right;
+	position: relative;
+}

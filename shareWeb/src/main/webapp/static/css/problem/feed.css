@@ -1,0 +1,218 @@
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td { margin:0; padding:0; }
+body, button, input, select, textarea { font:12px/1.5tahoma, arial, \5b8b\4f53; }
+h1, h2, h3, h4, h5, h6{ font-size:100%; }
+address, cite, dfn, em, var { font-style:normal; }
+code, kbd, pre, samp { font-family:couriernew, courier, monospace; }
+small{ font-size:12px; }
+ul, ol { list-style:none; }
+a { text-decoration:none; }
+a:hover { text-decoration:underline; }
+sup { vertical-align:text-top; }
+sub{ vertical-align:text-bottom; }
+legend { color:#000; }
+fieldset, img { border:0; }
+button, input, select, textarea { font-size:100%; }
+table { border-collapse:collapse; border-spacing:0; } 
+hrml,body{
+    width:100%;
+    height:100%;
+}
+.wrap{
+    width:100%;
+}
+/* 意见反馈页面 */
+.head{
+    position: relative;
+    font-size:0.34rem;
+    color:#333;
+    background:#fff;
+    height:1rem;
+    line-height: 1rem;
+    padding:0 0.3rem;
+}
+.line{
+    width:100%;
+    height:0.3rem;
+    background:#f2f2f2;
+}
+.classify{
+    display:inline-block;
+    width:25%;
+}
+.place{
+    display:inline-block;
+    width:70%;
+    color:#868686;
+}
+.down{
+    position: absolute;
+    height:0.3rem;
+    right:0.3rem;
+    top:0.35rem;
+    transform: rotate(90deg);
+}
+.rot{
+    transform: rotate(0deg);
+}
+.choose{
+    position: absolute;
+    width:65%;
+    background:#ccc;
+    right:0.3rem;
+    top:1rem;
+    background:#fff;
+    padding:0 0.2rem;
+    box-shadow: 0 1px 2px 1px #ded7d7;
+    z-index:10;
+}
+.main{
+    background:#fff;
+}
+.dis_none{
+    display:none;
+}
+.choose>li{
+    border-bottom:1px solid #dedede;
+    height:0.8rem;
+    line-height: 0.8rem;
+    cursor: pointer;
+}
+.choose>li:last-child{
+    border:none;
+}
+.main{
+    background:#fff;
+    padding:0.2rem;
+    font-size: 0.32rem;
+    color:#333333;
+}
+#new_alert{
+    width:94%;
+    border:none;
+    outline: none;
+    padding:0.2rem;
+    height:3rem;
+    border:1px solid #dedede;
+}
+.imglist{
+    height: 1.5rem;
+    margin-top:0.3rem;
+}
+.imglist>li{
+    float:left;
+    width:1.3rem;
+    height:1.3rem;
+    position: relative;
+}
+.imglist>li>.srcimg{
+    width:100%;
+    height: 1.2rem;
+}
+.imglist>li:nth-child(2){
+    margin:0 0.3rem;
+}
+.filechoose{
+    position: absolute;
+    top:0;
+    width:1.2rem;
+    height:1.2rem;
+    overflow: hidden;
+    outline: none;
+    left: 0;
+    opacity: 0;
+}
+.del{
+    position: absolute;
+    width:0.34rem;
+    top:0;
+    right:0;
+    display:none;
+}
+.tit{
+    color:#BDBDBD;
+    font-size:0.3rem;
+    text-align: justify;
+    line-height: 0.4rem;
+}
+.foot{
+    position: fixed;
+    width:100%;
+    bottom:0;
+    left:0;
+    z-index:99;
+    background:#f2f2f2;
+    padding:0.3rem 0;
+}
+.foot>input{
+    width:90%;
+    margin-left:5%;
+    text-align: center;
+    height:0.8rem;
+    line-height: 0.8rem;
+    border-radius: 5px;
+    color:#fff;
+    font-size:0.34rem;
+    background:#cc310d;
+    outline: none;
+    border:none;
+}
+.cover,.cover_p{
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.4);
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:100;
+    font-size:0.32rem;
+    display:none;
+}
+.cover_content{
+    box-sizing: border-box;
+    width:80%;
+    margin-left:10%;
+    position:relative;
+    top:50%;
+    transform:translateY(-50%);
+    background:#fff;
+    border-radius: 10px;
+    padding:0.2rem;
+}
+.con{
+    text-align: center;
+    padding:0.2rem 0.4rem;
+    margin-bottom:0.3rem;
+}
+.con1{
+    padding:0.2rem 0.4rem;
+    margin-bottom:0.3rem;
+    display:none;
+}
+.con2{
+    padding:0.2rem 0.4rem;
+    margin-bottom:0.3rem;
+}
+.c_btn,.c_btn2{
+    width:90%;
+    margin-left:5%;
+    height:0.8rem;
+    background:#cc310d;
+    text-align: center;
+    color:#fff;
+    line-height: 0.8rem;
+    border-radius: 5px;
+}
+.allblack{
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.5);
+    position:fixed;
+    top:0;
+    left:0;
+    font-size:0.34rem;
+    color:#fff;
+    text-align:center;
+    line-height:6rem;
+    z-index:99;
+    display:none;
+}

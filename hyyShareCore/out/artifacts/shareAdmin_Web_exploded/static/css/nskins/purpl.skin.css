@@ -1,0 +1,126 @@
+@charset "utf-8";
+/* 清晰 */
+
+/*头部*/
+.layout-header {
+	border-bottom: 0px solid #9932cc;
+	background-color: #9932cc;
+}
+/* 左侧菜单 */
+.layout-side {
+	background-color: #fff;
+	color: #333;
+	z-index: 999;
+	border-right: 1px solid #ddd;
+}
+
+.side-menu {
+	background-color: #fff;
+}
+
+.side-menu li a i {
+	color: #b6b7b8;
+}
+
+.side-menu .menu-item a {
+	color: #737373;
+	border-bottom: 1px solid #f5f5f5;
+}
+
+.side-menu .menu-item:hover>a,.side-menu .menu-item.active>a {
+	color: #333;
+	background: #fff;
+	border-left-color: #9932cc;
+}
+
+.side-menu .menu-header {
+	color: #333;
+	background: #f2f2f2;
+	border-bottom: 1px solid #e5e5e5;
+	height: 39px;
+	line-height: 39px;
+}
+
+.side-menu .menu-item .label {
+	color: #fff;
+	background: #9932cc;
+}
+
+.side-menu .menu-item-child  {
+    background-color: #fbfbfb;
+    -webkit-box-shadow: inset 0 4px 4px -2px rgba(0,0,0,.15),inset 0 -4px 4px -2px rgba(0,0,0,.15);
+    -moz-box-shadow: inset 0 4px 4px -2px rgba(0,0,0,.15),inset 0 -4px 4px -2px rgba(0,0,0,.15);
+    box-shadow: inset 0 4px 4px -2px rgba(0,0,0,.15),inset 0 -4px 4px -2px rgba(0,0,0,.15);
+}
+
+.side-menu .menu-item-child li a {
+	color: #737373;
+	font-size:13px!important;
+	border-top: 0px solid #f5f5f5;
+	border-bottom: 0px solid #f5f5f5;
+}
+
+.side-menu .menu-item-child li>a:hover{
+	color: #333;
+	background-color: #f2f2f2;
+	border-left-color: #ff5000;
+}
+
+.side-menu .menu-item-child li.active>a {
+    color: #ffffff;
+    background-color: #9932cc;
+}
+
+/*菜单收缩*/
+.layout-side-arrow {
+	background-color: #f2f2f2;
+	left: 201px;
+	border-left: none;
+}
+
+.layout-side-arrow:hover {
+	background-color: #9932cc;
+	border: none;
+}
+
+.layout-side-arrow:hover i {
+	color: #fff;
+}
+
+.layout-side-arrow i {
+	color: #b6b7b8;
+}
+/*菜单选项卡*/
+.layout-main-tab {
+	border-bottom: 1px solid #ddd;
+	height: 39px;
+	line-height: 39px;
+}
+
+.tab-btn.btn-left {
+	border-right: solid 1px #ddd;
+}
+
+.tab-btn.btn-right {
+	border-left: solid 1px #ddd;
+}
+
+.tab-nav-content a {
+	color: #666;
+	border-right: solid 1px #ddd;
+}
+
+.tab-nav-content a.active {
+	color: #9932cc;
+	background: #fff;
+}
+
+.tab-nav-content a i {
+	color: #ccc;
+	font-size: 12px;
+	vertical-align: top;
+}
+
+.tab-nav-content a.active i:hover {
+	color: #FF5722;
+}
