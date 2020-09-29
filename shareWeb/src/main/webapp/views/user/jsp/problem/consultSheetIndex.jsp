@@ -134,7 +134,7 @@
 						type="file" class="filechoose" id="chooseImage3" value=""
 						name="files"></li>
 				</ul>
-				<p class="tit">上传问题截图有助于了解您的问题并及时回复您,感谢您的配合以及对聚看点的支持!如您提的建议被采纳,会给予您相应的金币作为奖励。官方客服QQ群:1037071443</p>
+				<p class="tit">上传问题截图有助于了解您的问题并及时回复您,感谢您的配合以及对启观热点的支持!如您提的建议被采纳,会给予您相应的金币作为奖励。官方客服QQ群:1037071443</p>
 			</div>
 			<input type="text" name="typecode" value="" class="typecode"
 				style="display: none"> <input type="text" class="fileNames"

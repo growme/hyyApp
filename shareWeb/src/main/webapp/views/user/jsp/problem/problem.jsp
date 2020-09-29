@@ -28,13 +28,13 @@
 			<div class="new_hand" style="display: block">
 				<p class="red_font">新手问题</p>
 				<p class="title">
-					聚看点是什么? <span class="logo"> <img src="${basePath}static/images/problem/logo.png">
+					启观热点是什么? <span class="logo"> <img src="${basePath}static/images/problem/logo.png">
 					</span>
 				</p>
 				<div class="title_content" style="display: none;">
 					平台致力于打造一款新形式的资讯阅读软件，以移动应用为载体进行内容创造、资讯阅读，提供更多有用、有趣、有益的内容给大家.</div>
 				<p class="title">
-					聚看点为什么会给您奖励? <span class="logo"> <img src="${basePath}static/images/problem/logo.png">
+					启观热点为什么会给您奖励? <span class="logo"> <img src="${basePath}static/images/problem/logo.png">
 					</span>
 				</p>
 				<div class="title_content" style="display: none;">
@@ -56,7 +56,7 @@
 					</span>
 				</p>
 				<div class="title_content" style="display: none;">
-					金币是聚看点里面的货币单位。当天所赚取的金币会在第二天凌晨0-6点自动转换成零钱，并累计到您的聚看点账户.</div>
+					金币是启观热点里面的货币单位。当天所赚取的金币会在第二天凌晨0-6点自动转换成零钱，并累计到您的启观热点账户.</div>
 				<p class="title">
 					金币如何换算成零钱? <span class="logo"> <img src="${basePath}static/images/problem/logo.png">
 					</span>
@@ -70,7 +70,7 @@
 					</span>
 				</p>
 				<div class="title_content" style="display: block;">
-					一个金币等于多少钱并不固定，通常情况聚看点的运营收益越高，金币价值越高，具体以次日转换为准！</div>
+					一个金币等于多少钱并不固定，通常情况启观热点的运营收益越高，金币价值越高，具体以次日转换为准！</div>
 				<p class="title">
 					为什么看了文章没有金币? <span class="logo"> <img src="${basePath}static/images/problem/logo.png">
 					</span>
@@ -91,9 +91,9 @@
 					</span>
 				</p>
 				<div class="title_content" style="display: none;">
-					邀请码是聚看点平台为每位用户设计的独立ID，只在邀请好友时使用 <br>两种情况: <br> a.
+					邀请码是启观热点平台为每位用户设计的独立ID，只在邀请好友时使用 <br>两种情况: <br> a.
 					分享邀请链接给朋友在线注册，链接中已带有您的邀请码，因此不需要再手动填写 <br> b.
-					如果朋友是从手机应用商店搜索‘聚看点’先安装后注册的，您需要让朋友登陆后填写您的邀请码进行绑定，这样才能成为您的徒弟哦
+					如果朋友是从手机应用商店搜索‘启观热点’先安装后注册的，您需要让朋友登陆后填写您的邀请码进行绑定，这样才能成为您的徒弟哦
 				</div>
 				<p class="title">
 					分享出去的收徒二维码打不开怎么办? <span class="logo"> <img
@@ -101,7 +101,7 @@
 					</span>
 				</p>
 				<div class="title_content" style="display: none;">
-					方法一：告诉朋友到手机应用商店，搜索‘聚看点’下载安装，注册登录后到右下角‘我的’界面找到‘输入邀请码’一栏，填写您的邀请码完成绑定
+					方法一：告诉朋友到手机应用商店，搜索‘启观热点’下载安装，注册登录后到右下角‘我的’界面找到‘输入邀请码’一栏，填写您的邀请码完成绑定
 					<br>方法二：重新分享一次二维码给朋友，最新的可正常打开
 				</div>
 			</div>
