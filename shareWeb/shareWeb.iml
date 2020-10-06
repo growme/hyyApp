@@ -123,18 +123,6 @@
       <src_folder value="file://$MODULE_DIR$/src/test/resources" expected_position="3" />
     </src_description>
   </component>
-  <component name="FacetManager">
-    <facet type="web" name="shareWeb">
-      <configuration>
-        <descriptors>
-          <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/src/main/webapp/WEB-INF/web.xml" />
-        </descriptors>
-        <webroots>
-          <root url="file://$MODULE_DIR$/src/main/webapp" relative="/" />
-        </webroots>
-      </configuration>
-    </facet>
-  </component>
   <component name="NewModuleRootManager">
     <output url="file://$MODULE_DIR$/src/main/webapp/WEB-INF/classes" />
     <exclude-output />

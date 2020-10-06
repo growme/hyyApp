@@ -332,6 +332,7 @@ public class ApiInvitedController extends BaseController<SbMoneyCount> {
 					visitMoney.setVcode(memberInfo.getVisitCode());
 					visitMoney.setVmoney(visitAward);
 					sbVisitMoneyService.saveVisitMoney(visitMoney);
+					//给邀请人发放6000金币
 				}
 			}
 			return ResultDTO.OK();

@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.ccnet.cps.service.MemberInfoService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -107,6 +108,7 @@ public class ApiDrawMoneyController extends BaseController<SbCashLog> {
 			Dto dto = getParamAsDto();
 			// String payAccount = dto.getAsString("alipay");
 			String accountName = dto.getAsString("accountName");
+			String payAccount = dto.getAsString("payAccount");
 			Integer payType = dto.getAsInteger("paytype");
 			Integer withdrawType = dto.getAsInteger("withdrawType");
 			if(CPSUtil.isEmpty(withdrawType)){
@@ -134,6 +136,10 @@ public class ApiDrawMoneyController extends BaseController<SbCashLog> {
 			}
 			// 当前用户
 			MemberInfo memberInfo = memberInfoDao.getUserByUserID(Integer.valueOf(header.getUserid()));
+			if (StringUtils.isEmpty(memberInfo.getPayAccount())){
+				memberInfo.setPayAccount(payAccount);
+				memberInfoDao.update(memberInfo,payAccount);
+			}
 			// 获取当前用户用户总收益
 			SbUserMoney userMoney = new SbUserMoney();
 			userMoney.setUserId(memberInfo.getMemberId());
