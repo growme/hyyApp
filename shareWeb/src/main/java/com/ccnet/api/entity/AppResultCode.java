@@ -13,6 +13,8 @@ public enum AppResultCode implements ResultCode {
 	手机号已存在(--C.STATUS_CODE, true, "手机号已存在"),
 
 	手机号不能为空(--C.STATUS_CODE, true, "手机号不能为空"),
+	用户未绑定手机号(--C.STATUS_CODE, true, "用户未绑定手机号"),
+	密码不一致(--C.STATUS_CODE, true, "密码不一致"),
 
 	请不要频繁发短信(--C.STATUS_CODE, true, "请不要频繁发短信"), 验证码无效(--C.STATUS_CODE, true, "验证码无效"),
 

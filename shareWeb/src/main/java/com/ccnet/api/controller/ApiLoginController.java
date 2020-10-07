@@ -123,7 +123,7 @@ public class ApiLoginController extends BaseController<MemberInfo> {
 	/**
 	 * 获取用户信息
 	 * 
-	 * @param headers
+	 * @param header
 	 * @return
 	 */
 	@RequestMapping(value = "getUserInfo", produces = "application/json;charset=UTF-8", method = RequestMethod.POST)
@@ -197,6 +197,66 @@ public class ApiLoginController extends BaseController<MemberInfo> {
 		}
 		String newPassword = CipherUtil.generatePassword(password).toLowerCase();
 		user.setLoginPassword(CipherUtil.createPwdEncrypt(phone, newPassword, user.getSalt()));
+		user.setMobile(phone);
+		user.setLoginAccount(phone);
+		infoService.editMemberInfo(user);
+		return ResultDTO.OK();
+	}
+	/**
+	 * 重置密码
+	 *
+	 * @param phone,verify_code
+	 * @return
+	 */
+	@RequestMapping(value = "resetPassword", produces = "application/json;charset=UTF-8", method = RequestMethod.POST)
+	@ResponseBody
+	public ResultDTO<?> resetPassword(@RequestParam(value = "phone", required = true) String phone,
+									   @RequestParam(value = "verify_code", required = true) String verify_code,
+									   @RequestParam(value = "password", required = true) String password, HttpServletRequest request) {
+		String token = request.getHeader("token");
+		String userId = TokenUtil.getToken(token);
+		MemberInfo user = infoService.getUserByUserID(Integer.valueOf(userId));
+		if (user == null) {
+			ResultDTO.ERROR(AppResultCode.用户不存在);
+		}
+		String cacheVerifyCode = JedisUtils.get(RedisKey.APP验证码 + phone);
+		if (StringUtils.isBlank(verify_code) || !cacheVerifyCode.equals(verify_code)) {
+			ResultDTO.ERROR(AppResultCode.验证码不正确);
+		}
+		String newPassword = CipherUtil.generatePassword(password).toLowerCase();
+		user.setLoginPassword(CipherUtil.createPwdEncrypt(phone, newPassword, user.getSalt()));
+		user.setMobile(phone);
+		user.setLoginAccount(phone);
+		infoService.editMemberInfo(user);
+		return ResultDTO.OK();
+	}
+	/**
+	 * 设置密码
+	 *
+	 * @return
+	 */
+	@RequestMapping(value = "setPassword", produces = "application/json;charset=UTF-8", method = RequestMethod.POST)
+	@ResponseBody
+	public ResultDTO<?> updatePassword(
+									   @RequestParam(value = "confirPassWord", required = true) String confirPassWord,
+									   @RequestParam(value = "password", required = true) String password, HttpServletRequest request) {
+		if (!password.equals(confirPassWord)){
+			ResultDTO.ERROR(AppResultCode.密码不一致);
+		}
+		String token = request.getHeader("token");
+		String userId = TokenUtil.getToken(token);
+		MemberInfo user = infoService.getUserByUserID(Integer.valueOf(userId));
+		if (user == null) {
+			ResultDTO.ERROR(AppResultCode.用户不存在);
+		}
+
+		String newPassword = CipherUtil.generatePassword(password).toLowerCase();
+		String mobile = user.getMobile();
+		if (StringUtils.isEmpty(mobile)){
+			ResultDTO.ERROR(AppResultCode.用户未绑定手机号 );
+		}
+		user.setLoginPassword(CipherUtil.createPwdEncrypt(mobile, newPassword, user.getSalt()));
+		infoService.editMemberInfo(user);
 		return ResultDTO.OK();
 	}
 

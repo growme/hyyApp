@@ -64,7 +64,7 @@ public class TokenUtil {
 		if (StringUtils.isBlank(authentication)) {
 			return null;
 		}
-		return authentication;
+		return authentication.split(":")[0];
 	}
 
 	public static boolean deleteToken(String key) {
@@ -83,6 +83,7 @@ public class TokenUtil {
 	 * @return
 	 */
 	public static String getValue(String key) {
+		key=key+":"+System.currentTimeMillis();
 		return AESUtils.encrypt(key);
 	}
 

@@ -24,6 +24,7 @@
 		<property name="brokerURL" value="${active.mq.brokerURL}" /><!-- mq地址 -->
 		<property name="userName" value="${active.mq.userName}" /><!-- 用户名 -->
 		<property name="password" value="${active.mq.password}" /><!-- 密码 -->
+        <property name="trustAllPackages" value="true"/>
 	</bean>
    
     <!-- Spring Caching连接工厂 -->

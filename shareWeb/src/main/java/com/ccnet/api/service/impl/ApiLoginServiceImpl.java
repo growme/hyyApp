@@ -159,7 +159,7 @@ public class ApiLoginServiceImpl implements ApiLoginService {
 		loginResult.setUserInfo(user);
 		loginResult.setLoginTime(1 * 24 * 60 * 60 * 1000L);
 		String token = TokenUtil.getValue(user.getMemberId().toString());
-		// JedisUtils.set(token, token, 24 * 60 * 60 * 1000);
+		JedisUtils.set(TokenUtil.getKey(user.getMemberId().toString()), token, 30 * 60 * 1000);
 		loginResult.setToken(token);
 		memberInfo.setBody(loginResult);
 		return memberInfo;
