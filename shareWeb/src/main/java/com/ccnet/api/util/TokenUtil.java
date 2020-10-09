@@ -97,7 +97,7 @@ public class TokenUtil {
 	}
 
 	public static void main(String[] args) {
-		String str = getValue("1");
+		String str = getValue("120");
 		String userid = getToken(str);
 		System.out.println(str+"======"+userid);
 	}
