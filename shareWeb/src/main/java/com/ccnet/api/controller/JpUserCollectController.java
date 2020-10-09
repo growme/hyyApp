@@ -66,17 +66,18 @@ public class JpUserCollectController extends BaseController<JpUserCollect> {
 	@RequestMapping("addOrDel")
 	public ResultDTO<?> collectAdd(Headers header, JpUserCollect jpUserCollect) {
 		try {
+			//type 1-收藏 2-点赞 3-阅读
 			ResultDTO<?> dto = params(jpUserCollect, header);
 			if (dto.ok()) {
 				jpUserCollect.setUserId(Integer.valueOf(header.getUserid()));
 				JpUserCollect collect = jpUserCollectService.find(jpUserCollect);
 				if (collect != null && collect.getId() != null) {
 					jpUserCollectService.delete(collect);
-					apiContentService.updateContentInfo(jpUserCollect.getContentId(), HandleType.collect.getid(), "1");
+					apiContentService.updateContentInfo(jpUserCollect.getContentId(), jpUserCollect.getType(), "1");
 				} else {
 					jpUserCollect.setCreateDate(new Date());
 					jpUserCollectService.insert(jpUserCollect);
-					apiContentService.updateContentInfo(jpUserCollect.getContentId(), HandleType.collect.getid(), "0");
+					apiContentService.updateContentInfo(jpUserCollect.getContentId(), jpUserCollect.getType(), "0");
 				}
 				return ResultDTO.OK();
 			}

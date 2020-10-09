@@ -5,7 +5,7 @@ import java.util.Map;
 
 public enum HandleType {
 
-	read("1", "阅读"), share("2", "分享"), comment("3", "评论"), click("4", "点赞"), collect("5", "收藏");
+	read("3", "阅读"), share("4", "分享"), comment("5", "评论"), click("2", "点赞"), collect("1", "收藏");
 
 	private String id;
 	private String name;

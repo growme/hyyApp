@@ -203,7 +203,7 @@ public class ApiSbContentInfoDao extends BaseDao<SbContentInfo> {
 			sql.append(
 					"update sb_content_info set comment_count = comment_count " + code + " 1 where content_id=" + id);
 		}
-		// 评论
+		// 点赞
 		if (HandleType.click.getid().equals(type)) {
 			sql.append("update sb_content_info set click_num = click_num " + code + " 1 where content_id=" + id);
 		}
