@@ -213,9 +213,7 @@ public class ApiLoginController extends BaseController<MemberInfo> {
 	public ResultDTO<?> resetPassword(@RequestParam(value = "phone", required = true) String phone,
 									   @RequestParam(value = "verify_code", required = true) String verify_code,
 									   @RequestParam(value = "password", required = true) String password, HttpServletRequest request) {
-		String token = request.getHeader("token");
-		String userId = TokenUtil.getToken(token);
-		MemberInfo user = infoService.getUserByUserID(Integer.valueOf(userId));
+		MemberInfo user = infoService.findMemberByMobile(phone);
 		if (user == null) {
 			ResultDTO.ERROR(AppResultCode.用户不存在);
 		}

@@ -150,7 +150,7 @@ public class ApiDrawMoneyController extends BaseController<SbCashLog> {
 			synchronized (userLock) {
 				if (null != userMoney) {
 					// 验证微信单次提现最低1
-					if (PayType.ebank.getPayId().equals(payType) && money < 1) {
+					if (money < 1) {
 						return ResultDTO.ERROR(AppResultCode.微信提现金额不能小于1元);
 					}
 
@@ -159,7 +159,7 @@ public class ApiDrawMoneyController extends BaseController<SbCashLog> {
 						return ResultDTO.ERROR(AppResultCode.微信提现金额不能超过200元);
 					}
 
-					if (userMoney.getTmoney() < money) {
+					if (userMoney.getTmoney() < money*1000) {
 						return ResultDTO.ERROR(AppResultCode.余额不足);
 					}
 				} else {

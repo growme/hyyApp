@@ -42,7 +42,7 @@ public enum AppResultCode implements ResultCode {
 
 	申请提现失败(--C.STATUS_CODE, true, "申请提现失败,请稍后再试!"),
 
-	微信提现金额不能小于1元(--C.STATUS_CODE, true, "微信提现金额不能小于1元"),
+	微信提现金额不能小于1元(--C.STATUS_CODE, true, "提现金额不能小于1元"),
 
 	需要完成文章分享开启宝箱(--C.STATUS_CODE, true, "需要完成文章分享开启宝箱"),
 

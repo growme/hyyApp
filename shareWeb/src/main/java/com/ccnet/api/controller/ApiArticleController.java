@@ -106,8 +106,8 @@ public class ApiArticleController extends BaseController<MemberInfo> {
 			CPSUtil.xprint("请求开始：---==" + new Date().getTime());
 			Dto dto = getParamAsDto();
 			Page<SbContentInfo> contents = newPage(dto);
-			contents.setPageNum(dto.getAsInteger("page"));
-			contents.setPageSize(dto.getAsInteger("pageSize"));
+			contents.setPageNum(dto.getAsInteger("page")==null?1:dto.getAsInteger("page"));
+			contents.setPageSize(dto.getAsInteger("pageSize")==null?20:dto.getAsInteger("pageSize"));
 			SbContentInfo sbContentInfo = new SbContentInfo();
 			sbContentInfo.setColumnId(dto.getAsInteger("columnId"));
 			// 只显示审核通过

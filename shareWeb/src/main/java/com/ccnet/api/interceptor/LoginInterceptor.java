@@ -40,7 +40,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object arg2) throws Exception {
-		String token = request.getParameter("sign");
+		String token = request.getHeader("token");
 		logger.info("{}请求之前进行token验证：{}",request.getRequestURI(),token);
 		response.setContentType("text/JavaScript; charset=utf-8");
 		response.setCharacterEncoding("UTF-8");
@@ -54,12 +54,18 @@ public class LoginInterceptor implements HandlerInterceptor {
 		}
 		//校验token
 		String decrypt = AESUtils.decrypt(token);
+		if (StringUtils.isEmpty(decrypt)){
+			obj.put("status", "10000");
+			obj.put("status_name", "token失效，请重新登录");
+			response.getWriter().write(obj.toString());
+			return false;
+		}
 		logger.info("token解析结果：{}",decrypt);
 		String memId = decrypt.split(":")[0];
 		String redisToken = JedisUtils.get(TokenUtil.getKey(memId));
 		if (!token.equals(redisToken)){
 			obj.put("status", "10000");
-			obj.put("status_name", "登录失效");
+			obj.put("status_name", "token失效，请重新登录");
 			response.getWriter().write(obj.toString());
 			logger.info("token校验失败，token无效，请重新登录，token:{},rToken:{}",token,redisToken);
 			return false;
