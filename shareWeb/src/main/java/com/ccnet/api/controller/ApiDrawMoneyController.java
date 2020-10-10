@@ -138,7 +138,8 @@ public class ApiDrawMoneyController extends BaseController<SbCashLog> {
 			MemberInfo memberInfo = memberInfoDao.getUserByUserID(Integer.valueOf(header.getUserid()));
 			if (StringUtils.isEmpty(memberInfo.getPayAccount())){
 				memberInfo.setPayAccount(payAccount);
-				memberInfoDao.update(memberInfo,payAccount);
+				memberInfo.setAccountName(accountName);
+				memberInfoDao.update(memberInfo,memberInfo.getMemberId().toString());
 			}
 			// 获取当前用户用户总收益
 			SbUserMoney userMoney = new SbUserMoney();

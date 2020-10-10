@@ -12,10 +12,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import com.ccnet.api.entity.ApiMoneyCount;
 import com.ccnet.api.entity.AppResultCode;
@@ -119,7 +116,8 @@ public class ApiInvitedController extends BaseController<SbMoneyCount> {
 	 */
 	@RequestMapping("detail")
 	@ResponseBody
-	public ResultDTO<?> earningsIndex(Headers header, Integer pageNum, Integer pageSize) {
+	public ResultDTO<?> earningsIndex(Headers header, @RequestParam(value="pageNum",defaultValue = "1") Integer pageNum,
+									  @RequestParam(value = "pageSize",defaultValue = "20") Integer pageSize) {
 		try {
 			if (StringUtils.isBlank(header.getUserid())) {
 				return ResultDTO.ERROR(BasicCode.参数错误);
@@ -263,7 +261,7 @@ public class ApiInvitedController extends BaseController<SbMoneyCount> {
 	/**
 	 * 输入邀请码
 	 * 
-	 * @param model
+	 * @param recomUser
 	 * @return
 	 */
 	@RequestMapping("/invitedCode")
@@ -333,6 +331,13 @@ public class ApiInvitedController extends BaseController<SbMoneyCount> {
 					visitMoney.setVmoney(visitAward);
 					sbVisitMoneyService.saveVisitMoney(visitMoney);
 					//给邀请人发放6000金币
+					SbMoneyCount sbMoneyCount = new SbMoneyCount();
+					sbMoneyCount.setUserId(recomMember.getMemberId());
+					sbMoneyCount.setUmoney(6000d);
+					sbMoneyCount.setmType(4);
+					sbMoneyCount.setCreateTime(new Date());
+					sbMoneyCount.setVcode(memberInfo.getVisitCode());
+					sbMoneyCountService.saveSbMoneyCountInfo(sbMoneyCount);
 				}
 			}
 			return ResultDTO.OK();

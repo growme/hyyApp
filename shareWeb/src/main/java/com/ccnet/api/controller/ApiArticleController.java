@@ -107,6 +107,7 @@ public class ApiArticleController extends BaseController<MemberInfo> {
 			Dto dto = getParamAsDto();
 			Page<SbContentInfo> contents = newPage(dto);
 			contents.setPageNum(dto.getAsInteger("page"));
+			contents.setPageSize(dto.getAsInteger("pageSize"));
 			SbContentInfo sbContentInfo = new SbContentInfo();
 			sbContentInfo.setColumnId(dto.getAsInteger("columnId"));
 			// 只显示审核通过
@@ -145,7 +146,7 @@ public class ApiArticleController extends BaseController<MemberInfo> {
 			if (sbContentInfo.getColumnId() == 1) {
 				sbContentInfo.setColumnId(null);
 			}
-			List<SbContentInfo> list1 = pulldownArticle(sbContentInfo);
+			List<SbContentInfo> list1 = pulldownArticle(sbContentInfo,contents);
 			int index = list.size();
 			for (int i = 0; i < 10 - index && 0 < list1.size(); i++) {
 				int xxx = (int) Math.round(Math.random() * (list1.size() - 1));
@@ -891,12 +892,12 @@ public class ApiArticleController extends BaseController<MemberInfo> {
 		return JSON.parseArray(str, SbContentInfo.class);
 	}
 
-	public List<SbContentInfo> pulldownArticle(SbContentInfo sbContentInfo) {
+	public List<SbContentInfo> pulldownArticle(SbContentInfo sbContentInfo,Page<SbContentInfo> contents) {
 		String str = JedisUtils.get("ARTICLE_LIST" + ":TYPE" + sbContentInfo.getContentType() + "_ColumnId_"
 				+ sbContentInfo.getColumnId() + "_WeightType_" + sbContentInfo.getHomeToped());
 		if (str == null || str.contains("[]")) {
-			Page<SbContentInfo> contents = new Page<SbContentInfo>();
-			contents.setPageSize(20);
+			/*Page<SbContentInfo> contents = new Page<SbContentInfo>();
+			contents.setPageSize(20);*/
 			sbContentInfo.setCheckState(1);
 			List<SbContentInfo> con = apiSbContentInfoDao.getSbContentList(sbContentInfo, contents);
 			JedisUtils.set(
@@ -921,7 +922,10 @@ public class ApiArticleController extends BaseController<MemberInfo> {
 		sbContentInfo.setHomeToped(WeightType.COMMON.getType());
 		sbContentInfo.setContentType(0);
 		List<SbContentInfo> list = new ArrayList<>();
-		List<SbContentInfo> list1 = pulldownArticle(sbContentInfo);
+		Page<SbContentInfo> page = new Page<>();
+		page.setPageSize(20);
+		page.setPageNum(1);
+		List<SbContentInfo> list1 = pulldownArticle(sbContentInfo,page);
 		for (int i = 0; i < 3 && 0 < list1.size(); i++) {
 			int xxx = (int) Math.round(Math.random() * (list1.size() - 1));
 			list.add(list1.get(xxx));

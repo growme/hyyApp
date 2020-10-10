@@ -41,7 +41,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object arg2) throws Exception {
 		String token = request.getParameter("sign");
-		logger.info("请求之前进行token验证：{}",token);
+		logger.info("{}请求之前进行token验证：{}",request.getRequestURI(),token);
 		response.setContentType("text/JavaScript; charset=utf-8");
 		response.setCharacterEncoding("UTF-8");
 		JSONObject obj = new JSONObject();
