@@ -1,11 +1,16 @@
 package com.ccnet.admin.cps.controller;
 
+import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 import com.ccnet.core.common.*;
+import com.ccnet.cps.entity.*;
+import com.ccnet.cps.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,14 +27,6 @@ import com.ccnet.core.common.utils.dataconvert.impl.BaseDto;
 import com.ccnet.core.controller.BaseController;
 import com.ccnet.core.dao.base.Page;
 import com.ccnet.core.entity.UserInfo;
-import com.ccnet.cps.entity.SbCashLog;
-import com.ccnet.cps.entity.SbContentVisitLog;
-import com.ccnet.cps.entity.SbMoneyCount;
-import com.ccnet.cps.entity.SbPayLog;
-import com.ccnet.cps.service.SbCashLogService;
-import com.ccnet.cps.service.SbContentVisitLogService;
-import com.ccnet.cps.service.SbMoneyCountService;
-import com.ccnet.cps.service.SbPayLogService;
 
 /**
  * 用户提现记录
@@ -53,6 +50,8 @@ public class SbCashLogController extends BaseController<SbCashLog> {
 	SbMoneyCountService sbMoneyCountService;
 	@Autowired
 	SbContentVisitLogService sbVisitLogService;
+	@Autowired
+	SbUserMoneyService sbUserMoneyService;
 
 	/*
 	 * 提现记录
@@ -226,7 +225,8 @@ public class SbCashLogController extends BaseController<SbCashLog> {
 						}
 						payLog.setUcId(cashId);
 						//todo 支付宝提现
-						if (PayType.ebank.getPayId().equals(cashLog.getPayType())){//微信
+						System.out.println("提现方式：{}，校验；{}"+cashLog.getPayType()+PayType.ebank.getPayId().equals(cashLog.getPayType()));
+						/*if (PayType.ebank.getPayId().equals(cashLog.getPayType())){//微信
 							Map<String, Object> map = WeiXinPayUtils.withdrawals(accountName, cashLog.getPayAccount(), "",
 									cashLog.getCmoney().toString());
 							if (map.get("code").equals("0")) {
@@ -246,7 +246,20 @@ public class SbCashLogController extends BaseController<SbCashLog> {
 						}else{
 							//支付宝
 
+						}*/
+						//用户余额减去提现金额
+						SbUserMoney sbUserMoney = new SbUserMoney();
+						sbUserMoney.setUserId(cashLog.getUserId());
+						List<SbUserMoney> sbUserMoneyList = sbUserMoneyService.findSbUserMoneyList(sbUserMoney, new BaseDto());
+						if (!CollectionUtils.isEmpty(sbUserMoneyList)){
+							SbUserMoney userMoney = sbUserMoneyList.get(0);
+							BigDecimal tmoney = new BigDecimal(userMoney.getTmoney()).subtract(new BigDecimal(cashLog.getCmoney()).multiply(new BigDecimal(10000)));
+							BigDecimal totalMoney = new BigDecimal(userMoney.getProfitsMoney()).subtract(new BigDecimal(cashLog.getCmoney()).multiply(new BigDecimal(10000)));
+							userMoney.setTmoney(tmoney.doubleValue());
+							userMoney.setProfitsMoney(totalMoney.doubleValue());
+							sbUserMoneyService.update(userMoney,"um_id");
 						}
+						payLog.setAlipayCode(cashLog.getUcId().toString());
 						int flag = sbPayLogService.insert(payLog);
 						if (flag > 0) {
 							if (sbCashLogService.updateUserCashState(cashId, PayState.prepaid.getPayStateId(),
