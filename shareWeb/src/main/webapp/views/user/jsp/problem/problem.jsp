@@ -115,11 +115,11 @@
 				<div class="title_content" style="display: block;">
 					当零钱达到一定金额，您可进入‘我的’页面-&gt;‘兑换提现’一栏，选择兑换商品或提现（订单一旦兑换将无法取消，故请再三确认！）</div>
 				<p class="title border_bottom">
-					如何微信提现? <span class="logo rot"> <img src="${basePath}static/images/problem/logo.png">
+					如何支付宝提现? <span class="logo rot"> <img src="${basePath}static/images/problem/logo.png">
 					</span>
 				</p>
 				<div class="title_content" style="display: block;">
-					1、提交提现申请后，系统会自动将您的提现金额转入您的微信零钱，请自行查收 <br>2、24小时未到账的用户可以进入我们的客服qq群进行问题反馈
+					1、提交提现申请后，系统会自动将您的提现金额转入您的支付宝余额，请自行查收 <br>2、24小时未到账的用户可以进入我们的客服qq群进行问题反馈
 				</div>
 				<p class="title border_bottom">
 					提现多久到账? <span class="logo rot"> <img src="${basePath}static/images/problem/logo.png">

@@ -103,8 +103,9 @@ public class ApiArticleController extends BaseController<MemberInfo> {
 	@ResponseBody
 	public ResultDTO<?> getContentInfo() {
 		try {
-			CPSUtil.xprint("请求开始：---==" + new Date().getTime());
+
 			Dto dto = getParamAsDto();
+			CPSUtil.xprint("请求开始：---==" + JSON.toJSONString(dto));
 			Page<SbContentInfo> contents = newPage(dto);
 			contents.setPageNum(dto.getAsInteger("page")==null?1:dto.getAsInteger("page"));
 			contents.setPageSize(dto.getAsInteger("pageSize")==null?20:dto.getAsInteger("pageSize"));
@@ -894,7 +895,7 @@ public class ApiArticleController extends BaseController<MemberInfo> {
 
 	public List<SbContentInfo> pulldownArticle(SbContentInfo sbContentInfo,Page<SbContentInfo> contents) {
 		String str = JedisUtils.get("ARTICLE_LIST" + ":TYPE" + sbContentInfo.getContentType() + "_ColumnId_"
-				+ sbContentInfo.getColumnId() + "_WeightType_" + sbContentInfo.getHomeToped());
+				+ sbContentInfo.getColumnId() + "_WeightType_" + sbContentInfo.getHomeToped()+"_PAGE_"+contents.getPageNum());
 		if (str == null || str.contains("[]")) {
 			/*Page<SbContentInfo> contents = new Page<SbContentInfo>();
 			contents.setPageSize(20);*/
@@ -902,7 +903,7 @@ public class ApiArticleController extends BaseController<MemberInfo> {
 			List<SbContentInfo> con = apiSbContentInfoDao.getSbContentList(sbContentInfo, contents);
 			JedisUtils.set(
 					"ARTICLE_LIST" + ":TYPE" + sbContentInfo.getContentType() + "_ColumnId_"
-							+ sbContentInfo.getColumnId() + "_WeightType_" + sbContentInfo.getHomeToped(),
+							+ sbContentInfo.getColumnId() + "_WeightType_" + sbContentInfo.getHomeToped()+"_PAGE_"+contents.getPageNum(),
 					JSON.toJSONString(con), 5 * 60);
 			return con;
 		}
@@ -912,7 +913,6 @@ public class ApiArticleController extends BaseController<MemberInfo> {
 	/**
 	 * 文章推荐数据
 	 * 
-	 * @param model
 	 * @return
 	 */
 	@RequestMapping(value = "tjLists", produces = "application/json;charset=UTF-8", method = RequestMethod.GET)

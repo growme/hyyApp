@@ -10,7 +10,6 @@ import com.ccnet.cps.entity.*;
 import com.ccnet.cps.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -226,7 +225,7 @@ public class SbCashLogController extends BaseController<SbCashLog> {
 						payLog.setUcId(cashId);
 						//todo 支付宝提现
 						System.out.println("提现方式：{}，校验；{}"+cashLog.getPayType()+PayType.ebank.getPayId().equals(cashLog.getPayType()));
-						/*if (PayType.ebank.getPayId().equals(cashLog.getPayType())){//微信
+						if (PayType.ebank.getPayId().equals(cashLog.getPayType())){//微信
 							Map<String, Object> map = WeiXinPayUtils.withdrawals(accountName, cashLog.getPayAccount(), "",
 									cashLog.getCmoney().toString());
 							if (map.get("code").equals("0")) {
@@ -245,10 +244,10 @@ public class SbCashLogController extends BaseController<SbCashLog> {
 							payLog.setAlipayCode(map.get("partner_trade_no").toString());
 						}else{
 							//支付宝
-
-						}*/
+							payLog.setAlipayCode(cashLog.getUcId().toString());
+						}
 						//用户余额减去提现金额
-						SbUserMoney sbUserMoney = new SbUserMoney();
+						/*SbUserMoney sbUserMoney = new SbUserMoney();
 						sbUserMoney.setUserId(cashLog.getUserId());
 						List<SbUserMoney> sbUserMoneyList = sbUserMoneyService.findSbUserMoneyList(sbUserMoney, new BaseDto());
 						if (!CollectionUtils.isEmpty(sbUserMoneyList)){
@@ -258,8 +257,7 @@ public class SbCashLogController extends BaseController<SbCashLog> {
 							userMoney.setTmoney(tmoney.doubleValue());
 							userMoney.setProfitsMoney(totalMoney.doubleValue());
 							sbUserMoneyService.update(userMoney,"um_id");
-						}
-						payLog.setAlipayCode(cashLog.getUcId().toString());
+						}*/
 						int flag = sbPayLogService.insert(payLog);
 						if (flag > 0) {
 							if (sbCashLogService.updateUserCashState(cashId, PayState.prepaid.getPayStateId(),

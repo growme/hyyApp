@@ -61,6 +61,9 @@
 			<mvc:exclude-mapping path="/api/user/fetchVerifyCode"/>
 			<mvc:exclude-mapping path="/api/article/detail"/>
 			<mvc:exclude-mapping path="/api/article/list"/>
+			<mvc:exclude-mapping path="/api/video/list"/>
+			<mvc:exclude-mapping path="/api/video/detail"/>
+			<mvc:exclude-mapping path="/api/video/column"/>
 			<mvc:exclude-mapping path="/api/article/column"/>
 			<mvc:exclude-mapping path="/api/user/resetPassword"/>
 			<bean class="com.ccnet.api.interceptor.LoginInterceptor"></bean>

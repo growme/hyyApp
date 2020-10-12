@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.ccnet.core.common.utils.dataconvert.Dto;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -191,7 +192,7 @@ public class ApiLoginController extends BaseController<MemberInfo> {
 		if (user == null) {
 			ResultDTO.ERROR(AppResultCode.用户不存在);
 		}
-		String cacheVerifyCode = JedisUtils.get(RedisKey.APP验证码 + phone);
+		String cacheVerifyCode = JedisUtils.get(RedisKey.APP验证码.getValue() + phone);
 		if (StringUtils.isBlank(verify_code) || !cacheVerifyCode.equals(verify_code)) {
 			ResultDTO.ERROR(AppResultCode.验证码不正确);
 		}
@@ -213,20 +214,29 @@ public class ApiLoginController extends BaseController<MemberInfo> {
 	public ResultDTO<?> resetPassword(@RequestParam(value = "phone", required = true) String phone,
 									   @RequestParam(value = "verify_code", required = true) String verify_code,
 									   @RequestParam(value = "password", required = true) String password, HttpServletRequest request) {
-		MemberInfo user = infoService.findMemberByMobile(phone);
-		if (user == null) {
-			ResultDTO.ERROR(AppResultCode.用户不存在);
+		try {
+			Dto dto = getParamAsDto();
+			logger.info("重置密码。。。。。。。。。。"+phone);
+			MemberInfo user = infoService.findMemberByMobile(phone);
+			if (user == null) {
+				ResultDTO.ERROR(AppResultCode.用户不存在);
+			}
+			String cacheVerifyCode = JedisUtils.get(RedisKey.APP验证码.getValue() + phone);
+			if (StringUtils.isBlank(verify_code) || !verify_code.equals(cacheVerifyCode)) {
+				ResultDTO.ERROR(AppResultCode.验证码不正确);
+			}
+			String newPassword = CipherUtil.generatePassword(password).toLowerCase();
+			user.setLoginPassword(CipherUtil.createPwdEncrypt(phone, newPassword, user.getSalt()));
+			user.setMobile(phone);
+			user.setLoginAccount(phone);
+			infoService.editMemberInfo(user);
+			return ResultDTO.OK();
+		}catch (Exception e){
+			logger.info("重置密码时异常。。"+e.getMessage(),e);
+			e.printStackTrace();
+			return ResultDTO.ERROR(BasicCode.系统繁忙);
 		}
-		String cacheVerifyCode = JedisUtils.get(RedisKey.APP验证码 + phone);
-		if (StringUtils.isBlank(verify_code) || !cacheVerifyCode.equals(verify_code)) {
-			ResultDTO.ERROR(AppResultCode.验证码不正确);
-		}
-		String newPassword = CipherUtil.generatePassword(password).toLowerCase();
-		user.setLoginPassword(CipherUtil.createPwdEncrypt(phone, newPassword, user.getSalt()));
-		user.setMobile(phone);
-		user.setLoginAccount(phone);
-		infoService.editMemberInfo(user);
-		return ResultDTO.OK();
+
 	}
 	/**
 	 * 设置密码
