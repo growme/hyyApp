@@ -134,7 +134,7 @@ public class ApiCustomtaskController extends BaseController<SbCustomtask> {
 		return ResultDTO.ERROR(BasicCode.参数错误);
 	}
 
-	@RequestMapping(value = "getTask", method = RequestMethod.POST)
+	@RequestMapping(value = "getTask", method = RequestMethod.GET)
 	@ResponseBody
 	public ResultDTO<?> getTask(Headers headers, Integer taskId) {
 		try {
@@ -147,6 +147,26 @@ public class ApiCustomtaskController extends BaseController<SbCustomtask> {
 				return ResultDTO.ERROR(BasicCode.参数错误);
 			}
 
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ResultDTO.ERROR(BasicCode.参数错误);
+	}
+
+	@RequestMapping(value = "getContentTaskTime", method = RequestMethod.GET)
+	@ResponseBody
+	public ResultDTO<?> getContentTaskTime(Headers headers, Integer taskId, Integer contentId) {
+		try {
+			Map<String, Object> map = new HashMap<>();
+			SbCustomtask arg0 = new SbCustomtask();
+			arg0.setId(taskId);
+			arg0 = sbCustomtaskService.find(arg0);
+			if (CPSUtil.isNotEmpty(arg0)) {
+				map.put("mustTime",arg0.getMusttime());
+				return ResultDTO.OK(map);
+			}else {
+				return ResultDTO.ERROR(BasicCode.参数错误);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
