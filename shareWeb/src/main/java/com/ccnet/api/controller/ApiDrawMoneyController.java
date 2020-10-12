@@ -139,7 +139,7 @@ public class ApiDrawMoneyController extends BaseController<SbCashLog> {
 			if (StringUtils.isEmpty(memberInfo.getPayAccount())){
 				memberInfo.setPayAccount(payAccount);
 				memberInfo.setAccountName(accountName);
-				memberInfoDao.update(memberInfo,memberInfo.getMemberId().toString());
+				memberInfoDao.update(memberInfo,"member_id");
 			}
 			// 获取当前用户用户总收益
 			SbUserMoney userMoney = new SbUserMoney();
@@ -159,7 +159,7 @@ public class ApiDrawMoneyController extends BaseController<SbCashLog> {
 						return ResultDTO.ERROR(AppResultCode.微信提现金额不能超过200元);
 					}
 
-					if (userMoney.getTmoney() < money*1000) {
+					if (userMoney.getTmoney() < money*10000) {
 						return ResultDTO.ERROR(AppResultCode.余额不足);
 					}
 				} else {
