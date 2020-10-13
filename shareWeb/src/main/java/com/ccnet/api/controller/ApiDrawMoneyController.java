@@ -1,18 +1,5 @@
 package com.ccnet.api.controller;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import com.ccnet.cps.service.MemberInfoService;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.ccnet.admin.bh.utils.wxUtils.WeiXinPayUtils;
 import com.ccnet.api.entity.AppResultCode;
 import com.ccnet.api.entity.Headers;
@@ -38,6 +25,17 @@ import com.ccnet.cps.localcache.UserDailyEntity;
 import com.ccnet.cps.service.SbCashLogService;
 import com.ccnet.cps.service.SbPayLogService;
 import com.ccnet.cps.service.SbUserMoneyService;
+import com.ccnet.jpz.entity.JpWithdrawMoney;
+import com.ccnet.jpz.service.JpWithdrawMoneyService;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.math.BigDecimal;
+import java.util.*;
 
 /**
  * 用户提现
@@ -50,13 +48,16 @@ import com.ccnet.cps.service.SbUserMoneyService;
 public class ApiDrawMoneyController extends BaseController<SbCashLog> {
 
 	@Autowired
-	SbCashLogService sbCashLogService;
+    SbCashLogService sbCashLogService;
 	@Autowired
-	SbUserMoneyService sbUserMoneyService;
+    SbUserMoneyService sbUserMoneyService;
 	@Autowired
-	MemberInfoDao memberInfoDao;
+    MemberInfoDao memberInfoDao;
 	@Autowired
-	SbPayLogService sbPayLogService;
+    SbPayLogService sbPayLogService;
+
+	@Autowired
+    JpWithdrawMoneyService jpWithdrawMoneyService;
 
 	// 提现列表
 	@RequestMapping("list")
@@ -88,6 +89,25 @@ public class ApiDrawMoneyController extends BaseController<SbCashLog> {
 			// 提现状态
 			map.put("payStates", PayState.getPayState());
 			return ResultDTO.OK(page);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ResultDTO.ERROR(BasicCode.逻辑错误);
+		}
+	}
+	// 提现金额配置列表
+	@RequestMapping("withdrawList")
+	@ResponseBody
+	public ResultDTO<?> withdrawList() {
+		try {
+			List<JpWithdrawMoney> list = jpWithdrawMoneyService.findList(new JpWithdrawMoney());
+			Collections.sort(list, new Comparator<JpWithdrawMoney>() {
+				@Override
+				public int compare(JpWithdrawMoney o1, JpWithdrawMoney o2) {
+					double money = o1.getMoney() - o2.getMoney();
+					return new BigDecimal(money).intValue();
+				}
+			});
+			return ResultDTO.OK(list);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return ResultDTO.ERROR(BasicCode.逻辑错误);
