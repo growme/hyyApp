@@ -215,7 +215,7 @@ public class SystemParamController extends AdminBaseController<SystemParams> {
 					}
 
 					InitSystemCache.updateCache(Const.CT_PARAM_LIST);
-					HessianClientUtil.updateCache(Const.CT_PARAM_LIST);
+					//HessianClientUtil.updateCache(Const.CT_PARAM_LIST);
 					ar.setSucceedMsg(Const.SAVE_SUCCEED);
 				} else {
 					ar.setFailMsg(Const.SAVE_FAIL);
@@ -249,7 +249,7 @@ public class SystemParamController extends AdminBaseController<SystemParams> {
 					}
 
 					InitSystemCache.updateCache(Const.CT_PARAM_LIST);
-					HessianClientUtil.updateCache(Const.CT_PARAM_LIST);
+					//HessianClientUtil.updateCache(Const.CT_PARAM_LIST);
 					ar.setSucceedMsg(Const.UPDATE_SUCCEED);
 				} else {
 					ar.setFailMsg(Const.UPDATE_FAIL);

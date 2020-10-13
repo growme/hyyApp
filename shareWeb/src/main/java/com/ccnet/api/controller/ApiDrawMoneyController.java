@@ -113,6 +113,18 @@ public class ApiDrawMoneyController extends BaseController<SbCashLog> {
 			return ResultDTO.ERROR(BasicCode.逻辑错误);
 		}
 	}
+	// 提现规则
+	@RequestMapping("withdrawRules")
+	@ResponseBody
+	public ResultDTO<?> withdrawRules() {
+		try {
+			String withdraw_rules = CPSUtil.getParamValue("WITHDRAW_RULES");
+			return ResultDTO.OK(withdraw_rules);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ResultDTO.ERROR(BasicCode.逻辑错误);
+		}
+	}
 
 	/**
 	 * 提现申请
