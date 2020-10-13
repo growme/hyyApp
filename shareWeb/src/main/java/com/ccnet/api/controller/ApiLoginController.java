@@ -313,4 +313,23 @@ public class ApiLoginController extends BaseController<MemberInfo> {
 			return ResultDTO.ERROR(BasicCode.系统繁忙);
 		}
 	}
+
+	@RequestMapping(value = "updateUserInfomemberName")
+	@ResponseBody
+	public ResultDTO<?> updateUserInfomemberName(MemberInfo memberInfo,HttpServletRequest request) {
+		try {
+			String token = request.getHeader("token");
+			String userId = TokenUtil.getToken(token);
+			MemberInfo user = infoService.getUserByUserID(Integer.valueOf(userId));
+			if (user == null) {
+				ResultDTO.ERROR(AppResultCode.用户不存在);
+			}
+			user.setMemberName(memberInfo.getMemberName());
+			infoService.update(user,"member_id");
+			return ResultDTO.OK();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ResultDTO.ERROR(BasicCode.系统繁忙);
+		}
+	}
 }
