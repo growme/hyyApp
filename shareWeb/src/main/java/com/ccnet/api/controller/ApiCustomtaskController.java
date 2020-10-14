@@ -201,10 +201,10 @@ public class ApiCustomtaskController extends BaseController<SbCustomtask> {
 				if (CPSUtil.isNotEmpty(contentNum)) {
 					if (contentNum.equals("1")) {
 						contentNum = "2";
-						jiangli = DoubleUtil.mul(jiangli, 0.5D);
+//						jiangli = DoubleUtil.mul(jiangli, 0.5D);
 					} else if (contentNum.equals("2")) {
 						contentNum = "3";
-						jiangli = DoubleUtil.mul(jiangli, 0.3D);
+//						jiangli = DoubleUtil.mul(jiangli, 0.3D);
 					}
 				} else {
 					contentNum = "1";
