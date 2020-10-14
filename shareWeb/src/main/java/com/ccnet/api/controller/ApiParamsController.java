@@ -114,9 +114,11 @@ public class ApiParamsController extends BaseController<SystemParams> {
 			}
 			if (type.equals("android")) {
 				SystemParams params = systemParamService.findSystemParamByKey("REPEAT_ANDROID_VERSION");
-				String[] st = params.getParamValue().split(",");
+				String[] st = params.getParamValue().split(";");
 				map.put("version", st[0]);
 				map.put("url", st[1]);
+				map.put("type", st[2]);
+				map.put("msg", st[3]);
 				return ResultDTO.OK(map);
 			}
 			if (type.equals("ios")) {

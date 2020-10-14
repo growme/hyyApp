@@ -113,6 +113,30 @@ public class SbMoneyCountDao extends BaseDao<SbMoneyCount> {
 		return memory.query(sql, new BeanListHandler<SbMoneyCount>(SbMoneyCount.class), params);
 	}
 
+	public List<SbMoneyCount> findTotalMoneyByTime(String start_date,String end_date) {
+
+		StringBuffer sql = new StringBuffer();
+		List<Object> params = new ArrayList<Object>();
+		sql.append("select SUM(IFNULL(umoney,0))umoney,user_id from ").append(getCurrentTableName());
+
+		// 带上日期查询
+		if (CPSUtil.isNotEmpty(start_date)) {
+			appendWhere(sql);
+			sql.append(" and create_time >=? ");
+			params.add(start_date + " 00:00:00");
+		}
+
+		if (CPSUtil.isNotEmpty(end_date)) {
+			appendWhere(sql);
+			sql.append(" and create_time <=? ");
+			params.add(end_date + " 23:59:59");
+		}
+
+		// 加上排序
+		sql.append(" group by user_id");
+		return memory.query(sql, new BeanListHandler<SbMoneyCount>(SbMoneyCount.class), params);
+	}
+
 	/**
 	 * 查询用户收益集合
 	 * 

@@ -349,7 +349,7 @@ public class SbMoneyCountServiceImpl extends BaseServiceImpl<SbMoneyCount> imple
 	public boolean saveSbMoneyCountInfo(SbMoneyCount moneyCount) {
 		boolean temp = false;
 		if (sbMoneyCountDao.insert(moneyCount) > 0) {
-			UserDailyEntity userLock = UserCache.getInstance().getUserCache(moneyCount.getUserId());
+			/*UserDailyEntity userLock = UserCache.getInstance().getUserCache(moneyCount.getUserId());
 			synchronized (userLock) {
 				// 保存总数据
 				SbUserMoney userMoney = new SbUserMoney();
@@ -361,7 +361,8 @@ public class SbMoneyCountServiceImpl extends BaseServiceImpl<SbMoneyCount> imple
 				if (sbUserMoneyDao.insertOrUpdate(userMoney) > 0) {
 					temp = true;
 				}
-			}
+			}*/
+			temp=true;
 		}
 		return temp;
 	}

@@ -324,12 +324,12 @@ public class ApiInvitedController extends BaseController<SbMoneyCount> {
 
 				// 添加邀请人奖励
 				if (CPSUtil.isNotEmpty(recomMember)) {
-					SbVisitMoney visitMoney = new SbVisitMoney();
+					/*SbVisitMoney visitMoney = new SbVisitMoney();
 					visitMoney.setCreateTime(new Date());
 					visitMoney.setUserId(recomMember.getMemberId());
 					visitMoney.setVcode(memberInfo.getVisitCode());
 					visitMoney.setVmoney(visitAward);
-					sbVisitMoneyService.saveVisitMoney(visitMoney);
+					sbVisitMoneyService.saveVisitMoney(visitMoney);*/
 					//给邀请人发放6000金币
 					SbMoneyCount sbMoneyCount = new SbMoneyCount();
 					sbMoneyCount.setUserId(recomMember.getMemberId());
