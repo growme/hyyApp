@@ -76,6 +76,12 @@ public class NewsServiceImpl implements NewsService {
 		}
 	}
 
+	@Override
+	public void deleteSbContentInfoByDate() {
+//		contentInfoDao.deleteByDate();
+
+	}
+
 	public int addSbContentInfoByCode(String code, Integer colId) {
 		List<SbContentInfo> newslist = newList(code, colId);
 		int bol = 0;

@@ -7,4 +7,9 @@ public interface NewsService {
 	public int addSbContentInfoVideoByCode(String code,Integer colId);
 
 	void taskList();
+
+	/**
+	 * 删除过时新闻
+	 */
+    void deleteSbContentInfoByDate();
 }
