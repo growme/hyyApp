@@ -3,6 +3,7 @@ package com.ccnet.api.service.impl;
 import java.io.IOException;
 import java.util.Date;
 
+import com.ccnet.api.util.HanZiUtil;
 import com.ccnet.core.common.MemeberLevelType;
 import org.apache.http.ParseException;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -99,6 +100,7 @@ public class ApiLoginServiceImpl implements ApiLoginService {
 				String invitedCode = param.getInvitedCode(); //邀请码
 				registInfo.setLoginAccount(param.getLoginName());
 				registInfo.setMobile(param.getLoginName());
+				registInfo.setMemberName(HanZiUtil.getRandomHanZiNoSpace(2));
 				registInfo.setMemberLevel(MemeberLevelType.REGULAR.getType());
 				registInfo.setRegisterTime(new Date());
 				registInfo.setUpdateTime(new Date());
@@ -130,23 +132,30 @@ public class ApiLoginServiceImpl implements ApiLoginService {
 					}
 					// 获取系统参数默认奖励金额
 					if (CPSUtil.isEmpty(umoney)) {
-						umoney = 2.00d;// 未设置默认2.0
+						umoney = 20000d;// 未设置默认2.0
 					}
 					if (CPSUtil.isEmpty(visitAward)) {
-						visitAward = 0.50d;// 未设置默认0.5
+						visitAward = 5000d;// 未设置默认0.5
 					}
 					CPSUtil.xprint("注册默认金额：" + umoney);
-					//moneyCount.setUserId(memberInfo.getMemberId());
-					//sbMoneyCountService.saveSbMoneyCountInfo(moneyCount);
+//					moneyCount.setUserId(memberInfo.getMemberId());
+//					sbMoneyCountService.saveSbMoneyCountInfo(moneyCount);
 
 					// 添加邀请人奖励
 					if (CPSUtil.isNotEmpty(recomMember)) {
-						SbVisitMoney visitMoney = new SbVisitMoney();
+						/*SbVisitMoney visitMoney = new SbVisitMoney();
 						visitMoney.setCreateTime(new Date());
 						visitMoney.setUserId(recomMember.getMemberId());
 						visitMoney.setVcode(registInfo.getVisitCode());
 						visitMoney.setVmoney(visitAward);
-						sbVisitMoneyService.saveVisitMoney(visitMoney);
+						sbVisitMoneyService.saveVisitMoney(visitMoney);*/
+						SbMoneyCount sbMoneyCount = new SbMoneyCount();
+						sbMoneyCount.setUserId(recomMember.getMemberId());
+						sbMoneyCount.setUmoney(visitAward);
+						sbMoneyCount.setmType(4);
+						sbMoneyCount.setCreateTime(new Date());
+						sbMoneyCount.setVcode(registInfo.getVisitCode());
+						sbMoneyCountService.saveSbMoneyCountInfo(sbMoneyCount);
 					}
 				}
 				// 执行更新操作

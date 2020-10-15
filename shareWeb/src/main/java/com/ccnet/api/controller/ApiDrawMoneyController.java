@@ -166,9 +166,12 @@ public class ApiDrawMoneyController extends BaseController<SbCashLog> {
 			if (StringUtils.isBlank(header.getUserid())) {
 				ResultDTO.ERROR(BasicCode.参数错误);
 			}
+			if (StringUtils.isEmpty(payAccount)||StringUtils.isEmpty(accountName)){
+				return ResultDTO.ERROR(AppResultCode.支付宝账号信息不能为空);
+			}
 			// 当前用户
 			MemberInfo memberInfo = memberInfoDao.getUserByUserID(Integer.valueOf(header.getUserid()));
-			if (StringUtils.isEmpty(memberInfo.getPayAccount())){
+			if (StringUtils.isEmpty(memberInfo.getPayAccount())||!payAccount.equals(memberInfo.getPayAccount())||!accountName.equals(memberInfo.getAccountName())){
 				memberInfo.setPayAccount(payAccount);
 				memberInfo.setAccountName(accountName);
 				memberInfoDao.update(memberInfo,"member_id");

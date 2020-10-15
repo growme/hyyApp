@@ -55,7 +55,8 @@ public enum AppResultCode implements ResultCode {
 	翻倍未完成任务(--C.STATUS_CODE, true, "翻倍未完成任务！"),
 
 	登录后获取更多更多奖励(--C.STATUS_CODE, true, "用户尚未登录，登录后获取更多更多奖励！"), 
-	
+	支付宝账号信息不能为空(--C.STATUS_CODE, true, "支付宝账号或真实姓名不能为空！"),
+
 	微信圈提现每日只限一次(--C.STATUS_CODE, true, "微信圈提现每日只限一次！");
 
 	public final int code;

@@ -306,7 +306,7 @@ public class ApiInvitedController extends BaseController<SbMoneyCount> {
 				// 注册默认基金
 				double umoney = Double.valueOf(CPSUtil.getParamValue(Const.CT_MEMBER_REGISTER_MONEY));
 				// 处理注册默认基金
-				SbMoneyCount moneyCount = new SbMoneyCount();
+				/*SbMoneyCount moneyCount = new SbMoneyCount();
 				// 获取系统参数默认奖励金额
 				if (CPSUtil.isEmpty(umoney)) {
 					umoney = 2.00d;// 未设置默认2.0
@@ -320,7 +320,7 @@ public class ApiInvitedController extends BaseController<SbMoneyCount> {
 				moneyCount.setUmoney(umoney);
 				moneyCount.setmType(AwardType.register.getAwardId());
 				moneyCount.setUserId(memberInfo.getMemberId());
-				sbMoneyCountService.saveSbMoneyCountInfo(moneyCount);
+				sbMoneyCountService.saveSbMoneyCountInfo(moneyCount);*/
 
 				// 添加邀请人奖励
 				if (CPSUtil.isNotEmpty(recomMember)) {
@@ -333,7 +333,7 @@ public class ApiInvitedController extends BaseController<SbMoneyCount> {
 					//给邀请人发放6000金币
 					SbMoneyCount sbMoneyCount = new SbMoneyCount();
 					sbMoneyCount.setUserId(recomMember.getMemberId());
-					sbMoneyCount.setUmoney(6000d);
+					sbMoneyCount.setUmoney(visitAward);
 					sbMoneyCount.setmType(4);
 					sbMoneyCount.setCreateTime(new Date());
 					sbMoneyCount.setVcode(memberInfo.getVisitCode());
