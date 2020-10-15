@@ -7,4 +7,6 @@ public interface NewsService {
 	public int addSbContentInfoVideoByCode(String code,Integer colId);
 
 	void taskList();
+
+    void deleteContentListBeforeDate(String date);
 }

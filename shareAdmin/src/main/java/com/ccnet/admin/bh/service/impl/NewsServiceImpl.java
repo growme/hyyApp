@@ -18,6 +18,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.zip.CRC32;
 
+import com.ccnet.cps.dao.SbContentPicDao;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,6 +37,7 @@ import com.ccnet.cps.entity.SbContentInfo;
 import com.ccnet.cps.entity.SbContentPic;
 import com.ccnet.cps.service.SbColumnInfoService;
 import com.ccnet.cps.service.SbContentInfoService;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service("newsService")
 public class NewsServiceImpl implements NewsService {
@@ -48,6 +50,9 @@ public class NewsServiceImpl implements NewsService {
 
 	@Autowired
 	ApiSbContentInfoDao contentInfoDao;
+
+	@Autowired
+	SbContentPicDao sbContentPicDao;
 
 	private static String qid = "qid02561";
 	private static String newsurl = "http://newswifiapi.dftoutiao.com/jsonnew/refresh";
@@ -74,6 +79,19 @@ public class NewsServiceImpl implements NewsService {
 						addSbContentInfoVideoByCode(columnList1.get(i).getCode(), columnList1.get(i).getColumnId()));
 			}
 		}
+	}
+
+	@Override
+	@Transactional
+	public void deleteContentListBeforeDate(String date) {
+		List<SbContentInfo> list = contentInfoDao.findSbContentInfoBeforeDate(date);
+		for (SbContentInfo sbContentInfo : list ) {
+			SbContentInfo tmp = new SbContentInfo();
+			tmp.setContentId(sbContentInfo.getContentId());
+			contentInfoDao.delete(tmp);
+			sbContentPicDao.trashPicByContentId(sbContentInfo.getContentCode());
+		}
+
 	}
 
 	public int addSbContentInfoByCode(String code, Integer colId) {
