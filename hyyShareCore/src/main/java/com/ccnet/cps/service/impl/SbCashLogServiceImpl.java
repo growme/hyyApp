@@ -47,7 +47,7 @@ public class SbCashLogServiceImpl extends BaseServiceImpl<SbCashLog> implements 
 			SbUserMoney userMoney = new SbUserMoney();
 			userMoney.setUserId(cashLog.getUserId());
 			userMoney.setProfitsMoney(0d);
-			userMoney.setTmoney(-cashLog.getCmoney());
+			userMoney.setTmoney(-cashLog.getCmoney()*10000);
 			userMoney.setUpdateTime(new Date());
 			userMoney.setLastProDate(userMoney.getUpdateTime());
 			if(cashLog.getWithdrawType()==1){
