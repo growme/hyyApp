@@ -145,7 +145,7 @@
 													<td class="text-center">${dp.typeName}</td>
 													<td class="text-center"><span class="label label-${dp.showColor}">${dp.stateName}</span></td>
 													<td class="text-center">${dp.remark}</td>
-												    <td class="text-center"><fmt:formatDate value="${dp.updateTime}" type="both" pattern="yyyy年MM月dd日 HH:mm:ss"/></td>
+												    <td class="text-center"><fmt:formatDate value="${dp.createTime}" type="both" pattern="yyyy年MM月dd日 HH:mm:ss"/></td>
 													
 												</tr>
 												

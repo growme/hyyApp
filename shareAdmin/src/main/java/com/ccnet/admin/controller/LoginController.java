@@ -181,13 +181,13 @@ public class LoginController extends BaseController<Object>{
 		session.setAttribute("siteLogo", CPSUtil.getSitePic("BACK_SITE_LOGO", 2,req));
 		session.setAttribute("siteIco", CPSUtil.getSitePic("BACK_SITE_ICO", 3,req));
 		
-		String nowDomian = req.getServerName();
+		/*String nowDomian = req.getServerName();
 		CPSUtil.xprint("nowDomian=" + nowDomian);
 		if(!CPSUtil.isHomeDomain(nowDomian)){
 			CPSUtil.xprint("非白名单域名访问登录跳转腾讯新闻！！！");
 			model.addAttribute("target", "http://news.qq.com");
 			return "/common/forward";
-		}
+		}*/
 		
 		if(CPSUtil.isEmpty(currentUser)){
 			return "admin/jsp/home/admin_nlogin";

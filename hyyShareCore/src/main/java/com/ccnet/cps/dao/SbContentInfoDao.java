@@ -124,7 +124,7 @@ public class SbContentInfoDao extends BaseDao<SbContentInfo> {
 		List<Object> params = new ArrayList<Object>();
 		sql.append("select * from ").append(getCurrentTableName());
 		memory.in(sql, params, "where", "content_id", contentIds);
-		
+
 		List<SbContentInfo> list = memory.query(sql, new BeanListHandler<SbContentInfo>(SbContentInfo.class), params);
 		return list;
 	}
