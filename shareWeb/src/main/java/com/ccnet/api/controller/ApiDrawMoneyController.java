@@ -194,7 +194,7 @@ public class ApiDrawMoneyController extends BaseController<SbCashLog> {
 						return ResultDTO.ERROR(AppResultCode.微信提现金额不能超过200元);
 					}
 
-					if (userMoney.getTmoney() < money*10000) {
+					if (userMoney.getTmoney() < money*Double.valueOf(CPSUtil.getParamValue("PEPEAT_CONVERSION_RATIO"))) {
 						return ResultDTO.ERROR(AppResultCode.余额不足);
 					}
 				} else {

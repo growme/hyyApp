@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.ccnet.core.common.*;
+import com.ccnet.cps.dao.SbUserMoneyDao;
 import com.ccnet.cps.entity.*;
 import com.ccnet.cps.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +52,9 @@ public class SbCashLogController extends BaseController<SbCashLog> {
 	SbContentVisitLogService sbVisitLogService;
 	@Autowired
 	SbUserMoneyService sbUserMoneyService;
+
+	@Autowired
+	SbUserMoneyDao sbUserMoneyDao;
 
 	/*
 	 * 提现记录
@@ -145,15 +149,28 @@ public class SbCashLogController extends BaseController<SbCashLog> {
 				if (StringHelper.checkParameter(cashId, state, remark)) {
 					// 处理数据存储
 					if (sbCashLogService.updateUserCashState(cashId, state, remark)) {
-						if (state.toString().equals(PayState.drawback.getPayStateId().toString())) {
+						if (state.toString().equals(PayState.drawback.getPayStateId().toString())||state
+						.toString().equals(PayState.failured.getPayStateId().toString())||
+						state.toString().equals(PayState.refused.getPayStateId().toString())) {
 							SbCashLog cashLog = sbCashLogService.findSbCashLogById(cashId, paramDto);
-							SbMoneyCount moneyCount = new SbMoneyCount();
+							String rate = CPSUtil.getParamValue("PEPEAT_CONVERSION_RATIO");
+							double money = cashLog.getCmoney() * Double.valueOf(rate);
+							/*SbMoneyCount moneyCount = new SbMoneyCount();
 							moneyCount.setCreateTime(new Date());
 							moneyCount.setUserId(cashLog.getUserId());
-							moneyCount.setUmoney(cashLog.getCmoney());
+							moneyCount.setUmoney(money);
 							moneyCount.setmType(AwardType.darwback.getAwardId());
 							moneyCount.setVindex(0);
-							sbMoneyCountService.saveSbMoneyCountInfo(moneyCount);
+							sbMoneyCountService.saveSbMoneyCountInfo(moneyCount);*/
+							//金币退回余额
+							SbUserMoney userMoney = new SbUserMoney();
+							userMoney.setUserId(cashLog.getUserId());
+							userMoney.setProfitsMoney(money);
+							userMoney.setTmoney(money);
+							userMoney.setUpdateTime(new Date());
+							userMoney.setLastProDate(userMoney.getUpdateTime());
+							sbUserMoneyDao.insertOrUpdate(userMoney);
+
 							ar.setSucceedMsg(Const.SAVE_SUCCEED);
 						} else {
 							ar.setFailMsg(Const.DATA_UNEXIST);
@@ -246,23 +263,13 @@ public class SbCashLogController extends BaseController<SbCashLog> {
 							//支付宝
 							payLog.setAlipayCode(cashLog.getUcId().toString());
 						}
-						//用户余额减去提现金额
-						/*SbUserMoney sbUserMoney = new SbUserMoney();
-						sbUserMoney.setUserId(cashLog.getUserId());
-						List<SbUserMoney> sbUserMoneyList = sbUserMoneyService.findSbUserMoneyList(sbUserMoney, new BaseDto());
-						if (!CollectionUtils.isEmpty(sbUserMoneyList)){
-							SbUserMoney userMoney = sbUserMoneyList.get(0);
-							BigDecimal tmoney = new BigDecimal(userMoney.getTmoney()).subtract(new BigDecimal(cashLog.getCmoney()).multiply(new BigDecimal(10000)));
-							BigDecimal totalMoney = new BigDecimal(userMoney.getProfitsMoney()).subtract(new BigDecimal(cashLog.getCmoney()).multiply(new BigDecimal(10000)));
-							userMoney.setTmoney(tmoney.doubleValue());
-							userMoney.setProfitsMoney(totalMoney.doubleValue());
-							sbUserMoneyService.update(userMoney,"um_id");
-						}*/
+
 						int flag = sbPayLogService.insert(payLog);
 						if (flag > 0) {
 							if (sbCashLogService.updateUserCashState(cashId, PayState.prepaid.getPayStateId(),
 									"佣金支付成功")) {
-								sbCashLogService.updateUserCashMoney(cashLog.getUserId(), cashLog.getCmoney());
+								//提现成功后取消给邀请人返现
+								//sbCashLogService.updateUserCashMoney(cashLog.getUserId(), cashLog.getCmoney());
 								ar.setSucceedMsg(Const.SAVE_SUCCEED);
 							} else {
 								ar.setFailMsg(Const.SAVE_FAIL);

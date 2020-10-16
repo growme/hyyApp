@@ -47,7 +47,8 @@ public class SbCashLogServiceImpl extends BaseServiceImpl<SbCashLog> implements 
 			SbUserMoney userMoney = new SbUserMoney();
 			userMoney.setUserId(cashLog.getUserId());
 			userMoney.setProfitsMoney(0d);
-			userMoney.setTmoney(-cashLog.getCmoney()*10000);
+			String rate = CPSUtil.getParamValue("PEPEAT_CONVERSION_RATIO");
+			userMoney.setTmoney(-cashLog.getCmoney()*Double.valueOf(rate));
 			userMoney.setUpdateTime(new Date());
 			userMoney.setLastProDate(userMoney.getUpdateTime());
 			if(cashLog.getWithdrawType()==1){
