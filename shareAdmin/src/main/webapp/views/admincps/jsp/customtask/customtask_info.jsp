@@ -73,6 +73,12 @@
 										value='${customtask.payIntegral}'></td>
 								</tr>
 								<tr>
+									<td align="right">随机金币：</td>
+									<td><input type="text" class="form-control"
+										id="randomIntegral" name="randomIntegral" placeholder="随机金币"
+										value='${customtask.randomIntegral}'></td>
+								</tr>
+								<tr>
 									<td align="right">限定次数：</td>
 									<td><input type="text" class="form-control" id="payNum"
 										name="payNum" placeholder="奖励名称" value='${customtask.payNum}'></td>

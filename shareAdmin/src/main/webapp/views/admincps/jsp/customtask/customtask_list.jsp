@@ -104,6 +104,7 @@
 											<th>奖励名称</th>
 											<th>状态</th>
 											<th>金币</th>
+											<th>随机金币</th>
 											<th>次数</th>
 											<th>完成需要时长（秒）</th>
 											<th>跳转方式</th>
@@ -145,6 +146,7 @@
 													<td>${dp.integral }</td>
 													<td>${dp.status}</td>
 													<td>${dp.payIntegral}</td>
+													<td>${dp.randomIntegral}</td>
 													<td>${dp.payNum}</td>
 													<td>${dp.musttime }</td>
 													<td><c:if test="${dp.target=='blank'}">新窗口打开</c:if>
