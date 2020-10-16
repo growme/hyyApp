@@ -11,7 +11,7 @@
        
     <description>HessianClient Configuration</description>
     <!-- 读取配置文件 -->
-	<context:property-placeholder ignore-unresolvable="true" location="classpath*:global.admin.properties" /> 
+	<context:property-placeholder ignore-unresolvable="true" location="classpath*:dev/global.admin.properties" />
 	 <!-- 客户端接口访问配置 -->
     <bean id="hessianClient" class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
         <property name="serviceUrl" value="${userinfo_prefix_url}/hUserInfoService"/>
