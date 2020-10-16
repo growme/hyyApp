@@ -8,8 +8,5 @@ public interface NewsService {
 
 	void taskList();
 
-	/**
-	 * 删除过时新闻
-	 */
-    void deleteSbContentInfoByDate();
+    void deleteContentListBeforeDate(String date);
 }

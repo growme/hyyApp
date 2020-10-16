@@ -238,7 +238,20 @@ public class SbContentInfoDao extends BaseDao<SbContentInfo> {
 			return false;
 		}
 	}
-	
+
+	/**
+	 * 按时间删除文章
+	 * @param
+	 * @return
+	 */
+	public List<SbContentInfo> findSbContentInfoBeforeDate(String date) {
+		StringBuffer sql = new StringBuffer();
+		List<Object> params = new ArrayList<Object>();
+		sql.append("select * from ").append(getCurrentTableName()).append(" where create_time < ? ");
+		params.add(date);
+		List<SbContentInfo> list = memory.query(sql, new BeanListHandler<SbContentInfo>(SbContentInfo.class), params);
+		return  list;
+	}
 	/**
 	 *查询当前ID上一篇文章
 	 *
