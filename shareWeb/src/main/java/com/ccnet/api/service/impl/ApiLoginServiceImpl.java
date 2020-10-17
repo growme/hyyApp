@@ -5,6 +5,7 @@ import java.util.Date;
 
 import com.ccnet.api.util.HanZiUtil;
 import com.ccnet.core.common.MemeberLevelType;
+import com.ccnet.cps.entity.SbUserMoney;
 import org.apache.http.ParseException;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
@@ -121,8 +122,7 @@ public class ApiLoginServiceImpl implements ApiLoginService {
 					registInfo.setLevelCode(visitCode);
 				}
 				if (memberInfoDao.saveMemberInfo(registInfo)) {
-					// 注册默认基金
-					double umoney = Double.valueOf(CPSUtil.getParamValue(Const.CT_MEMBER_REGISTER_MONEY));
+
 					// 获取系统邀请奖励金额
 					double visitAward = Double.parseDouble(CPSUtil.getParamValue(Const.CT_RECOM_REGISTER_REWARD));
 					// 邀请人
@@ -130,16 +130,12 @@ public class ApiLoginServiceImpl implements ApiLoginService {
 					if (CPSUtil.isNotEmpty(invitedCode)) {
 						recomMember = memberInfoService.findMemberInfoByVisitCode(invitedCode);
 					}
-					// 获取系统参数默认奖励金额
-					if (CPSUtil.isEmpty(umoney)) {
-						umoney = 20000d;// 未设置默认2.0
-					}
+
 					if (CPSUtil.isEmpty(visitAward)) {
 						visitAward = 5000d;// 未设置默认0.5
 					}
-					CPSUtil.xprint("注册默认金额：" + umoney);
-//					moneyCount.setUserId(memberInfo.getMemberId());
-//					sbMoneyCountService.saveSbMoneyCountInfo(moneyCount);
+
+
 
 					// 添加邀请人奖励
 					if (CPSUtil.isNotEmpty(recomMember)) {
@@ -161,7 +157,19 @@ public class ApiLoginServiceImpl implements ApiLoginService {
 				// 执行更新操作
 				InitSystemCache.updateCache(Const.CT_SYSTEM_MEMBER_LIST);
 				user = memberInfoDao.find(info);
-//				return ResultDTO.ERROR(AppResultCode.用户不存在);
+				//注册送金币
+				// 注册默认基金
+				double umoney = Double.valueOf(CPSUtil.getParamValue(Const.CT_MEMBER_REGISTER_MONEY));
+				// 获取系统参数默认奖励金额
+				if (CPSUtil.isEmpty(umoney)) {
+					umoney = 0;// 未设置默认2.0
+				}
+				SbMoneyCount moneyCount = new SbMoneyCount();
+				moneyCount.setUserId(user.getMemberId());
+				moneyCount.setUmoney(umoney);
+				moneyCount.setmType(0);
+				moneyCount.setCreateTime(new Date());
+				sbMoneyCountService.saveSbMoneyCountInfo(moneyCount);
 			}
 		}
 		LoginResult<MemberInfo> loginResult = new LoginResult<>();
