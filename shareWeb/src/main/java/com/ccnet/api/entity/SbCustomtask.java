@@ -18,12 +18,21 @@ public class SbCustomtask extends BaseEntity {
 	private Integer type; // 1日常 2高佣 3新手任务 4积分墙任务
 	private String musttime; // 必须使用时长，否则不给于奖励
 	private Double payIntegral; // 每次支付金币
+	private Integer randomIntegral; // 每次支付的随机金币
 	private Integer payNum; // 每日限定次数
 	private Integer phonetype;
 	@IgnoreTableField
 	private Integer taskNum; // 剩余次数
 	private String target;// 跳转方式 blank新窗口 self本窗口 空不跳转
 	private String icon;//图标
+
+	public Integer getRandomIntegral() {
+		return randomIntegral;
+	}
+
+	public void setRandomIntegral(Integer randomIntegral) {
+		this.randomIntegral = randomIntegral;
+	}
 
 	public String getIcon() {
 		return icon;

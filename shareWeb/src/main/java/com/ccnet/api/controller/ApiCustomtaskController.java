@@ -3,11 +3,7 @@ package com.ccnet.api.controller;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -197,7 +193,9 @@ public class ApiCustomtaskController extends BaseController<SbCustomtask> {
 				if (CPSUtil.isNotEmpty(contentNum) && contentNum.equals("3")) {
 					return ResultDTO.ERROR(AppResultCode.你已阅读很长时间啦);
 				}
-				Double jiangli = arg0.getPayIntegral();
+				Random random = new Random();
+				int randomIntegral = arg0.getRandomIntegral()==0?0:(random.nextInt(arg0.getRandomIntegral())+1);
+				Double jiangli = arg0.getPayIntegral()+randomIntegral;
 				if (CPSUtil.isNotEmpty(contentNum)) {
 					if (contentNum.equals("1")) {
 						contentNum = "2";
