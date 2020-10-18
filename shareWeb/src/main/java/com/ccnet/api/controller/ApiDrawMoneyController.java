@@ -78,7 +78,12 @@ public class ApiDrawMoneyController extends BaseController<SbCashLog> {
 			if (type == 2) {
 				dto.put("staelist", "2,3,4,5");
 			}
-			Page<SbCashLog> page = newPage(dto);
+//			Page<SbCashLog> page = newPage(dto);
+			Integer pageNum = dto.getAsInteger("pageNum")==null?1:dto.getAsInteger("pageNum");
+			Integer pageSize = dto.getAsInteger("pageSize")==null?20:dto.getAsInteger("pageSize");
+			Page<SbCashLog> page = new Page<>();
+			page.setPageNum(pageNum);
+			page.setPageSize(pageSize);
 			SbCashLog cashLog = new SbCashLog();
 			cashLog.setUserId(Integer.valueOf(header.getUserid()));
 			page = sbCashLogService.findSbCashLogByPage(cashLog, page, dto);
