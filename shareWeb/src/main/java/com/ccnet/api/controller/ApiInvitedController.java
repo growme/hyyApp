@@ -8,6 +8,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.ccnet.core.entity.SystemParams;
+import com.ccnet.core.service.SystemParamService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -63,6 +65,9 @@ public class ApiInvitedController extends BaseController<SbMoneyCount> {
 	SbVisitMoneyService sbVisitMoneyService;
 	@Autowired
 	ApiMoneyCountService apiMoneyCountService;
+
+	@Autowired
+	SystemParamService systemParamService;
 	private final String DOMAIN = GetPropertiesValue.getValue("ConfigURL.properties", "ziyuan.server");
 
 	/**
@@ -302,9 +307,11 @@ public class ApiInvitedController extends BaseController<SbMoneyCount> {
 			// 处理保存逻辑
 			if (memberInfoDao.update(memberInfo, "memberId") == 1) {
 				// 获取系统邀请奖励金额
-				double visitAward = Double.parseDouble(CPSUtil.getParamValue(Const.CT_RECOM_REGISTER_REWARD));
-				// 注册默认基金
-				double umoney = Double.valueOf(CPSUtil.getParamValue(Const.CT_MEMBER_REGISTER_MONEY));
+				double visitAward = 0d;
+				SystemParams params = systemParamService.findSystemParamByKey(Const.CT_RECOM_REGISTER_REWARD);
+				if (params != null&&!StringUtils.isEmpty(params.getParamValue())){
+					visitAward = Double.valueOf(params.getParamValue());
+				}
 				// 处理注册默认基金
 				/*SbMoneyCount moneyCount = new SbMoneyCount();
 				// 获取系统参数默认奖励金额

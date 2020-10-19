@@ -5,7 +5,8 @@ import java.util.Date;
 
 import com.ccnet.api.util.HanZiUtil;
 import com.ccnet.core.common.MemeberLevelType;
-import com.ccnet.cps.entity.SbUserMoney;
+import com.ccnet.core.entity.SystemParams;
+import com.ccnet.core.service.SystemParamService;
 import org.apache.http.ParseException;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
@@ -53,6 +54,9 @@ public class ApiLoginServiceImpl implements ApiLoginService {
 	SbVisitMoneyService sbVisitMoneyService;
 	@Autowired
 	MemberInfoService memberInfoService;
+
+	@Autowired
+	SystemParamService systemParamService;
 
 	private static final String openid = GetPropertiesValue.getValue("Config.properties", "appId");
 	private static final String secret = GetPropertiesValue.getValue("Config.properties", "appSecret");
@@ -124,7 +128,9 @@ public class ApiLoginServiceImpl implements ApiLoginService {
 				if (memberInfoDao.saveMemberInfo(registInfo)) {
 
 					// 获取系统邀请奖励金额
-					double visitAward = Double.parseDouble(CPSUtil.getParamValue(Const.CT_RECOM_REGISTER_REWARD));
+					SystemParams systemParams = systemParamService.findSystemParamByKey(Const.CT_RECOM_REGISTER_REWARD);
+//					double visitAward = Double.parseDouble(CPSUtil.getParamValue(Const.CT_RECOM_REGISTER_REWARD));
+					double visitAward = Double.valueOf(systemParams.getParamValue());
 					// 邀请人
 					MemberInfo recomMember = null;
 					if (CPSUtil.isNotEmpty(invitedCode)) {
@@ -159,7 +165,8 @@ public class ApiLoginServiceImpl implements ApiLoginService {
 				user = memberInfoDao.find(info);
 				//注册送金币
 				// 注册默认基金
-				double umoney = Double.valueOf(CPSUtil.getParamValue(Const.CT_MEMBER_REGISTER_MONEY));
+				SystemParams params = systemParamService.findSystemParamByKey(Const.CT_MEMBER_REGISTER_MONEY);
+				double umoney = Double.valueOf(params.getParamValue());
 				// 获取系统参数默认奖励金额
 				if (CPSUtil.isEmpty(umoney)) {
 					umoney = 0;// 未设置默认2.0
