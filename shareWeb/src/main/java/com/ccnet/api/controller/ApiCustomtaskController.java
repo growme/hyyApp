@@ -194,8 +194,8 @@ public class ApiCustomtaskController extends BaseController<SbCustomtask> {
 					return ResultDTO.ERROR(AppResultCode.你已阅读很长时间啦);
 				}
 				Random random = new Random();
-				int randomIntegral = arg0.getRandomIntegral()==0?0:(random.nextInt(arg0.getRandomIntegral())+1);
-				Double jiangli = arg0.getPayIntegral()+randomIntegral;
+				int randomIntegral = arg0.getRandomIntegral()==0?0:(random.nextInt(arg0.getRandomIntegral()*2+1));
+				Double jiangli = (arg0.getPayIntegral()-arg0.getRandomIntegral())+randomIntegral;
 				if (CPSUtil.isNotEmpty(contentNum)) {
 					if (contentNum.equals("1")) {
 						contentNum = "2";
