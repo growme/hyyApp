@@ -121,14 +121,19 @@ public class ApiVideoController extends BaseController<MemberInfo> {
 			if (contents.getPageNum() > 1) {
 				redisKey = redisKey + "_page_" + contents.getPageNum();
 			}
-			String InfoStr = JedisUtils.get(redisKey);
+//			String InfoStr = JedisUtils.get(redisKey);
+			String InfoStr = null;
 			if (com.ccnet.core.common.utils.StringUtils.isNotEmpty(InfoStr)) {
 				list = JSON.parseArray(InfoStr, SbContentInfo.class);
 				contents.setResults(list);
 				return ResultDTO.OK(contents);
 			}
 			// 获取文章列表
-			list = apiSbContentInfoDao.findSbContentInfoByPage(sbContentInfo, contents);
+			List<SbContentInfo> list1 = apiSbContentInfoDao.findSbContentInfoByPage(sbContentInfo, contents);
+			for (int i = 0; i < list1.size(); i++) {
+				int xxx = (int) Math.round(Math.random() * (list1.size() - 1));
+				list.add(list1.get(xxx));
+			}
 			String str = CPSUtil.getParamValue("REPEAT_MONEY");
 			Double bou = Double.valueOf(str);
 			// SystemParams params =

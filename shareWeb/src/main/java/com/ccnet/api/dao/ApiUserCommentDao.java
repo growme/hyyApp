@@ -110,7 +110,7 @@ public class ApiUserCommentDao extends BaseDao<T> {
 		sql.append(
 				"SELECT DISTINCT a.*,(SELECT GROUP_CONCAT(pic.content_pic) FROM sb_content_pic pic WHERE a.content_code = pic.content_id) AS contentPics  ");
 		sql.append(
-				"FROM `jp_user_collect` t1,sb_content_info a WHERE a.content_id = t1.content_id AND t1.type=? AND t1.user_id =? ");
+				"FROM `jp_user_collect` t1,sb_content_info a WHERE a.content_id = t1.content_id AND t1.type=? AND t1.user_id =? order by t1.create_date desc");
 		params.add(jpUserComment.getType());
 		params.add(jpUserComment.getUserId());
 		sql.append(" limit ?,?");
