@@ -104,7 +104,11 @@
 														href="javascript:chakan('${dp.id}');" title="查看"><i
 															class="fa  fa-eye  sz14"></i></a> <a
 														href="javascript:editNotice('${dp.id}');" title="编辑"><i
-															class="fa  fa-edit  purple sz14"></i></a></td>
+															class="fa  fa-edit  purple sz14"></i></a>
+															class="fa  fa-eye  sz14"></i></a> <a
+														href="javascript:trashJpNotice('${dp.id}');" title="删除"><i
+															class="fa  fa-edit  purple sz14"></i></a>
+													</td>
 													<td>${dp.id}</td>
 													<td>${dp.title}</td>
 													<td><fmt:formatDate value="${dp.createDate}"

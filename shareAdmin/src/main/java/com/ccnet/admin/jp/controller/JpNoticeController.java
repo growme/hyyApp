@@ -2,6 +2,10 @@ package com.ccnet.admin.jp.controller;
 
 import java.util.Date;
 
+import com.ccnet.admin.bh.entity.SbCommonProblem;
+import com.ccnet.core.common.UserType;
+import com.ccnet.core.common.utils.security.UserInfoShiroUtil;
+import com.ccnet.core.entity.UserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -146,5 +150,32 @@ public class JpNoticeController extends BaseController<JpNotice> {
 		mav.addObject(Const.CT_MENU_NAV, "查看协议");
 		mav.setViewName("adminjp/jsp/notice/view");
 		return mav;
+	}
+
+	/**
+	 * 删除常见问题
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value="trash", method=RequestMethod.POST)
+	@ResponseBody
+	public AjaxRes trashJpNotice(Integer id){
+		AjaxRes ar=getAjaxRes();
+		UserInfo userInfo = UserInfoShiroUtil.getCurrentUser();
+		if(ar.setNoAuth((isAuthedReq(ResourceTypes.FUNC) || isAuthedReq(ResourceTypes.BUTTON)) && userInfo.getUserType()== UserType.SYSTEMADMIN.getType())){
+			try {
+				JpNotice jpNotice = new JpNotice();
+				jpNotice.setId(id);
+				if(jpNoticeService.delete(jpNotice)>0){
+					ar.setSucceedMsg(Const.DEL_SUCCEED);
+				}else{
+					ar.setFailMsg(Const.DEL_FAIL);
+				}
+			} catch (Exception e) {
+				logger.error(e.toString(),e);
+				ar.setFailMsg(Const.DEL_FAIL);
+			}
+		}
+		return ar;
 	}
 }
