@@ -86,10 +86,11 @@
 												 <input class="input-sm Wdate" style="width:100px;" type="text" name="end_date"
 												  id="end_date" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" value="${end_date}"/>
 												<button type="submit" id="sb" class="btn btn-default searchBtn"><i class="fa fa-search"></i>查询</button>
+
 											</label>
 										</div>
 										</form>
-										
+										<span><button id="exportExcel">导出</button></span>
 										<div class="table-scrollable">
 										<table class="table table-striped table-bordered table-hover" id="simpledatatable" >
 											<thead>

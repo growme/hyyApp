@@ -28,6 +28,8 @@ import com.ccnet.core.controller.BaseController;
 import com.ccnet.core.dao.base.Page;
 import com.ccnet.core.entity.UserInfo;
 
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * 用户提现记录
  * 
@@ -410,5 +412,18 @@ public class SbCashLogController extends BaseController<SbCashLog> {
 			mav.setViewName(Const.NO_AUTHORIZED_URL);
 		}
 		return mav;
+	}
+
+	@RequestMapping("export")
+	@ResponseBody
+	public void export(HttpServletResponse response) {
+		Dto paramDto = getParamAsDto();
+		Page<SbCashLog> page = newPage(paramDto);
+		SbCashLog sbCashLog = new SbCashLog();
+		Page<SbCashLog> pages = sbCashLogService.findSbCashLogByPage(sbCashLog, page, paramDto);
+		List<SbCashLog> list = pages.getResults();
+		String filename = "提现记录.xls";
+		String[] headers = {"姓名", "性别", "人员类别", "工种", "进场时间", "测量体温(℃)", "状态"};
+
 	}
 }

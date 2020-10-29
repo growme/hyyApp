@@ -34,7 +34,27 @@ $(function() {
 	$("#th_money_btn").click(function() {
 		checkUserMoney();
 	});
-
+	//导出
+	$("#exportExcel").click(function () {
+		var queryParam = $("#queryParam").val();
+		var state = $("#state").val();
+		var start_date = $("#start_date").val();
+		var end_date = $("#end_date").val();
+		$.ajax({
+			type : "POST",
+			cache : false,
+			url : ccnetpath + "/backstage/cash/export",
+			data : param,
+			dataType : 'json',
+			success : function(data, textStatus) {
+				if ("1" != data.res) {
+					showTErrMsg(data.resMsg);
+				} else {
+					showTSucMsg(data.resMsg);
+				}
+			}
+		});
+	});
 });
 
 function checkUserMoney(id) {
