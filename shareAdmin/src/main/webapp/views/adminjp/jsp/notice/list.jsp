@@ -100,14 +100,15 @@
 															id="ck_${dp.id}" value="${dp.id}"> <span
 															class="text"></span>
 													</label></td>
-													<td class="text-center" style="width: 60px;"><a
-														href="javascript:chakan('${dp.id}');" title="查看"><i
-															class="fa  fa-eye  sz14"></i></a> <a
-														href="javascript:editNotice('${dp.id}');" title="编辑"><i
-															class="fa  fa-edit  purple sz14"></i></a>
-															class="fa  fa-eye  sz14"></i></a> <a
-														href="javascript:trashJpNotice('${dp.id}');" title="删除"><i
-															class="fa  fa-edit  purple sz14"></i></a>
+													<td class="text-center" style="width: 90px;">
+														<!--<a href="javascript:trashJpNotice('${dp.id}');" title="删除"><i class="fa  fa-trash-o darkpink sz14"></i></a>-->
+														<a href="javascript:chakan('${dp.id}');" title="查看"><i class="fa  fa-eye  sz14"></i></a>
+														<!--<a href="javascript:editNotice('${dp.id}');" title="编辑"><i	class="fa  fa-edit  purple sz14"></i></a>-->
+														<c:if test="${!empty permitTBtn}">
+														<c:forEach var="btn" items="${permitTBtn}" varStatus="st">
+															<a href="javascript:${btn.btnFun}('${dp.id}');" id="${btn.btnId}" title="${btn.resourceName}"><i class="${btn.icon} sz14"></i></a>
+														</c:forEach>
+														</c:if>
 													</td>
 													<td>${dp.id}</td>
 													<td>${dp.title}</td>
