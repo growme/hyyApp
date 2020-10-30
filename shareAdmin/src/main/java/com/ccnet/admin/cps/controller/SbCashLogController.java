@@ -423,7 +423,7 @@ public class SbCashLogController extends BaseController<SbCashLog> {
 		Page<SbCashLog> pages = sbCashLogService.findSbCashLogByPage(sbCashLog, page, paramDto);
 		List<SbCashLog> list = pages.getResults();
 		String filename = "提现记录.xls";
-		String[] headers = {"姓名", "性别", "人员类别", "工种", "进场时间", "测量体温(℃)", "状态"};
+		String[] headers = {"序号","会员ID", "会员账号", "收款账号", "账号姓名", "提现金额", "提现方式", "提现状态","备注","申请时间"};
 
 	}
 }
