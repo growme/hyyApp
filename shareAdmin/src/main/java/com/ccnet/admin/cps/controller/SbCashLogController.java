@@ -1,14 +1,19 @@
 package com.ccnet.admin.cps.controller;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import com.ccnet.admin.bh.entity.SbCashLogExportVo;
 import com.ccnet.core.common.*;
 import com.ccnet.cps.dao.SbUserMoneyDao;
 import com.ccnet.cps.entity.*;
 import com.ccnet.cps.service.*;
+import org.apache.poi.hssf.usermodel.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -425,5 +430,34 @@ public class SbCashLogController extends BaseController<SbCashLog> {
 		String filename = "提现记录.xls";
 		String[] headers = {"序号","会员ID", "会员账号", "收款账号", "账号姓名", "提现金额", "提现方式", "提现状态","备注","申请时间"};
 
+		HSSFWorkbook wb = new HSSFWorkbook();
+		HSSFSheet sheet = wb.createSheet("提现记录");
+		// 第三步，在sheet中添加表头第0行,注意老版本poi对Excel的行数列数有限制short
+		HSSFRow header = sheet.createRow(0);
+		// 第四步，创建单元格，并设置值表头 设置表头居中
+		HSSFCellStyle style = wb.createCellStyle();
+		style.setAlignment(HSSFCellStyle.ALIGN_CENTER); // 创建一个居中格式
+
+		for (int i = 0; i < headers.length; i++) {
+			HSSFCell cell = header.createCell(i);
+			cell.setCellValue(headers[i]);
+			cell.setCellStyle(style);
+		}
+		Field[] fields = SbCashLogExportVo.class.getFields();
+		// 第五步，写入实体数据 实际应用中这些数据从数据库得到，
+		for (int i = 0; i < list.size(); i++) {
+			header = sheet.createRow((int) i + 1);
+			SbCashLog cashLog = list.get(i);
+			for (int j = 0; j < fields.length; j++) {
+				HSSFCell cell = header.createCell(j);
+				String fileName = fields[i].getName();
+				if ("index".equals(fileName)){
+					cell.setCellValue(i+1);
+				}else{
+					cell.setCellValue("");
+				}
+				cell.setCellStyle(style);
+			}
+		}
 	}
 }

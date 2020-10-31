@@ -228,48 +228,47 @@ public class ApiLoginServiceImpl implements ApiLoginService {
 				memberInfo.setLevelCode(visitCode);
 			}
 			if (memberInfoDao.saveMemberInfo(memberInfo)) {
-				// 注册默认基金
-				double umoney = Double.valueOf(CPSUtil.getParamValue(Const.CT_MEMBER_REGISTER_MONEY));
 				// 获取系统邀请奖励金额
-				double visitAward = Double.parseDouble(CPSUtil.getParamValue(Const.CT_RECOM_REGISTER_REWARD));
-
+				SystemParams systemParams = systemParamService.findSystemParamByKey(Const.CT_RECOM_REGISTER_REWARD);
+//					double visitAward = Double.parseDouble(CPSUtil.getParamValue(Const.CT_RECOM_REGISTER_REWARD));
+				double visitAward = Double.valueOf(systemParams.getParamValue());
 				// 邀请人
 				MemberInfo recomMember = null;
 				if (CPSUtil.isNotEmpty(recomUser)) {
 					recomMember = memberInfoService.findMemberInfoByVisitCode(recomUser);
 				}
-
-				// 处理注册默认基金
-				//SbMoneyCount moneyCount = new SbMoneyCount();
-				// 获取系统参数默认奖励金额
-				if (CPSUtil.isEmpty(umoney)) {
-					umoney = 2.00d;// 未设置默认2.0
-				}
 				if (CPSUtil.isEmpty(visitAward)) {
-					visitAward = 0.50d;// 未设置默认0.5
+					visitAward = 5000d;// 未设置默认0.5
 				}
-				CPSUtil.xprint("注册默认金额：" + umoney);
-				//moneyCount.setContentId(null);
-				//moneyCount.setCreateTime(new Date());
-				//moneyCount.setUmoney(umoney);
-				//moneyCount.setmType(AwardType.register.getAwardId());
-				memberInfo = memberInfoDao.find(info);
-				//moneyCount.setUserId(memberInfo.getMemberId());
-				//sbMoneyCountService.saveSbMoneyCountInfo(moneyCount);
-
 				// 添加邀请人奖励
 				if (CPSUtil.isNotEmpty(recomMember)) {
-					SbVisitMoney visitMoney = new SbVisitMoney();
-					visitMoney.setCreateTime(new Date());
-					visitMoney.setUserId(recomMember.getMemberId());
-					visitMoney.setVcode(memberInfo.getVisitCode());
-					visitMoney.setVmoney(visitAward);
-					sbVisitMoneyService.saveVisitMoney(visitMoney);
+					SbMoneyCount sbMoneyCount = new SbMoneyCount();
+					sbMoneyCount.setUserId(recomMember.getMemberId());
+					sbMoneyCount.setUmoney(visitAward);
+					sbMoneyCount.setmType(4);
+					sbMoneyCount.setCreateTime(new Date());
+					sbMoneyCount.setVcode(memberInfo.getVisitCode());
+					sbMoneyCountService.saveSbMoneyCountInfo(sbMoneyCount);
 				}
+
 			}
 			// 执行更新操作
 			InitSystemCache.updateCache(Const.CT_SYSTEM_MEMBER_LIST);
 			memberInfo = memberInfoDao.find(info);
+			//注册送金币
+			// 注册默认基金
+			SystemParams params = systemParamService.findSystemParamByKey(Const.CT_MEMBER_REGISTER_MONEY);
+			double umoney = Double.valueOf(params.getParamValue());
+			// 获取系统参数默认奖励金额
+			if (CPSUtil.isEmpty(umoney)) {
+				umoney = 0;// 未设置默认2.0
+			}
+			SbMoneyCount moneyCount = new SbMoneyCount();
+			moneyCount.setUserId(memberInfo.getMemberId());
+			moneyCount.setUmoney(umoney);
+			moneyCount.setmType(0);
+			moneyCount.setCreateTime(new Date());
+			sbMoneyCountService.saveSbMoneyCountInfo(moneyCount);
 		}
 		return memberInfo;
 	}
