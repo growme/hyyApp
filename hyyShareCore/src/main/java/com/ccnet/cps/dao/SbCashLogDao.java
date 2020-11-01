@@ -266,4 +266,28 @@ public class SbCashLogDao extends BaseDao<SbCashLog> {
 		params.add(userId);
 		return memory.query(sql, new BeanHandler<SbCashLog>(SbCashLog.class), params);
 	}
+
+	public List<SbCashLog> findListByCashLog(SbCashLog cashLog) {
+
+		StringBuffer sql = new StringBuffer();
+		List<Object> params = new ArrayList<Object>();
+		sql.append("select * from ").append(getCurrentTableName());
+		sql.append(" where 1=1");
+		// 带上日期查询
+		if (cashLog.getUserId()!=null) {
+			sql.append(" and user_id =? ");
+			params.add(cashLog.getUserId());
+		}
+		if (cashLog.getPayType()!=null) {
+			sql.append(" and pay_type = ? ");
+			params.add(cashLog.getPayType());
+		}
+		if (cashLog.getCreateTime()!=null){
+			sql.append(" and create_time >=  ? ");
+			params.add(cashLog.getCreateTime());
+		}
+		List<SbCashLog> list = memory.query(sql, new BeanListHandler<SbCashLog>(SbCashLog.class), params);
+		System.out.println("查询到的提现结果："+list);
+		return list;
+	}
 }

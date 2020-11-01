@@ -75,4 +75,6 @@ public interface SbCashLogService extends BaseService<SbCashLog>{
 	
 	
 	public boolean updateUserCashMoney(Integer userID,Double money);
+
+	public List<SbCashLog> findListByCashLog(SbCashLog cashLog);
 }

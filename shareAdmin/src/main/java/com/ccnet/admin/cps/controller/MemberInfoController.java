@@ -2,8 +2,15 @@ package com.ccnet.admin.cps.controller;
 
 import java.util.Date;
 
+import com.ccnet.admin.bh.utils.HanZiUtil;
+import com.ccnet.core.entity.SystemParams;
+import com.ccnet.core.service.SystemParamService;
+import com.ccnet.cps.dao.MemberInfoDao;
+import com.ccnet.cps.entity.SbMoneyCount;
+import com.ccnet.cps.service.SbMoneyCountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -44,6 +51,15 @@ public class MemberInfoController extends AdminBaseController<MemberInfo> {
 
 	@Autowired
 	private MemberInfoService memberInfoService;
+
+	@Autowired
+	SystemParamService systemParamService;
+
+	@Autowired
+	SbMoneyCountService sbMoneyCountService;
+
+	@Autowired
+	MemberInfoDao memberInfoDao;
 
 	/**
 	 * 会员管理首页
@@ -134,6 +150,9 @@ public class MemberInfoController extends AdminBaseController<MemberInfo> {
 				String recomCode = memberInfo.getRecomUser();
 				if (CPSUtil.isNotEmpty(memberInfo.getMobile())) {
 					memberInfo.setLoginAccount(memberInfo.getMobile());
+				}
+				if (StringUtils.isEmpty(memberInfo.getMemberName())){
+					memberInfo.setMemberName(HanZiUtil.getRandomHanZiNoSpace(2));
 				}
 				if (checkAccExist(memberInfo)) {
 					ar.setFailMsg(Const.ACCOUNT_EXIST);
@@ -265,9 +284,26 @@ public class MemberInfoController extends AdminBaseController<MemberInfo> {
 		if (CPSUtil.isNotEmpty(memberID)) {
 			ar.setObj(memberID);
 			ar.setSucceedMsg(Const.SAVE_SUCCEED);
+			//保存完发放注册奖励
+			//发放注册奖励
+			SystemParams params = systemParamService.findSystemParamByKey(Const.CT_MEMBER_REGISTER_MONEY);
+			double umoney = Double.valueOf(params.getParamValue());
+			// 获取系统参数默认奖励金额
+			if (CPSUtil.isEmpty(umoney)) {
+				umoney = 0;// 未设置默认2.0
+			}
+			MemberInfo info = new MemberInfo();
+			info.setLoginAccount(memberInfo.getLoginAccount());
+			info = memberInfoDao.find(info);
+			SbMoneyCount moneyCount = new SbMoneyCount();
+			moneyCount.setUserId(info.getMemberId());
+			moneyCount.setUmoney(umoney);
+			moneyCount.setmType(0);
+			moneyCount.setCreateTime(new Date());
+			sbMoneyCountService.saveSbMoneyCountInfo(moneyCount);
 			// 执行更新操作
 			InitSystemCache.updateCache(Const.CT_SYSTEM_MEMBER_LIST);
-			HessianClientUtil.updateCache(Const.CT_SYSTEM_MEMBER_LIST);
+			//HessianClientUtil.updateCache(Const.CT_SYSTEM_MEMBER_LIST);
 		} else {
 			ar.setFailMsg(Const.SAVE_FAIL);
 		}

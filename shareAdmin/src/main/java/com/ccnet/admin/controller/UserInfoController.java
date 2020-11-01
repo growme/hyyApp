@@ -21,7 +21,6 @@ import com.ccnet.core.common.UserType;
 import com.ccnet.core.common.ajax.AjaxRes;
 import com.ccnet.core.common.utils.CPSUtil;
 import com.ccnet.core.common.utils.base.Const;
-import com.ccnet.core.common.utils.base.MD5;
 import com.ccnet.core.common.utils.base.ResourceTypes;
 import com.ccnet.core.common.utils.dataconvert.Dto;
 import com.ccnet.core.common.utils.security.CipherUtil;
@@ -48,6 +47,8 @@ public class UserInfoController extends AdminBaseController<UserInfo>{
 	private RoleInfoService roleInfoService;
 	@Autowired
 	private CacheManager cacheManager;
+
+
 
 	private Cache<String, AtomicInteger> getPasswordRetryCache() {
 		if (cacheManager != null) {

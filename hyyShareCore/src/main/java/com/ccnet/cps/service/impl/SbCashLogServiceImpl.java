@@ -266,4 +266,10 @@ public class SbCashLogServiceImpl extends BaseServiceImpl<SbCashLog> implements 
 		}
 		return i == 1;
 	}
+
+	@Override
+	public List<SbCashLog> findListByCashLog(SbCashLog cashLog) {
+
+		return sbCashLogDao.findListByCashLog(cashLog);
+	}
 }

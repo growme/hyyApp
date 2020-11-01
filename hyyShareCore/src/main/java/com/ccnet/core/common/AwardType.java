@@ -19,13 +19,13 @@ public enum AwardType {
 
 	xiaoshuozhuan(55, "小说赚奖励"), yingyongshiwan(56, "应用试玩奖励"), shipinhongbao(57, "视频红包"),
 
-	shipinzhuan(58, "视频赚"), xiaoshuozhuan1(59, "小说赚"), yuduwenzhuang(60, "阅读文章奖励"),
+	shipinzhuan(58, "视频赚"), xiaoshuozhuan1(59, "新闻赚"), yuduwenzhuang(60, "小说赚"),
 
-	yueduwenzhang(61, "阅读文章奖励"), lianxufenxiang(62, "连续分享奖励"), xinwenliulan(63, "新闻浏览"),
+	yueduwenzhang(61, "阅读文章奖励"), lianxufenxiang(62, "分享文章奖励"), xinwenliulan(63, "连续分享奖励"),
 
-	shipinliulan(64, "视频浏览"), yuedutuisong(65, "阅读推送"), kaiqitongzhi(66, "开启通知奖励"),
+	shipinliulan(64, "新闻浏览"), yuedutuisong(65, "视频浏览"), kaiqitongzhi(66, "阅读推送"),
 
-	yaoqinghaoyou(67, "邀请好友赚大钱"), CPAanzhuang(100, "CPA安装"), CPAqiandao(101, "CPA签到"), huangxingguanggao(102,
+	yaoqinghaoyou(67, "开启通知奖励"), CPAanzhuang(100, "CPA安装"), CPAqiandao(101, "CPA签到"), huangxingguanggao(102,
 			"唤醒广告"), xiaochengxuguanggao(104, "小程序试玩"), gongzhonghao(104,
 					"公众号"), CPLguanggao(105, "CPL广告"), ASOguanggao(106, "ASO广告"), jietuguanggao(107, "截图广告");
 

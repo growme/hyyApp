@@ -30,11 +30,15 @@ import com.ccnet.jpz.service.JpWithdrawMoneyService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.math.BigDecimal;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.*;
 
 /**
@@ -174,12 +178,28 @@ public class ApiDrawMoneyController extends BaseController<SbCashLog> {
 			if (StringUtils.isEmpty(payAccount)||StringUtils.isEmpty(accountName)){
 				return ResultDTO.ERROR(AppResultCode.支付宝账号信息不能为空);
 			}
+
 			// 当前用户
 			MemberInfo memberInfo = memberInfoDao.getUserByUserID(Integer.valueOf(header.getUserid()));
 			if (StringUtils.isEmpty(memberInfo.getPayAccount())||!payAccount.equals(memberInfo.getPayAccount())||!accountName.equals(memberInfo.getAccountName())){
 				memberInfo.setPayAccount(payAccount);
 				memberInfo.setAccountName(accountName);
 				memberInfoDao.update(memberInfo,"member_id");
+			}
+			//判断今日是否已提现
+			if (PayType.alipay.getPayId().equals(payType)){
+				SbCashLog cashLog = new SbCashLog();
+				cashLog.setUserId(memberInfo.getMemberId());
+				LocalDate now = LocalDate.now();
+				ZoneId zone = ZoneId.systemDefault();
+				Instant instant = now.atStartOfDay().atZone(zone).toInstant();
+				cashLog.setCreateTime(Date.from(instant));
+				cashLog.setPayType(PayType.alipay.getPayId());
+				List<SbCashLog> listByCashLog = sbCashLogService.findListByCashLog(cashLog);
+				System.out.println("提现记录："+listByCashLog);
+				if (!CollectionUtils.isEmpty(listByCashLog)){
+					return ResultDTO.ERROR(AppResultCode.支付宝提现每日只限一次);
+				}
 			}
 			// 获取当前用户用户总收益
 			SbUserMoney userMoney = new SbUserMoney();
