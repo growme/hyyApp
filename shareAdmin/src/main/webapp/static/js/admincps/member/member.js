@@ -205,10 +205,11 @@ function saveMember(){
   				showErrMsg(data.resMsg);
   				closeLayer(index);
   			}else{
+				$("#loginAccount").val("");
+				$("#mobile").val("");
   				 showSucMsg(data.resMsg);
   				 // closeFrame(true);
-  				 $("#loginAccount").val("");
-  				 $("#mobile").val("");
+
        		}
        }
     });

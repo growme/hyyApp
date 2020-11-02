@@ -16,6 +16,10 @@ import com.ccnet.cps.dao.SbUserMoneyDao;
 import com.ccnet.cps.entity.*;
 import com.ccnet.cps.service.*;
 import org.apache.poi.hssf.usermodel.*;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -429,51 +433,65 @@ public class SbCashLogController extends BaseController<SbCashLog> {
 		SbCashLog sbCashLog = new SbCashLog();
 		List<SbCashLog> list = sbCashLogService.getTotalCashByUser(sbCashLog, paramDto);
 		String excelName = "提现记录.xls";
-		String[] headers = {"序号（必填）","收款方支付宝账号（必填）", "收款方姓名（必填）", "金额（必填，单位：元）", "备注（选填）"};
+		String[] headers = {"序号(必填)","收款方支付宝账号(必填)", "收款方姓名(必填)", "金额(必填,单位:元)", "备注(选填)"};
 
 		HSSFWorkbook wb = new HSSFWorkbook();
 		HSSFSheet sheet = wb.createSheet("提现记录");
 		// 第三步，在sheet中添加表头第0行,注意老版本poi对Excel的行数列数有限制short
+		HSSFCellStyle cellStyle = wb.createCellStyle();
+		HSSFFont font = wb.createFont();
+		font.setFontHeightInPoints((short) 16);
+		font.setBoldweight(Font.BOLDWEIGHT_BOLD);
+		cellStyle.setFont(font);
+		cellStyle.setAlignment(HSSFCellStyle.ALIGN_CENTER);
+		cellStyle.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
 		HSSFRow row0 = sheet.createRow(0);
-		// 第四步，创建单元格，并设置值表头 设置表头居中
-		HSSFCellStyle style = wb.createCellStyle();
-		style.setAlignment(HSSFCellStyle.ALIGN_CENTER); // 创建一个居中格式
-
 		HSSFCell cell0 = row0.createCell(0);
 		cell0.setCellValue("支付宝批量付款文件模板（前面两行请勿删除）");
-		cell0.setCellStyle(style);
-		CellRangeAddress region = new CellRangeAddress(0,0,0,4);
+		cell0.setCellStyle(cellStyle);
+		CellRangeAddress region = new CellRangeAddress(0,1,0,4);
 		sheet.addMergedRegion(region);
 		//设置表头
-		HSSFRow header = sheet.createRow(1);
+		// 第四步，创建单元格，并设置值表头 设置表头居中
+		HSSFCellStyle style = wb.createCellStyle();
+		HSSFFont cellFont = wb.createFont();
+		cellFont.setFontHeightInPoints((short) 12);
+		style.setFont(cellFont);
+		style.setAlignment(HSSFCellStyle.ALIGN_CENTER); // 创建一个居中格式
+		HSSFRow header = sheet.createRow(2);
 		for (int i = 0; i < headers.length; i++) {
 			HSSFCell cell = header.createCell(i);
 			cell.setCellValue(headers[i]);
 			cell.setCellStyle(style);
 		}
 		try{
-			Field[] fields = SbCashLogExportVo.class.getFields();
+			Field[] fields = SbCashLogExportVo.class.getDeclaredFields();
 			// 第五步，写入实体数据 实际应用中这些数据从数据库得到，
 			for (int i = 0; i < list.size(); i++) {
-				header = sheet.createRow((int) i + 2);
+				header = sheet.createRow((int) i + 3);
 				SbCashLog cashLog = list.get(i);
 
 				for (int j = 0; j < fields.length; j++) {
 					HSSFCell cell = header.createCell(j);
-					String fileName = fields[i].getName();
-					//设置对象的访问权限，保证对private的属性的访问
-					fileName = fileName.substring(0, 1).toUpperCase() + fileName.substring(1);
-					Method method = cashLog.getClass().getMethod("get" +fileName);
-					Object invoke = method.invoke(cashLog);
+					String fileName = fields[j].getName();
+
 					if ("index".equals(fileName)){
 						cell.setCellValue(i+1);
 					}else{
+						//设置对象的访问权限，保证对private的属性的访问
+						fileName = fileName.substring(0, 1).toUpperCase() + fileName.substring(1);
+						Method method = cashLog.getClass().getMethod("get" +fileName);
+						Object invoke = method.invoke(cashLog);
 						cell.setCellValue(invoke==null?"":invoke.toString());
 					}
 					cell.setCellStyle(style);
 				}
 			}
-
+			for (int k = 0; k < fields.length; k++) {
+				sheet.autoSizeColumn(k);
+			}
+			// 处理中文不能自动调整列宽的问题
+			setSizeColumn(sheet, fields.length);
 			//获取输出流
 			OutputStream output = response.getOutputStream();
 			response.reset();
@@ -494,8 +512,36 @@ public class SbCashLogController extends BaseController<SbCashLog> {
 			output.flush();
 			output.close();
 		}catch (Exception e){
+			e.printStackTrace();
 			System.out.println("导出提现记录时异常："+e.getMessage());
 		}
 
+	}
+
+	// 自适应宽度(中文支持)
+	private static void setSizeColumn(HSSFSheet sheet, int size) throws Exception{
+		for (int columnNum = 0; columnNum < size; columnNum++) {
+			int columnWidth = sheet.getColumnWidth(columnNum) / 256;
+			for (int rowNum = 2; rowNum <= sheet.getLastRowNum(); rowNum++) {
+				HSSFRow currentRow;
+				//当前行未被使用过
+				if (sheet.getRow(rowNum) == null) {
+					currentRow = sheet.createRow(rowNum);
+				} else {
+					currentRow = sheet.getRow(rowNum);
+				}
+
+				if (currentRow.getCell(columnNum) != null) {
+					HSSFCell currentCell = currentRow.getCell(columnNum);
+					if (currentCell.getCellType() == Cell.CELL_TYPE_STRING) {
+						int length = currentCell.getStringCellValue().getBytes("UTF-8").length;
+						if (columnWidth < length) {
+							columnWidth = length;
+						}
+					}
+				}
+			}
+			sheet.setColumnWidth(columnNum, columnWidth * 256);
+		}
 	}
 }
