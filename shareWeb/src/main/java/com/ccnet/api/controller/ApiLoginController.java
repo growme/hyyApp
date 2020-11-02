@@ -50,7 +50,7 @@ public class ApiLoginController extends BaseController<MemberInfo> {
 
 	Map<String, Long> ipCache = new HashMap<String, Long>();
 
-	@RequestMapping(value = "fetchVerifyCode", produces = "application/json;charset=UTF-8", method = RequestMethod.POST)
+	@RequestMapping(value = "fetchVerifyCode", produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public ResultDTO<?> fetchVerifyCodeFor(@RequestParam(value = "phone", required = true) String phone) {
 		if (StringUtils.isBlank(phone)) {

@@ -155,8 +155,8 @@ function saveMember(){
     }
 	
     //验证表单
-    if(!isEnZHNum($("#loginAccount").val())){
-        showErrMsg("登录账号只能由字母、数字、中文、下划线组成!");
+    if(!isTel($("#loginAccount").val())){
+        showErrMsg("登录账号需要是手机号!");
         return false;
     }
     
@@ -206,8 +206,10 @@ function saveMember(){
   				closeLayer(index);
   			}else{
   				 showSucMsg(data.resMsg);
-  				 closeFrame(true);
-  			}
+  				 // closeFrame(true);
+  				 $("#loginAccount").val("");
+  				 $("#mobile").val("");
+       		}
        }
     });
  });

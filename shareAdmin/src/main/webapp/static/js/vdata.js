@@ -533,7 +533,7 @@ function isQQ(qq){if(/^[1-9][0-9]{4,11}$/.test(qq))return true;return false;};
 //判断是否是电话号,是返回true，不是返回false
 function isPhone(phone){if(/^(([0\+]\d{2,3}-)?(0\d{2,3})-)?(\d{7,8})(-(\d{3,}))?$/.test(phone))return true;return false;};
 //判断是否是手机号,是返回true，不是返回false
-function isTel(tel){if(/^1(3|4|5|7|8)\d{9}$/.test(tel))return true;return false;};
+function isTel(tel){if(/^1(3|4|5|6|7|8|9)\d{9}$/.test(tel))return true;return false;};
 //判断是否是电子邮箱,是返回true，不是返回false
 function isEmail(email){if(/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(email))return true;return false;};
 //判断是否是日期,是返回true，不是返回false

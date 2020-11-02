@@ -71,6 +71,7 @@
 										<form id="searchForm" name="searchForm" action="${basePath}backstage/cash/index" method="post">
 										<div id="simpledatatable_filter" class="dataTables_filter1">
 											<label class="no-margin-left">
+                                                <input type="hidden" name="expFlag" id="expFlag"/>
 										        <input type="text" name="queryParam" id="queryParam"placeholder="请输入查询关键词" class="form-control input-sm" value="${queryParam}"/>
 												<select name="state" id="state" class="form-control input-sm">
                                                  <option  value="">选择状态</option>
@@ -90,7 +91,13 @@
 											</label>
 										</div>
 										</form>
-										<span><button id="exportExcel">导出</button></span>
+										<%--<form method="post" action="${basePath}backstage/cash/export" id="exportForm" style="display: none">
+											<input type="hidden" id="exportQueryParam" name="queryParam">
+											<input type="hidden" id="exportState" name="state">
+											<input type="hidden" id="exportStart" name="start_date">
+											<input type="hidden" id="exportEnd" name="end_date">
+										<form/>--%>
+										<span style="margin-left: 10px;"><button id="exportExcel" style="width: 50px;line-height: 20px;">导出</button></span>
 										<div class="table-scrollable">
 										<table class="table table-striped table-bordered table-hover" id="simpledatatable" >
 											<thead>

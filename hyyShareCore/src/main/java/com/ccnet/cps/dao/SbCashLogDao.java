@@ -290,4 +290,67 @@ public class SbCashLogDao extends BaseDao<SbCashLog> {
 		System.out.println("查询到的提现结果："+list);
 		return list;
 	}
+
+	public List<SbCashLog> getTotalCashByUser(SbCashLog cashLog, Dto pdDto) {
+
+		// 获取参数
+		String queryParam = pdDto.getAsString("queryParam");
+		String state = pdDto.getAsString("state");
+		// 日期过滤
+		String end_date = pdDto.getAsString("end_date");
+		String start_date = pdDto.getAsString("start_date");
+
+		String statelist = pdDto.getAsString("staelist");
+
+		Integer payType = pdDto.getAsInteger("payType");
+		StringBuffer sql = new StringBuffer();
+		List<Object> params = new ArrayList<Object>();
+		sql.append("select pay_account,account_name,remark,TRUNCATE(SUM(IFNULL(cmoney,0)),2)cmoney from ").append(getCurrentTableName());
+		List<String> whereColumns = memory.parseWhereColumns(params, SbCashLog.class, cashLog);
+		if (CollectionUtils.isNotEmpty(whereColumns)) {
+			sql.append(" where ").append(appendAnd(whereColumns));
+		}
+
+		if (CPSUtil.isNotEmpty(queryParam)) {
+			appendWhere(sql);
+			sql.append(" and pay_account like ? or account_name like ? ");
+			params.add("%" + queryParam + "%");
+			params.add("%" + queryParam + "%");
+		}
+
+		if (payType!=null){
+			appendWhere(sql);
+			sql.append(" and pay_type =? ");
+			params.add(payType);
+		}
+		if (CPSUtil.isNotEmpty(statelist)) {
+			appendWhere(sql);
+			sql.append(" and state in (" + statelist + ") ");
+		}
+
+		if (CPSUtil.isNotEmpty(state)) {
+			appendWhere(sql);
+			sql.append(" and state =? ");
+			params.add(state);
+		}
+
+		// 带上日期查询
+		if (CPSUtil.isNotEmpty(start_date)) {
+			appendWhere(sql);
+			sql.append(" and create_time >=? ");
+			params.add(start_date + " 00:00:00");
+		}
+
+		if (CPSUtil.isNotEmpty(end_date)) {
+			appendWhere(sql);
+			sql.append(" and create_time <=? ");
+			params.add(end_date + " 23:59:59");
+		}
+
+		// 加上排序
+		sql.append(" GROUP BY pay_account ");
+		sql.append(" order by update_time desc ");
+		List<SbCashLog> list = memory.query(sql, new BeanListHandler<SbCashLog>(SbCashLog.class), params);
+		return list;
+	}
 }

@@ -11,10 +11,13 @@ import com.ccnet.core.common.PayType;
 import com.ccnet.core.common.ResponseCode;
 import com.ccnet.core.common.utils.CPSUtil;
 import com.ccnet.core.common.utils.DateUtils;
+import com.ccnet.core.common.utils.base.Const;
 import com.ccnet.core.common.utils.dataconvert.Dto;
 import com.ccnet.core.common.utils.redis.JedisUtils;
 import com.ccnet.core.controller.BaseController;
 import com.ccnet.core.dao.base.Page;
+import com.ccnet.core.entity.SystemParams;
+import com.ccnet.core.service.SystemParamService;
 import com.ccnet.cps.dao.MemberInfoDao;
 import com.ccnet.cps.entity.MemberInfo;
 import com.ccnet.cps.entity.SbCashLog;
@@ -62,6 +65,9 @@ public class ApiDrawMoneyController extends BaseController<SbCashLog> {
 
 	@Autowired
     JpWithdrawMoneyService jpWithdrawMoneyService;
+
+	@Autowired
+	SystemParamService systemParamService;
 
 	// 提现列表
 	@RequestMapping("list")
@@ -127,8 +133,8 @@ public class ApiDrawMoneyController extends BaseController<SbCashLog> {
 	@ResponseBody
 	public ResultDTO<?> withdrawRules() {
 		try {
-			String withdraw_rules = CPSUtil.getParamValue("WITHDRAW_RULES");
-			return ResultDTO.OK(withdraw_rules);
+			SystemParams systemParams = systemParamService.findSystemParamByKey("WITHDRAW_RULES");
+			return ResultDTO.OK(systemParams.getParamValue());
 		} catch (Exception e) {
 			e.printStackTrace();
 			return ResultDTO.ERROR(BasicCode.逻辑错误);

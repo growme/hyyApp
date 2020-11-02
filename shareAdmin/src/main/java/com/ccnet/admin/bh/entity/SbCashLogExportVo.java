@@ -10,24 +10,15 @@ import java.util.Date;
 public class SbCashLogExportVo {
     //序号
     private int index;
-    //会员ID
-    private Integer userId;
-    //会员账户
-    private String loginAccount;
     //付款账户
     private String payAccount;
     //账户名称
     private String accountName;
     //提现金额
     private Double cmoney;
-    //提现的方式
-    private String typeName;
-    //提现状态
-    private String stateName;
     //备注
     private String remark;
-    //申请时间
-    private Date createTime;
+
 
     public int getIndex() {
         return index;
@@ -37,21 +28,7 @@ public class SbCashLogExportVo {
         this.index = index;
     }
 
-    public Integer getUserId() {
-        return userId;
-    }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-
-    public String getLoginAccount() {
-        return loginAccount;
-    }
-
-    public void setLoginAccount(String loginAccount) {
-        this.loginAccount = loginAccount;
-    }
 
     public String getPayAccount() {
         return payAccount;
@@ -77,21 +54,7 @@ public class SbCashLogExportVo {
         this.cmoney = cmoney;
     }
 
-    public String getTypeName() {
-        return typeName;
-    }
 
-    public void setTypeName(String typeName) {
-        this.typeName = typeName;
-    }
-
-    public String getStateName() {
-        return stateName;
-    }
-
-    public void setStateName(String stateName) {
-        this.stateName = stateName;
-    }
 
     public String getRemark() {
         return remark;
@@ -101,11 +64,5 @@ public class SbCashLogExportVo {
         this.remark = remark;
     }
 
-    public Date getCreateTime() {
-        return createTime;
-    }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
 }

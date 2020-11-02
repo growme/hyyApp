@@ -1,8 +1,10 @@
 package com.ccnet.admin.cps.controller;
 
+import java.io.OutputStream;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -14,6 +16,7 @@ import com.ccnet.cps.dao.SbUserMoneyDao;
 import com.ccnet.cps.entity.*;
 import com.ccnet.cps.service.*;
 import org.apache.poi.hssf.usermodel.*;
+import org.apache.poi.ss.util.CellRangeAddress;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,6 +36,7 @@ import com.ccnet.core.controller.BaseController;
 import com.ccnet.core.dao.base.Page;
 import com.ccnet.core.entity.UserInfo;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
@@ -420,44 +424,78 @@ public class SbCashLogController extends BaseController<SbCashLog> {
 	}
 
 	@RequestMapping("export")
-	@ResponseBody
-	public void export(HttpServletResponse response) {
+	public void export(HttpServletResponse response, HttpServletRequest request) {
 		Dto paramDto = getParamAsDto();
-		Page<SbCashLog> page = newPage(paramDto);
 		SbCashLog sbCashLog = new SbCashLog();
-		Page<SbCashLog> pages = sbCashLogService.findSbCashLogByPage(sbCashLog, page, paramDto);
-		List<SbCashLog> list = pages.getResults();
-		String filename = "提现记录.xls";
-		String[] headers = {"序号","会员ID", "会员账号", "收款账号", "账号姓名", "提现金额", "提现方式", "提现状态","备注","申请时间"};
+		List<SbCashLog> list = sbCashLogService.getTotalCashByUser(sbCashLog, paramDto);
+		String excelName = "提现记录.xls";
+		String[] headers = {"序号（必填）","收款方支付宝账号（必填）", "收款方姓名（必填）", "金额（必填，单位：元）", "备注（选填）"};
 
 		HSSFWorkbook wb = new HSSFWorkbook();
 		HSSFSheet sheet = wb.createSheet("提现记录");
 		// 第三步，在sheet中添加表头第0行,注意老版本poi对Excel的行数列数有限制short
-		HSSFRow header = sheet.createRow(0);
+		HSSFRow row0 = sheet.createRow(0);
 		// 第四步，创建单元格，并设置值表头 设置表头居中
 		HSSFCellStyle style = wb.createCellStyle();
 		style.setAlignment(HSSFCellStyle.ALIGN_CENTER); // 创建一个居中格式
 
+		HSSFCell cell0 = row0.createCell(0);
+		cell0.setCellValue("支付宝批量付款文件模板（前面两行请勿删除）");
+		cell0.setCellStyle(style);
+		CellRangeAddress region = new CellRangeAddress(0,0,0,4);
+		sheet.addMergedRegion(region);
+		//设置表头
+		HSSFRow header = sheet.createRow(1);
 		for (int i = 0; i < headers.length; i++) {
 			HSSFCell cell = header.createCell(i);
 			cell.setCellValue(headers[i]);
 			cell.setCellStyle(style);
 		}
-		Field[] fields = SbCashLogExportVo.class.getFields();
-		// 第五步，写入实体数据 实际应用中这些数据从数据库得到，
-		for (int i = 0; i < list.size(); i++) {
-			header = sheet.createRow((int) i + 1);
-			SbCashLog cashLog = list.get(i);
-			for (int j = 0; j < fields.length; j++) {
-				HSSFCell cell = header.createCell(j);
-				String fileName = fields[i].getName();
-				if ("index".equals(fileName)){
-					cell.setCellValue(i+1);
-				}else{
-					cell.setCellValue("");
+		try{
+			Field[] fields = SbCashLogExportVo.class.getFields();
+			// 第五步，写入实体数据 实际应用中这些数据从数据库得到，
+			for (int i = 0; i < list.size(); i++) {
+				header = sheet.createRow((int) i + 2);
+				SbCashLog cashLog = list.get(i);
+
+				for (int j = 0; j < fields.length; j++) {
+					HSSFCell cell = header.createCell(j);
+					String fileName = fields[i].getName();
+					//设置对象的访问权限，保证对private的属性的访问
+					fileName = fileName.substring(0, 1).toUpperCase() + fileName.substring(1);
+					Method method = cashLog.getClass().getMethod("get" +fileName);
+					Object invoke = method.invoke(cashLog);
+					if ("index".equals(fileName)){
+						cell.setCellValue(i+1);
+					}else{
+						cell.setCellValue(invoke==null?"":invoke.toString());
+					}
+					cell.setCellStyle(style);
 				}
-				cell.setCellStyle(style);
 			}
+
+			//获取输出流
+			OutputStream output = response.getOutputStream();
+			response.reset();
+			//设置分区中文名
+			response.setContentType("application/octet-stream");
+			String userAgent = request.getHeader("User-Agent").toLowerCase();
+			// 火狐和Ie的下载文件名乱码问题
+			if (userAgent.contains("MSIE")||userAgent.contains("TRIDENT")||userAgent.contains("LIKE GECKO")
+					|| userAgent.contains("Mozilla")) {
+				response.setHeader("Content-Disposition", "attachment;filename="+ URLEncoder.encode(excelName, "UTF-8")); // 火狐和Ie的下载文件名乱码问题
+				System.out.println("ie----------------------------" + userAgent.toString());
+				//其他浏览器下载文件名乱码问题
+			}else{
+				response.setHeader("Content-Disposition", "attachment;filename="+ new String(excelName.getBytes("utf-8"), "ISO8859-1")); //其他浏览器下载文件名乱码问题
+				System.out.println("chrom----------------------------" + userAgent.toString());
+			}
+			wb.write(output);
+			output.flush();
+			output.close();
+		}catch (Exception e){
+			System.out.println("导出提现记录时异常："+e.getMessage());
 		}
+
 	}
 }

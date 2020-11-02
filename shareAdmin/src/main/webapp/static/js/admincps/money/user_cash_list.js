@@ -40,20 +40,37 @@ $(function() {
 		var state = $("#state").val();
 		var start_date = $("#start_date").val();
 		var end_date = $("#end_date").val();
-		$.ajax({
-			type : "POST",
-			cache : false,
-			url : ccnetpath + "/backstage/cash/export",
-			data : param,
-			dataType : 'json',
-			success : function(data, textStatus) {
-				if ("1" != data.res) {
-					showTErrMsg(data.resMsg);
-				} else {
-					showTSucMsg(data.resMsg);
-				}
-			}
-		});
+		var form = $("<form>");
+		form.attr('style', 'display:none');
+		form.attr('target', '');
+		form.attr('method', 'post');
+		form.attr('action', 'export');
+
+		var input1 = $('<input>');
+		input1.attr('type', 'hidden');
+		input1.attr('name', 'queryParam');
+		input1.attr('value', queryParam);      /* JSON.stringify($.serializeObject($('#searchForm'))) */
+		var input2 = $('<input>');
+		input2.attr('type', 'hidden');
+		input2.attr('name', 'state');
+		input2.attr('value', state);      /* JSON.stringify($.serializeObject($('#searchForm'))) */
+		var input3 = $('<input>');
+		input3.attr('type', 'hidden');
+		input3.attr('name', 'start_date');
+		input3.attr('value', start_date);      /* JSON.stringify($.serializeObject($('#searchForm'))) */
+		var input4 = $('<input>');
+		input4.attr('type', 'hidden');
+		input4.attr('name', 'end_date');
+		input4.attr('value', end_date);      /* JSON.stringify($.serializeObject($('#searchForm'))) */
+
+		$('body').append(form);
+		form.append(input1);
+		form.append(input2);
+		form.append(input3);
+		form.append(input4);
+
+		form.submit();
+		form.remove();
 	});
 });
 

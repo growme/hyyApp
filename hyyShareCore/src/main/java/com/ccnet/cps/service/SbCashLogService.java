@@ -35,6 +35,14 @@ public interface SbCashLogService extends BaseService<SbCashLog>{
 	 * @return
 	 */
 	public List<SbCashLog> findSbCashLogList(SbCashLog cashLog,Dto paramDto);
+
+	/**
+	 * 根据条件查询每个用户申请的提现总额
+	 * @param cashLog
+	 * @param paramDto
+	 * @return
+	 */
+	public List<SbCashLog> getTotalCashByUser(SbCashLog cashLog,Dto paramDto);
 	
 	/**
 	 * 日期统计

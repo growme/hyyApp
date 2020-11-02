@@ -105,6 +105,12 @@ public class SbCashLogServiceImpl extends BaseServiceImpl<SbCashLog> implements 
 		return cashPage;
 	}
 
+	@Override
+	public List<SbCashLog> getTotalCashByUser(SbCashLog cashLog, Dto paramDto) {
+
+		return sbCashLogDao.getTotalCashByUser(cashLog,paramDto);
+	}
+
 	/**
 	 * 查询提现记录集合
 	 * 

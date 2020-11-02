@@ -50,10 +50,10 @@
 	</mvc:annotation-driven>
 
 	<mvc:interceptors>
-		<mvc:interceptor>
+		<!--<mvc:interceptor>
 			<mvc:mapping path="/api/**" />
 			<bean class="com.ccnet.api.interceptor.OpenIntercept"></bean>
-		</mvc:interceptor>
+		</mvc:interceptor>-->
 		<mvc:interceptor>
 			<mvc:mapping path="/api/**" />
 			<mvc:exclude-mapping path="/api/user/ulogin"/>

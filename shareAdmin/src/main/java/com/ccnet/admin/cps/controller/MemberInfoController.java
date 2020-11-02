@@ -148,8 +148,9 @@ public class MemberInfoController extends AdminBaseController<MemberInfo> {
 		if (ar.setNoAuth(isAuthedReq(ResourceTypes.FUNC, GO_ADD_URL))) {
 			try {
 				String recomCode = memberInfo.getRecomUser();
-				if (CPSUtil.isNotEmpty(memberInfo.getMobile())) {
-					memberInfo.setLoginAccount(memberInfo.getMobile());
+
+				if (StringUtils.isEmpty(memberInfo.getMobile())){
+					memberInfo.setMobile(memberInfo.getLoginAccount());
 				}
 				if (StringUtils.isEmpty(memberInfo.getMemberName())){
 					memberInfo.setMemberName(HanZiUtil.getRandomHanZiNoSpace(2));
