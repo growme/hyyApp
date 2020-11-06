@@ -203,13 +203,15 @@ function saveMember(){
        success: function(data) {
        	if ("1" != data.res) {
   				showErrMsg(data.resMsg);
-  				closeLayer(index);
+  				// closeLayer(index);
   			}else{
+				$("#loginAccount").val("");
+				$("#mobile").val("");
   				 showSucMsg(data.resMsg);
   				 // closeFrame(true);
-  				 $("#loginAccount").val("");
-  				 $("#mobile").val("");
+
        		}
+		   closeLayer(index);
        }
     });
  });

@@ -305,7 +305,8 @@ public class SbCashLogDao extends BaseDao<SbCashLog> {
 		Integer payType = pdDto.getAsInteger("payType");
 		StringBuffer sql = new StringBuffer();
 		List<Object> params = new ArrayList<Object>();
-		sql.append("select pay_account,account_name,remark,TRUNCATE(SUM(IFNULL(cmoney,0)),2)cmoney from ").append(getCurrentTableName());
+//		TRUNCATE(SUM(IFNULL(cmoney,0)),2)
+		sql.append("select pay_account,account_name,remark,IFNULL(cmoney,0)cmoney from ").append(getCurrentTableName());
 		List<String> whereColumns = memory.parseWhereColumns(params, SbCashLog.class, cashLog);
 		if (CollectionUtils.isNotEmpty(whereColumns)) {
 			sql.append(" where ").append(appendAnd(whereColumns));
@@ -348,7 +349,7 @@ public class SbCashLogDao extends BaseDao<SbCashLog> {
 		}
 
 		// 加上排序
-		sql.append(" GROUP BY pay_account ");
+//		sql.append(" GROUP BY pay_account ");
 		sql.append(" order by update_time desc ");
 		List<SbCashLog> list = memory.query(sql, new BeanListHandler<SbCashLog>(SbCashLog.class), params);
 		return list;

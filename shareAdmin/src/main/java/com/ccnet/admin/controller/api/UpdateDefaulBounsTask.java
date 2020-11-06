@@ -51,7 +51,7 @@ public class UpdateDefaulBounsTask implements Job{
     		if(systemParamDao.editSystemParam(params)){
     			//更新缓存
     			InitSystemCache.updateCache(Const.CT_PARAM_LIST);
-    			HessianClientUtil.updateCache(Const.CT_PARAM_LIST);
+//    			HessianClientUtil.updateCache(Const.CT_PARAM_LIST);
     			CPSUtil.xprint("全局奖金更新为【"+_bouns+"】成功！");
     		}else{
     			CPSUtil.xprint("全局奖金更新为【"+_bouns+"】失败！");
